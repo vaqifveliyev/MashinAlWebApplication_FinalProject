@@ -1,0 +1,28 @@
+﻿@model Color
+
+@{
+    ViewData["Title"] = Model.Name + " | Dəyişiklik et";
+}
+
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title fw-semibold mb-4">@Model.Name Rəng | Ətraflı </h5>
+        <div class="card">
+            <div class="card-body">
+                <form method="post">
+                    <div class="mb-3">
+                        <label class="form-label">Rəng adı</label>
+                        <input asp-for="Name" type="text" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">HexCode</label>
+                        <input asp-for="HexCode" type="color" class="form-control">
+                    </div>
+                    <a asp-action="index" class="btn btn-primary">Geri</a>
+                    <button type="submit" class="btn btn-success">Yadda saxla</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

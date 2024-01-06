@@ -1,0 +1,59 @@
+﻿@model Marka
+@{
+    ViewData["Title"] = "Marka | Yeni Marka";
+}
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title fw-semibold mb-4">Yeni Marka Əlavə Etmək</h5>
+        <div class="card">
+            <div class="card-body">
+                <form method="post" id="createForm">
+                    <div class="mb-3">
+                        <label class="form-label">Marka adı</label>
+                        <input asp-for="Name" type="text" class="form-control" required>
+                    </div>
+                    <a asp-action="index" class="btn btn-primary">Geri</a>
+                    <button type="button" onclick="addEntity()" class="btn btn-success">Əlavə et</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section addjs {
+    <script>
+        function addEntity() {
+            // Serialize the form data
+            var formData = $('#createForm').serialize();
+
+            // Perform AJAX request
+            $.ajax({
+                url: '@Url.Action("Create")',
+                type: 'POST',
+                data: formData,
+                success: function (response) {
+                    if (response.success) {
+
+                        toastr.success("Marka uğurla əlavə olundu!", "Uğurlu nəticə!");
+
+
+                        setTimeout(function () {
+                            window.location.href = '@Url.Action("Index")';
+                        }, 3000);
+                    } else {
+
+                        toastr.error(response.message, "Xəta!");
+                    }
+                },
+                error: function (response) {
+                    console.log(response);
+                    toastr.error("Marka əlavə etmək əməliyyatı üzrə xəta yarandı!", "Xəta!");
+                }
+            });
+        }
+    </script>
+
+}

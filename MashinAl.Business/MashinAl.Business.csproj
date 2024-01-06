@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Modules\PlateModule\Commands\Plate\**" />
+    <EmbeddedResource Remove="Modules\PlateModule\Commands\Plate\**" />
+    <None Remove="Modules\PlateModule\Commands\Plate\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="12.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MashinAl.Data\MashinAl.Data.csproj" />
+    <ProjectReference Include="..\MashinAl.Infastructure\MashinAl.Infastructure.csproj" />
+  </ItemGroup>
+
+</Project>

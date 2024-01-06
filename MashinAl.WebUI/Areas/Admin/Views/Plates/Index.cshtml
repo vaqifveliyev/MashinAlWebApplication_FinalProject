@@ -1,0 +1,79 @@
+﻿@using MashinAl.Business.Modules.PlateModule.Queries.PlateGetAllQuery
+@model IEnumerable<PlateGetAllDto>
+
+@{
+    ViewData["Title"] = "Qeydiyyat Nişanları | Admin";
+}
+
+<div class="page-body">
+    <!-- Basic table card start -->
+    <div class="card">
+        <div class="card-header">
+            <h5>Qeydiyyat Nişanları | Elanlar</h5>
+
+        </div>
+        <div class="card-block table-border-style">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Qeydiyyat nişanı</th>
+                            <th>Qiymət</th>
+                            <th>Sahibi</th>
+                            <th>Status</th>
+                            <th>Əməliyyatlar</th>
+                        </tr>
+                    </thead>
+                    <tbody id="body">
+                        <partial name="_Body" model="@Model" />
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+@section addjs {
+    <script src="~/libs/sweetalert/sweetalert.min.js"></script>
+    <script>
+        function removeEntity(id, name) {
+
+            swal({
+                title: "Diqqət!",
+                text: `${name} nömrəli qeydiyyat nişanını silmək istədiyinizdən əminsiniz?`,
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+                buttons: ['Xeyr', 'Bəli']
+            })
+                .then((willDelete) => {
+                    if (willDelete) {
+
+                        let obj = { id };
+
+                        $.ajax({
+                            url: '@Url.Action("Delete")',
+                            type: 'POST',
+                            data: obj,
+                            success: function (response) {
+                                if (response.error == true) {
+                                    toastr.error('Qeydiyyat nişanı silinmə əməliyyatında xəta yarandı!', 'Xəta!');
+                                    return;
+                                }
+
+                                toastr.success('Qeydiyyat nişanı uğurla silindi!', 'Uğurlu Nəticə!');
+                                $('tbody#body').html(response)
+
+                            },
+                            error: function (response) {
+                                console.log(response);
+                            }
+                        });
+                    }
+                });
+        }
+    </script>
+}

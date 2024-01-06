@@ -1,0 +1,259 @@
+﻿<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title</title>
+    <link rel="icon"
+          type="image/png"
+          href="~/frontside/assets/img/logo/favicon-32x32.png"
+          sizes="32x32" />
+    <script src="https://kit.fontawesome.com/725995b05f.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="~/admin/src/assets/css/styles.min.css" />
+    <link rel="stylesheet" href="~/admin/src/assets/css/additional.css" />
+    <link href="~/libs/toastr.js/toastr.min.css" rel="stylesheet" />
+</head>
+
+<body>
+
+    <!-- Spinner -->
+    <div id="preloader-container">
+        <!-- Bootstrap Spinner -->
+        <div class="spinner-border text-primary" role="status">
+        </div>
+    </div>
+    <!-- Spinner -->
+
+    <!--  Body Wrapper -->
+    <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+         data-sidebar-position="fixed" data-header-position="fixed">
+        <!-- Sidebar Start -->
+        <aside class="left-sidebar">
+            <!-- Sidebar scroll-->
+            <div>
+                <div class="brand-logo d-flex align-items-center justify-content-between">
+                    <a asp-controller="Dashboard" asp-action="Index" class="text-nowrap logo-img">
+                        <img src="~/frontside/assets/img/logo/logo_blue.png" width="180" alt="" />
+                    </a>
+                    <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
+                        <i class="ti ti-x fs-8"></i>
+                    </div>
+                </div>
+                <!-- Sidebar navigation-->
+                <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
+                    <ul id="sidebarnav">
+                        <li class="nav-small-cap">
+                            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                            <span class="hide-menu">Əsas</span>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" asp-controller="Dashboard" asp-action="Index" aria-expanded="false">
+                                <span>
+                                    <i class="ti ti-layout-dashboard"></i>
+                                </span>
+                                <span class="hide-menu">Əsas Panel</span>
+                            </a>
+                        </li>
+                        <li class="nav-small-cap">
+                            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                            <span class="hide-menu">Kataloqlar</span>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" asp-controller="Color" asp-action="Index" aria-expanded="false">
+                                <span>
+                                    <i class="ti ti-aperture"></i>
+                                </span>
+                                <span class="hide-menu">Rənglər</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" asp-controller="BanType" asp-action="Index" aria-expanded="false">
+                                <span>
+                                    <i class="ti ti-aperture"></i>
+                                </span>
+                                <span class="hide-menu">Ban Növləri</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" asp-controller="CarStatus" asp-action="Index" aria-expanded="false">
+                                <span>
+                                    <i class="ti ti-aperture"></i>
+                                </span>
+                                <span class="hide-menu">Vəziyyətlər</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" asp-controller="Supply" asp-action="Index" aria-expanded="false">
+                                <span>
+                                    <i class="ti ti-aperture"></i>
+                                </span>
+                                <span class="hide-menu">Təchizatlar</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" asp-controller="City" asp-action="Index" aria-expanded="false">
+                                <span>
+                                    <i class="ti ti-aperture"></i>
+                                </span>
+                                <span class="hide-menu">Şəhərlər</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" asp-controller="FuelType" asp-action="Index" aria-expanded="false">
+                                <span>
+                                    <i class="ti ti-aperture"></i>
+                                </span>
+                                <span class="hide-menu">Yanacaq növləri</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" asp-controller="GearBoxType" asp-action="Index" aria-expanded="false">
+                                <span>
+                                    <i class="ti ti-aperture"></i>
+                                </span>
+                                <span class="hide-menu">Ötürücü növləri</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" asp-controller="TransmissionType" asp-action="Index" aria-expanded="false">
+                                <span>
+                                    <i class="ti ti-aperture"></i>
+                                </span>
+                                <span class="hide-menu">Sürətlər Qutusu Növləri</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" asp-controller="Marka" asp-action="Index" aria-expanded="false">
+                                <span>
+                                    <i class="ti ti-aperture"></i>
+                                </span>
+                                <span class="hide-menu">Markalar</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" asp-controller="Model" asp-action="Index" aria-expanded="false">
+                                <span>
+                                    <i class="ti ti-aperture"></i>
+                                </span>
+                                <span class="hide-menu">Modellər</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" asp-controller="Seat" asp-action="Index" aria-expanded="false">
+                                <span>
+                                    <i class="ti ti-aperture"></i>
+                                </span>
+                                <span class="hide-menu">Oturacaq Sayları</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" asp-controller="Region" asp-action="Index" aria-expanded="false">
+                                <span>
+                                    <i class="ti ti-aperture"></i>
+                                </span>
+                                <span class="hide-menu">Regionlar</span>
+                            </a>
+                        </li>
+                        <li class="nav-small-cap">
+                            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                            <span class="hide-menu">Elanlar</span>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" asp-controller="Cars" asp-action="Index" aria-expanded="false">
+                                <span>
+                                    <i class="ti ti-car"></i>
+                                </span>
+                                <span class="hide-menu">Avtomobil</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" asp-controller="Plates" asp-action="Index" aria-expanded="false">
+                                <span>
+                                    <i class="ti ti-server"></i>
+                                </span>
+                                <span class="hide-menu">Qeydiyyat nişanı</span>
+                            </a>
+                        </li>
+                        <li class="nav-small-cap">
+                            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                            <span class="hide-menu">Hesab</span>
+                        </li>
+                        <li class="sidebar-item" style="cursor:pointer;">
+                            <a class="sidebar-link" onclick="Logout()" aria-expanded="false">
+                                <span>
+                                    <i class="ti ti-login"></i>
+                                </span>
+                                <span class="hide-menu">Çıxış</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- End Sidebar navigation -->
+            </div>
+            <!-- End Sidebar scroll-->
+        </aside>
+        <!--  Sidebar End -->
+        <!--  Main wrapper -->
+        <div class="body-wrapper">
+            <div class="container-fluid">
+                <!--  Row 1 -->
+                <div class="row">
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/admin/src/assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="~/admin/src/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/admin/src/assets/js/sidebarmenu.js"></script>
+    <script src="~/admin/src/assets/js/app.min.js"></script>
+    <script src="~/admin/src/assets/libs/apexcharts/dist/apexcharts.min.js"></script>
+    <script src="~/admin/src/assets/libs/simplebar/dist/simplebar.js"></script>
+    <script src="~/admin/src/assets/js/dashboard.js"></script>
+    <script src="~/libs/toastr.js/toastr.min.js"></script>
+    <script src="~/admin/src/assets/js/additionaljs.js"></script>
+    <script src="~/libs/sweetalert/sweetalert.min.js"></script>
+    @RenderSection("addjs", required: false)
+
+    <script>
+        function Logout() {
+            swal({
+                title: "Diqqət!",
+                text: "Hesabdan çıxmaq istədiyinizdən əminsiniz?",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+                .then((confirmed) => {
+                    if (confirmed) {
+                        
+                        $.ajax({
+                            url: '@Url.Action("Logout", "Account")',
+                            method: 'POST', //
+                            success: function (response) {
+                                if (response.error) {
+                                    swal("Xəta!", "Hesabdan çıxma əməliyyatı alınmadı!", "error");
+                                } else {
+                                    swal("Uğurlu Nəticə!", "Hesabdan çıxış uğurla tamamlandı!", "success");
+                                    setTimeout(function () {
+                                        window.location.href = '@Url.Content("~/Home/Index")';
+                                    }, 2000);
+                                }
+                            },
+                            error: function (response) {
+                                console.log(response);
+                            }
+                        });
+                    } else {
+                        
+                        swal("Məlumat", "Hesabdan çıxış ləğv edildi.", "info");
+                    }
+                });
+        }
+    </script>
+
+
+</body>
+
+</html>

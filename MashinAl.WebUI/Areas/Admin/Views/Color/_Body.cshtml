@@ -1,0 +1,17 @@
+﻿@model IEnumerable<Color>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <th scope="row">@item.Id</th>
+        <td>
+            <div class="hexcode" style="border: 1px solid transparent; border-radius: 5px; width:35px; height:35px; background-color:@item.HexCode"></div>
+        </td>
+        <td>@item.Name</td>
+        <td>
+            <a class="btn btn-primary" style="color:white;" asp-action="edit" asp-route-id="@item.Id"><i class="fa-solid fa-pen-to-square"></i></a>
+            <a class="btn btn-warning" style="color:white;" asp-action="details" asp-route-id="@item.Id"><i class="fa-solid fa-circle-info"></i></a>
+            <a class="btn btn-danger" style="color:white;" onclick="removeEntity(@item.Id, '@item.Name')"><i class="fa-solid fa-trash"></i></a>
+        </td>
+    </tr>
+}

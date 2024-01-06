@@ -1,0 +1,18 @@
+﻿@model IEnumerable<Supply>
+
+@{
+    int index = 0;
+}
+
+<div style="display:flex; flex-direction:column; row-gap:10px;">
+    @foreach (var item in Model)
+    {
+        <div style="display:flex;align-items:center;column-gap:10px;">
+            <input type="checkbox" name="supplies[@index].id" data-id="@item.Id" id="supply_@item.Id" class="supplies-checkbox" />
+            <label for="supply_@item.Id">@item.Title</label>
+
+        </div>
+
+        index++;
+    }
+</div>

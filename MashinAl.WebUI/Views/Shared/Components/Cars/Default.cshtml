@@ -1,0 +1,52 @@
+﻿@using MashinAl.Business.Modules.CarModule.Queries.CarGetAllQuery
+@model IEnumerable<CarGetAllDto>
+
+
+@if (Model != null)
+{
+    foreach (var item in Model.Where(m => m.IsAccepted != false))
+    {
+            <div class="ad-card">
+               <a asp-controller="Car" asp-action="Details" asp-route-id="@item.Id">
+                <div class="ad-image">
+                    <img src="~/uploads/images/@item.ImagePath" alt="" />
+                    <span class="salon-tag">
+                        Salon
+                    </span>
+                    <span class="icon-featured" title="Önə çəkilmiş elan">
+                        <i class="fa-solid fa-arrow-up"></i>
+                    </span>
+                    <span class="icon-favorite">
+                        <i class="fa-regular fa-bookmark"></i>
+                    </span>
+                </div>
+                <div class="ad-body">
+                    <div class="ad-price-icons">
+                        <span class="ad-price">@item.Price.ToString("G29") AZN</span>
+                        <div class="ad-icons">  
+                            @if (item.IsCredit == true)
+                            {
+                                <div class="ad-icon kredit-icon" title="Kredit">
+                                    <i class="fa-solid fa-percent"></i>
+                                </div>
+                            }
+                            @if (item.IsBarter == true)
+                            {
+                                <div class="ad-icon barter-icon" title="Barter">
+                                    <i class="fa-solid fa-rotate"></i>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <span class="ad-marka-model">@item.MarkaName @item.ModelName</span>
+                    <span class="ad-info">@item.YearId il • @item.Engine L • @item.March km </span>
+                    <span class="ad-date">27 noyabr</span>
+                </div>
+               </a>
+            </div>
+    }
+}
+else
+{
+    <h1>No Content</h1>
+}

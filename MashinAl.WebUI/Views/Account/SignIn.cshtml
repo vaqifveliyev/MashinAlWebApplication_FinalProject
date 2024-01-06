@@ -1,0 +1,38 @@
+﻿@using MashinAl.Business.Modules.AccountModule.Commands.SigninCommand
+@model SigninRequest
+
+@{
+    ViewData["Title"] = "Daxil ol | Mashin.AL";
+}
+
+<section class="section breadcrumbs-section">
+    <div class="container">
+        <div class="breadcrumbs">
+            <a asp-controller="Home" asp-action="Index">Əsas</a>
+            <a>Daxil ol</a>
+        </div>
+    </div>
+</section>
+
+    <div class="container">
+        <div class="ma-login-tab">
+            <div class="ma-login-tab--form">
+                <h2>Hesaba daxil ol</h2>
+                <form method="post">
+                    <input type="text" class="select-container" placeholder="E-mail ünvanınız" asp-for="UserName">
+                    <input type="password" class="select-container" placeholder="Şifrəniz" asp-for="Password">
+                    <button class="submit-button" style="font-weight: 400; font-size: 15px; width: 100%;">Daxil ol</button>
+                </form>
+                <div class="register-box">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    <div>
+                        <h4>Hesabınız yoxdur?</h4>
+                        <p>Yeni hesab yaratmaq üçün <b><a asp-action="Register">Buraya</a></b> klik edin və şəxsi kabinetinizi qurun.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="ma-login-tab--image">
+                <img src="~/frontside/assets/img/images/MicrosoftTeams-image-(52).webp" alt="">
+            </div>
+        </div>
+    </div>

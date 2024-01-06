@@ -1,0 +1,175 @@
+﻿@using MashinAl.Business.Modules.PlateModule.Queries.PlateGetByIdQuery
+@model PlateGetByIdDto
+
+@{
+    ViewData["Title"] = Model.RegionTitle + " - " + Model.FirstLetter + Model.SecondLetter + " - " + Model.PlateNumber + " | Ətraflı";
+}
+
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title fw-semibold mb-4">@Model.RegionTitle-@Model.FirstLetter@Model.SecondLetter-@Model.PlateNumber | Ətraflı </h5>
+        <div class="card">
+            <div class="card-body">
+                <div class="mb-3">
+                    <label class="form-label">Qeydiyyat nişanı</label>
+                    <input value="@Model.RegionTitle-@Model.FirstLetter@Model.SecondLetter-@Model.PlateNumber" class="form-control" readonly>
+                    <label class="form-label">Qiyməti</label>
+                    <input value="@Model.Price.ToString("G29")" class="form-control" readonly>
+                    <label class="form-label">Sahibi</label>
+                    <input value="@Model.Name" class="form-control" readonly>
+                    <label class="form-label">Əlaqə</label>
+                    <input value="@Model.Phone" class="form-control" readonly>
+                    <label class="form-label">Əlavə məlumat</label>
+                    <textarea value="@Model.Description" class="form-control" readonly></textarea>
+                    <label class="form-label">Satış şəhəri</label>
+                    <input value="@Model.CityName" class="form-control" readonly>
+                    <label style="margin-top:20px;" class="form-label">Status</label>
+                    @if (Model.IsRejected)
+                    {
+                        <a class="btn btn-danger">Elan imtina edilib</a>
+                    }
+                    else if (Model.IsAccepted)
+                    {
+                        <a class="btn btn-success">Elan təsdiq olunub</a>
+
+                    }
+                    else
+                    {
+                        <a class="btn btn-warning">Cavab gözləyir...</a>
+
+                    }
+                </div>
+                <a asp-action="index" class="btn btn-primary">Geri</a>
+                <a asp-action="edit" asp-route-id="@Model.Id" class="btn btn-warning">Dəyişiklik et</a>
+                @if(Model.IsAccepted == true || Model.IsRejected == true)
+                {
+                    
+                }
+                else
+                {
+                    <button class="btn btn-success" onclick="publisPost(@Model.Id, '@Model.RegionTitle-@Model.FirstLetter@Model.SecondLetter-@Model.PlateNumber')">Təsdiq et</button>
+                    <button class="btn btn-danger" onclick="rejectPost(@Model.Id, '@Model.RegionTitle-@Model.FirstLetter@Model.SecondLetter-@Model.PlateNumber')">İmtina et</button>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section addjs {
+    <script src="~/libs/sweetalert/sweetalert.min.js"></script>
+    <script>
+        function publisPost(id, name) {
+            swal({
+                title: "Diqqət!",
+                text: `${name} bu qeydi təsdiq etmək istədiyinizdən əminsiniz?`,
+                icon: "warning",
+                buttons: ['Xeyr', 'Bəli'],
+                dangerMode: true,
+            })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        let obj = { id };
+
+                        $.ajax({
+                            url: '@Url.Action("Publish")',
+                            type: 'POST',
+                            data: obj,
+                            success: function (response, status, xhr) {
+                                if (response.error == true) {
+                                    toastr.error('Qeydiyyat nişanı elanı təsdiqlənmədi!', 'Xəta!');
+                                    return;
+                                }
+                                toastr.success(response.message, 'Uğurlu nəticə!');
+                                setTimeout(function () {
+                                    window.location.href = '@Url.Action("Index")';
+                                }, 2000);
+                            },
+                            error: function (response, status, xhr) {
+                                console.warn(response, status, xhr);
+                            }
+                        });
+                    }
+                });
+        }
+
+        function rejectPost(id, name) {
+
+            var modal = `
+                        <div class="modal" id="rejectionModal" tabindex="-1" role="dialog" aria-labelledby="rejectionModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="rejectionModalLabel">İmtina Səbəbi</h5>
+                                    </div>
+                                    <div class="modal-body">
+                                        <label for="rejectionReason">${name} qeydiyyat nişanı elanının imtina səbəbi:</label>
+                                        <textarea id="rejectionReason" class="form-control"></textarea>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" onclick="closeModal()">Bağla</button>
+                                        <button type="button" class="btn btn-danger" onclick="confirmRejection(${id}, '${name}')">İmtina et</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+
+            $('body').append(modal);
+
+            $('#rejectionModal').modal('show');
+        }
+
+        function confirmRejection(id, name) {
+            var rejectionReason = $('#rejectionReason').val();
+
+            if (rejectionReason.trim() === '') {
+                toastr.error('İmtina səbəbini yazın!', 'Xəta!');
+                return;
+            }
+
+            swal({
+                title: "Diqqət!",
+                text: `${name} bu qeydi imtina etmək istədiyinizdən əminsiniz?`,
+                icon: "warning",
+                buttons: ['Xeyr', 'Bəli'],
+                dangerMode: true,
+            })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        let obj = { id, reason: rejectionReason };
+
+                        $.ajax({
+                            url: '@Url.Action("Reject")',
+                            type: 'POST',
+                            data: obj,
+                            success: function (response, status, xhr) {
+                                if (response.error == true) {
+                                    toastr.error('Qeydiyyat nişanı elanı imtina edilə bilmədi!', 'Xəta!');
+                                    return;
+                                }
+                                toastr.success(response.message, 'Uğurlu nəticə!');
+                                setTimeout(function () {
+                                    window.location.href = '@Url.Action("Index")';
+                                }, 2000);
+                            },
+                            error: function (response, status, xhr) {
+                                console.warn(response, status, xhr);
+                            }
+                        });
+                    }
+                });
+
+            closeModal();
+        }
+
+        function closeModal() {
+            $('#rejectionModal').modal('hide');
+            $('body').removeClass('modal-open');
+            $('.modal-backdrop').remove();
+        }
+    </script>
+}
+

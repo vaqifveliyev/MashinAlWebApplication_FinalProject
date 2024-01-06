@@ -1,0 +1,227 @@
+﻿@using MashinAl.WebUI.Views.ViewComponents
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <script src="https://kit.fontawesome.com/725995b05f.js"
+            crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon"
+          type="image/png"
+          href="~/frontside/assets/img/logo/favicon-32x32.png"
+          sizes="32x32" />
+    <link rel="stylesheet" href="~/frontside/assets/css/style.css" />
+    <link href="~/libs/toastr.js/toastr.min.css" rel="stylesheet" />
+    <link href="~/libs/toastr.js/toastr.css" rel="stylesheet" />
+    @RenderSection("addcss", required:false)
+    <title>@ViewBag.Title</title>
+</head>
+<style>
+    .navlink.active {
+        color: #f81734 !important;
+    }
+
+    .preloader-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  z-index: 999;
+}
+
+.spinner {
+  border: 4px solid #ff0000; 
+  border-top: 4px solid transparent; 
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+
+@@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+</style>
+
+@* Spinner *@
+  <div class="preloader-container">
+    <div class="spinner"></div>
+  </div>
+@* Spinner *@
+
+<body>
+    <div class="mobile-navigation-section">
+        <div class="navigation-header">
+            <button class="btnNavClose">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <div class="navigation-body">
+            <nav class="mobile-nav">
+                <ul>
+                    <li><a href="#"><i class="fa-solid fa-right-to-bracket"></i> Daxil ol</a></li>
+                    <li><a href="#"><i class="fa-solid fa-scroll"></i> Bütün elanlar</a></li>
+                    <li><a href="#"><i class="fa-solid fa-car-side"></i> Avtosalonlar</a></li>
+                    <li><a href="#"><i class="fa-solid fa-shop"></i> Mağazalar</a></li>
+                    <li><a href="#"><i class="fa-solid fa-list-ol"></i> Qeydiyyat nişanları</a></li>
+                    <li><a href="#"><i class="fa-solid fa-user"></i> Profilim</a></li>
+                    <li><a href="#"><i class="fa-solid fa-bullhorn"></i> Yeni elan</a></li>
+                    <li><a href="#"><i class="fa-solid fa-right-from-bracket"></i> Çıxış</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <header>
+        <div class="header-top">
+            <div class="container">
+                <div class="left-side">
+                    <a asp-controller="home" asp-action="index">
+                        <div class="logo web-logo">
+                            <img src="~/frontside/assets/img/logo/logo_white.png" alt="" />
+                        </div>
+                        <div class="logo mobile-logo">
+                            <img src="~/frontside/assets/img/logo/logo_blue.png" alt="" />
+                        </div>
+                    </a>
+                    <div class="call-center">
+                        <i class="fa-solid fa-headset"></i>
+                        <span class="call-center-number">*0041</span>
+                    </div>
+                </div>
+                <div class="right-side">
+                    <div class="icons-row">
+                        <a href="#"><i class="fa-regular fa-bookmark"></i></a>
+                        <a href="#"><i class="fa-regular fa-bell"></i></a>
+                    </div>
+                    <div class="buttons-row">
+                        @if (User.HasClaim("admin.dashboard.index"))
+                        {
+                            <a asp-area="Admin" asp-controller="Dashboard" asp-action="Index" class="btn btn-red" title="Admin panel">
+                                <i class="fa-solid fa-user-tie"></i>
+                            </a>
+                        }
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <a asp-controller="Account" asp-action="Profile">
+                                <button class="btn btn-red myprofile">
+                                    <i class="fa-solid fa-warehouse" style="font-size: 12px"></i>
+                                    Profilim
+                                </button>
+                            </a>
+                        }
+                        else
+                        {
+                            <a asp-controller="Account" asp-action="SignIn">
+                                <button class="btn btn-red">Daxil ol</button>
+                            </a>
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="header-bottom">
+            <div class="container">
+                <nav>
+                    <ul>
+                        <li><a class="navlink" asp-controller="home" asp-action="all">Bütün elanlar</a></li>
+                        <li><a class="navlink" asp-controller="home" asp-action="dealerships">Avtosalonlar</a></li>
+                        <li><a class="navlink" asp-controller="home" asp-action="shops">Mağazalar</a></li>
+                        <li><a class="navlink" asp-controller="home" asp-action="licenseplates">Qeydiyyat nişanları</a></li>
+                    </ul>
+                    <a asp-controller="Announcement" asp-action="Index">
+                        <span class="btn btn-green">
+                            Yeni elan <i class="fa-solid fa-plus"></i>
+                        </span>
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </header>
+    @RenderSection("breadcrumbs",required:false)
+        <main>
+            @RenderBody()
+        </main>
+        <section class="section car-brands">
+        @await Component.InvokeAsync("Markas")
+        </section>
+        <footer>
+            <div class="container">
+                <div class="left-side">
+                    <div class="top">
+                        <div class="logo">
+                            <img src="~/frontside/assets/img/logo/logo_white.png" alt="" />
+                        </div>
+                        <div class="call-center">
+                            <i class="fa-solid fa-headset"></i>
+                            <span class="call-center-number">*8787</span>
+                        </div>
+                    </div>
+                    <div class="bottom">
+                        <span class="footer-icon">
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </span>
+                        <span class="footer-icon">
+                            <i class="fa-brands fa-instagram"></i>
+                        </span>
+                        <span class="footer-icon">
+                            <i class="fa-brands fa-instagram"></i>
+                        </span>
+                        <span class="footer-icon">
+                            <i class="fa-brands fa-tiktok"></i>
+                        </span>
+                        <span class="footer-icon">
+                            <i class="fa-brands fa-youtube"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="right-side">
+                    <ul class="bottom-items">
+                        <li><a href="#">Elanlar</a></li>
+                        <li><a href="#">Salonlar</a></li>
+                        <li><a href="#">Mağazalar</a></li>
+                    </ul>
+                    <ul class="bottom-items">
+                        <li><a href="#">Qaydalar</a></li>
+                        <li><a href="#">Əlaqə</a></li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+        <script src="~/libs/toastr.js/toastr.min.js"></script>
+        @RenderSection("addjs", required:false)
+
+
+    <script>
+        $(document).ready(function () {
+            var currentPath = window.location.pathname;
+            $('.navlink[href="' + currentPath + '"]').addClass('active');
+        });
+
+
+        $(document).ready(function() {
+  $(".preloader-container").show();
+
+  setTimeout(function() {
+    $(".preloader-container").hide();
+  
+  }, 1000);
+});
+
+    </script>
+
+</body>
+</html>
+
+
+

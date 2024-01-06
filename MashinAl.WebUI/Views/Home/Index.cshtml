@@ -1,0 +1,371 @@
+﻿@using MashinAl.WebUI.Views.ViewComponents
+@{
+    ViewBag.Title = "Onlayn Maşın Bazarı | Maşın Elanları Və Qiymətləri | Mashin.AL";
+}
+
+<div class="container">
+    <section class="section search-filter">
+        <div class="section-header">
+            <div class="type-buttons">
+                <button class="btn-type active">Hamısı</button>
+                <button class="btn-type">Yeni</button>
+                <button class="btn-type">Sürülmüş</button>
+            </div>
+        </div>
+        <div class="section-body"></div>
+        <div class="section-bottom">
+            <form action="search-form">
+                <div class="first-row">
+                    <select name="Marka" id="marka" class="select-container" onchange="checkMarkaSelection()">
+                        <option value="Marka seçin..." disabled selected>Marka seçin...</option>
+                        <option value="BMW">BMW</option>
+                        <option value="Mercedes">Mercedes</option>
+                        <option value="Volvo">Volvo</option>
+                        <option value="Vaz">Vaz</option>
+                        <option value="Audi">Audi</option>
+                        <option value="Bentley">Bentley</option>
+                    </select>
+
+                    <select name="Model" id="model" class="select-container" disabled>
+                        <option value="Model seçin..." disabled selected>Model seçin...</option>
+                    </select>
+                    <select name="min-year"
+                            id="min-year"
+                            class="select-container">
+                        <option value="İl, min." selected disabled>İl, min.</option>
+                        <option value="1988">1988</option>
+                        <option value="1989">1989</option>
+                        <option value="1990">1990</option>
+                        <option value="1991">1991</option>
+                        <option value="1992">1992</option>
+                        <option value="1993">1993</option>
+                        <option value="1994">1994</option>
+                        <option value="1995">1995</option>
+                        <option value="1996">1996</option>
+                        <option value="1997">1997</option>
+                        <option value="1998">1998</option>
+                        <option value="1999">1999</option>
+                        <option value="2000">2000</option>
+                        <option value="2001">2001</option>
+                        <option value="2002">2002</option>
+                        <option value="2003">2003</option>
+                        <option value="2004">2004</option>
+                        <option value="2005">2005</option>
+                        <option value="2006">2006</option>
+                        <option value="2007">2007</option>
+                        <option value="2008">2008</option>
+                        <option value="2009">2009</option>
+                        <option value="2010">2010</option>
+                        <option value="2011">2011</option>
+                        <option value="2012">2012</option>
+                        <option value="2013">2013</option>
+                        <option value="2014">2014</option>
+                        <option value="2015">2015</option>
+                        <option value="2016">2016</option>
+                        <option value="2017">2017</option>
+                        <option value="2018">2018</option>
+                        <option value="2019">2019</option>
+                        <option value="2020">2020</option>
+                        <option value="2021">2021</option>
+                        <option value="2022">2022</option>
+                        <option value="2023">2023</option>
+                    </select>
+                    <select name="max-year"
+                            id="max-year"
+                            class="select-container">
+                        <option value="İl, maks." selected disabled>
+                            İl, maks.
+                        </option>
+                        <option value="2022">2023</option>
+                        <option value="2022">2022</option>
+                        <option value="2021">2021</option>
+                        <option value="2020">2020</option>
+                        <option value="2019">2019</option>
+                        <option value="2018">2018</option>
+                        <option value="2017">2017</option>
+                        <option value="2016">2016</option>
+                        <option value="2015">2015</option>
+                        <option value="2014">2014</option>
+                        <option value="2013">2013</option>
+                        <option value="2012">2012</option>
+                        <option value="2011">2011</option>
+                        <option value="2010">2010</option>
+                        <option value="2009">2009</option>
+                        <option value="2008">2008</option>
+                        <option value="2007">2007</option>
+                        <option value="2006">2006</option>
+                        <option value="2005">2005</option>
+                        <option value="2004">2004</option>
+                        <option value="2003">2003</option>
+                        <option value="2002">2002</option>
+                        <option value="2001">2001</option>
+                        <option value="2000">2000</option>
+                        <option value="1999">1999</option>
+                        <option value="1998">1998</option>
+                        <option value="1997">1997</option>
+                        <option value="1996">1996</option>
+                        <option value="1995">1995</option>
+                        <option value="1994">1994</option>
+                        <option value="1993">1993</option>
+                        <option value="1992">1992</option>
+                        <option value="1991">1991</option>
+                        <option value="1990">1990</option>
+                        <option value="1989">1989</option>
+                        <option value="1988">1988</option>
+                    </select>
+                </div>
+                <div class="second-row">
+                    <input type="text"
+                           placeholder="Qiymət, min. (AZN)"
+                           class="select-container" />
+                    <input type="text"
+                           placeholder="Qiymət, maks. (AZN)"
+                           class="select-container" />
+                    <label class="custom-checkbox-label">
+                        <span class="custom-checkbox" id="kreditCheckbox">Kredit</span>
+                    </label>
+
+                    <label class="custom-checkbox-label">
+                        <span class="custom-checkbox" id="icareCheckbox">İcarə</span>
+                    </label>
+
+                    <label class="custom-checkbox-label">
+                        <span class="custom-checkbox" id="barterCheckbox">Barter</span>
+                    </label>
+
+                    <!-- Hidden checkboxes -->
+                    <input type="checkbox" name="kredit" />
+                    <input type="checkbox" name="icare" />
+                    <input type="checkbox" name="barter" />
+                    <!-- Hidden checkboxes -->
+
+                </div>
+                <div class="hidden-row">
+                    <select name="city" id="city" class="select-container">
+                        <option value="Şəhər" selected disabled>Şəhər</option>
+                        <option value="Baku">Bakı</option>
+                        <option value="Ganja">Gəncə</option>
+                        <option value="Sumgait">Sumqayıt</option>
+                        <option value="Mingachevir">Mingəçevir</option>
+                        <option value="Nakhchivan">Naxçıvan</option>
+                        <option value="Lankaran">Lənkəran</option>
+                        <option value="Sheki">Şəki</option>
+                        <option value="Yevlakh">Yevlax</option>
+                        <option value="Barda">Bərdə</option>
+                        <option value="Agjabadi">Ağcabədi</option>
+                        <option value="Agdam">Ağdam</option>
+                        <option value="Khachmaz">Xaçmaz</option>
+                        <option value="Quba">Quba</option>
+                        <option value="Qusar">Qusar</option>
+                        <option value="Shamkir">Şəmkir</option>
+                    </select>
+                    <select name="transmission"
+                            id="transmission"
+                            class="select-container">
+                        <option value="transmission" disabled selected>
+                            Sürətlər qutusu
+                        </option>
+                    </select>
+                    <select name="fueltype"
+                            id="fueltype"
+                            class="select-container">
+                        <option value="fueltype" disabled selected>
+                            Yanacaq növü
+                        </option>
+                    </select>
+                    <select name="color" id="color" class="select-container">
+                        <option value="color" disabled selected>Rəng</option>
+                    </select>
+                </div>
+                <div class="form-buttons">
+                    <button class="formBtn"
+                            type="reset"
+                            onclick="resetCustomCheckboxes()">
+                        Sıfırla <i class="fa-solid fa-xmark"></i>
+                    </button>
+                    <button class="btn-more-filter formBtn">
+                        Daha çox filtr <i class="fa-solid fa-sliders"></i>
+                    </button>
+                    <button class="btn btn-green" type="submit">
+                        Axtar <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+    <section class="section featured-ads">
+        <div class="section-header">
+            <h1>Önə çəkilmiş elanlar</h1>
+            <a href="#">
+                <span class="span-see-all">Hamısına bax <i class="fa-solid fa-arrow-right"></i></span>
+            </a>
+        </div>
+        <div class="section-body">
+            <div class="section-card-row">
+                    <div class="ad-card">
+                        <div class="ad-image">
+                            <img src="~/frontside/assets/img/images/range_rover.webp" alt="" />
+                            <span class="salon-tag">
+                                Salon
+                            </span>
+                            <span class="icon-featured" title="Önə çəkilmiş elan">
+                                <i class="fa-solid fa-arrow-up"></i>
+                            </span>
+                            <span class="icon-favorite">
+                                <i class="fa-regular fa-bookmark"></i>
+                            </span>
+                        </div>
+                        <div class="ad-body">
+                            <div class="ad-price-icons">
+                                <span class="ad-price">28 000 AZN</span>
+                                <div class="ad-icons">
+                                    <div class="ad-icon kredit-icon" title="Kredit">
+                                        <i class="fa-solid fa-percent"></i>
+                                    </div>
+                                    <div class="ad-icon barter-icon" title="Barter">
+                                        <i class="fa-solid fa-rotate"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <span class="ad-marka-model">BMW X1</span>
+                            <span class="ad-info">2016 il • 1.5L • 105 000 km </span>
+                            <span class="ad-date">27 noyabr</span>
+                        </div>
+            </div>
+        </div>
+    </section>
+    <section class="section last-ads">
+        <div class="section-header">
+            <h1>Son elanlar</h1>
+            <a href="#">
+                <span class="span-see-all">Hamısına bax <i class="fa-solid fa-arrow-right"></i></span>
+            </a>
+        </div>
+        <div class="section-body">
+            <div class="section-card-row">
+                @* <partial name="_Cars" model="@Model" /> *@
+                @await Component.InvokeAsync("Cars")
+
+            </div>
+         </div>
+    </section>
+    <section class="section license-plates">
+        <div class="section-header">
+            <h1>Qeydiyyat nişanları</h1>
+            <a href="#">
+                <span class="span-see-all">Hamısına bax <i class="fa-solid fa-arrow-right"></i></span>
+            </a>
+        </div>
+        <div class="section-body">
+            <div class="section-card-row">
+                @* <partial name="_LicensePlates" model="@Model" /> *@
+                @await Component.InvokeAsync("LicensePlates")
+            </div>
+        </div>
+    </section>
+</div>
+
+
+@section addjs {
+    <script>
+        /* SEARCH 3 BUTTONS START */
+        document.addEventListener("DOMContentLoaded", function () {
+            var buttons = document.querySelectorAll(".btn-type");
+
+            buttons.forEach(function (button) {
+                button.addEventListener("click", function () {
+                    buttons.forEach(function (btn) {
+                        btn.classList.remove("active");
+                    });
+                    button.classList.add("active");
+                });
+            });
+        });
+        /* SEARCH 3 BUTTONS END */
+
+        /* CUSTOM CHECKBOXES */
+
+        function toggleCheckbox(checkboxId) {
+            var hiddenCheckbox = document.querySelector(
+                'input[name="' + checkboxId + '"]'
+            );
+            hiddenCheckbox.checked = !hiddenCheckbox.checked;
+        }
+
+        document
+            .getElementById("kreditCheckbox")
+            .addEventListener("click", function () {
+                this.classList.toggle("checked");
+                toggleCheckbox("kredit");
+            });
+
+        document
+            .getElementById("icareCheckbox")
+            .addEventListener("click", function () {
+                this.classList.toggle("checked");
+                toggleCheckbox("icare");
+            });
+
+        document
+            .getElementById("barterCheckbox")
+            .addEventListener("click", function () {
+                this.classList.toggle("checked");
+                toggleCheckbox("barter");
+            });
+
+        function resetCustomCheckboxes() {
+            document
+                .querySelectorAll(".custom-checkbox")
+                .forEach(function (checkbox) {
+                    checkbox.classList.remove("checked");
+                });
+
+            let modelSelect = document.getElementById('model');
+            modelSelect.disabled = true;
+        }
+
+        function submitForm() {
+            document.getElementById("myForm").submit();
+        }
+
+        /* MORE FILTER BUTTON */
+
+        let moreFilterButton = document.querySelector(".btn-more-filter");
+        let hiddenRow = document.querySelector(".hidden-row");
+
+        moreFilterButton.addEventListener("click", function (event) {
+            event.preventDefault();
+            hiddenRow.classList.toggle("open");
+
+            moreFilterButton.innerHTML = hiddenRow.classList.contains("open")
+                ? 'Qısalt <i class="fa-solid fa-angle-up"></i>'
+                : 'Daha çox filtr <i class="fa-solid fa-sliders"></i>';
+        });
+
+
+        function checkMarkaSelection() {
+            var markaSelect = document.getElementById('marka');
+            var modelSelect = document.getElementById('model');
+
+            if (markaSelect.value !== 'Marka seçin...') {
+                modelSelect.disabled = false;
+            } else {
+                modelSelect.disabled = true;
+                modelSelect.value = 'Model seçin...';
+            }
+        }
+
+        /* CHECK MARKA VALUE */
+
+        function checkMarkaSelection() {
+            var markaSelect = document.getElementById('marka');
+            var modelSelect = document.getElementById('model');
+
+            if (markaSelect.value === 'Marka seçin...') {
+                modelSelect.disabled = true;
+            } else {
+                modelSelect.disabled = false;
+            }
+        }
+    </script>
+}

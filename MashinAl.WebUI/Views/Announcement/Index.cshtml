@@ -1,0 +1,203 @@
+﻿@{
+    ViewData["Title"] = "Yeni Elan | MashinAl";
+}
+
+<section class="section breadcrumbs-section">
+    <div class="container">
+        <div class="breadcrumbs">
+            <a asp-controller="home" asp-action="index">Əsas</a>
+            <a>Elan yerləşdir</a>
+        </div>
+    </div>
+</section>
+<div class="section announcement-banner">
+    <div class="container">
+        <div class="section-header">
+            <h1>Elan yerləşdir</h1>
+        </div>
+        <div class="announcement-header">
+            <div class="header-information">
+                <span class="text-and-icon">
+                    <i class="fa-solid fa-mobile-button"></i>
+                    <span>
+                        Siz <b>@User.GetClaimValue(ClaimTypes.MobilePhone)</b> telefon nömrəsindən elan yerləşdirirsiniz
+                    </span>
+                </span>
+            </div>
+            <h2>Elanın növü</h2>
+            <div class="announcement-type-section">
+                <span class="announcement-type selected" id="car-tab"><i class="fa-solid fa-car-rear"></i> Avtomobil</span>
+                <span class="announcement-type" id="plate-tab">
+                    <span>
+                        <i class="fa-solid fa-a az-letter"></i>
+                        <i class="fa-solid fa-z az-letter"></i>
+                    </span>
+                    Qeydiyyat nişanları
+                </span>
+            </div>
+        </div>
+        <div class="announcement-form-inner">
+            <div class="car-plate-announcement-form selected">
+                <partial name="_CreateCar"/>
+            </div>
+            <div class="car-plate-announcement-form">
+                <partial name="_CreatePlate"/>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section addcss {
+    <link href="~/libs/toastr.js/toastr.min.css" rel="stylesheet" />
+    <link href="~/libs/toastr.js/toastr.css" rel="stylesheet" />
+    <link href="~/libs/multiple-imager/css/imager.css" rel="stylesheet" />
+    
+}
+
+
+@section addjs {
+    <script src="~/libs/multiple-imager/js/imager.js"></script>
+    <script src="~/libs/toastr.js/toastr.min.js"></script>
+    <script>
+
+
+        $(document).ready(function () {
+            $('#viewer1').imgadd({
+                tnWidth: '120px',
+                tnHeight: '120px',
+                fontSize: '55px',
+                plusInnerHtml: '',
+                plusBtnClass: undefined
+            });
+        });
+
+        $('form#carForm').submit(function (e) {
+            e.preventDefault();
+
+            // Create FormData from the form
+            let formData = new FormData(e.currentTarget);
+
+            [...$('[name=supplies] input[type=checkbox]:checked').map((index, item) => $(item).data('id'))].forEach(item => {
+                formData.append('supplies', item);
+            });
+
+            // Perform AJAX request
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("CreateCar")',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (response) {
+                    console.log(response)
+                    if (response.success) {
+
+                        toastr.success(response.message, "Əlavə edildi!");
+
+                        setTimeout(function () {
+                            window.location.href = '@Url.Action("Index", "Home")';
+                        }, 3000);
+                    } else {
+
+                        toastr.error("Elanda xəta var!", "Xəta!");
+                    }
+                },
+                error: function (response) {
+                    console.log(response);
+                    toastr.error("Elanda xəta var...", "Xəta!");
+                }
+            });
+        });
+
+        $('form#plateForm').submit(function (e) {
+            e.preventDefault();
+
+            // Create FormData from the form
+            let plateData = new FormData(e.currentTarget);
+
+            // Perform AJAX request
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("CreatePlate")',
+                data: plateData,
+                processData: false,
+                contentType: false,
+                success: function (response) {
+                    console.log(response)
+                    if (response.success) {
+
+                        toastr.success(response.message, "Əlavə edildi!");
+
+                        setTimeout(function () {
+                            window.location.href = '@Url.Action("Index", "Home")';
+                        }, 3000);
+                    } else {
+
+                        toastr.error("Elanda xəta var!", "Xəta!");
+                    }
+                },
+                error: function (response) {
+                    console.log(response);
+                    toastr.error("Elanda xəta var...", "Xəta!");
+                }
+            });
+        });
+
+
+        function toggleCheckbox(checkboxId) {
+            var hiddenCheckbox = document.querySelector(
+                'input[name="' + checkboxId + '"]'
+            );
+            hiddenCheckbox.checked = !hiddenCheckbox.checked;
+        }
+
+        document
+            .getElementById("barterCheck")
+            .addEventListener("click", function () {
+                this.classList.toggle("checked");
+                toggleCheckbox("barter");
+            });
+
+        document
+            .getElementById("creditCheck")
+            .addEventListener("click", function () {
+                this.classList.toggle("checked");
+                toggleCheckbox("credit");
+            });
+
+
+
+        function resetCustomCheckboxes() {
+            document
+                .querySelectorAll(".custom-checkbox")
+                .forEach(function (checkbox) {
+                    checkbox.classList.remove("checked");
+                });
+        }
+
+        /* ANNOUNCEMENT FORM SCRIPTS */
+
+        let announcementTypes = document.querySelectorAll(".announcement-type");
+        let announcementForms = document.querySelectorAll(".car-plate-announcement-form");
+
+        announcementTypes.forEach((announcementType, index) => {
+            announcementType.addEventListener('click', () => {
+
+                announcementTypes.forEach((type) => {
+                    type.classList.remove('selected');
+                });
+
+                announcementType.classList.add('selected');
+
+                announcementForms.forEach((form) => {
+                    form.classList.remove('selected');
+                });
+
+                announcementForms[index].classList.add('selected');
+            });
+        });
+
+
+
+    </script>
+}

@@ -1,0 +1,233 @@
+﻿@using MashinAl.Business.Modules.PlateModule.Queries.PlateGetAllByUserQuery
+@model IEnumerable<PlateGetAllByUserDto>
+
+@{
+    ViewData["Title"] = "Mənim Profilim | MashinAl";
+}
+
+<section class="section my-profile">
+    <div class="container">
+        <div class="left-side">
+            <ul>
+                <li id="profile-navigation" class="active">
+                    <a style="cursor:pointer">
+                        <i class="fa-solid fa-bars"></i> Elanlarım
+                    </a>
+                </li>
+                <li id="profile-navigation">
+                    <a style="cursor:pointer">
+                        <i class="fa-solid fa-wallet"></i> Balansım
+                    </a>
+                </li>
+                <li id="profile-navigation">
+                    <a style="cursor:pointer">
+                        <i class="fa-solid fa-user"></i> Hesabım
+                    </a>
+                </li>
+                <li>
+                    <a asp-controller="account" asp-action="logout">
+                        <i class="fa-solid fa-right-from-bracket"></i> Çıxış
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div id="nav-tab" class="right-side opened">
+            <h3>Elanlarım</h3>
+            <div class="profile-progress-bar">
+                <ul>
+                    <li>
+                        <a href="#">
+                            <div class="count-box">
+                                <span class="count-span">0</span>
+                            </div>
+                            <p class="count-text">Hamısı</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="count-box">
+                                <span class="count-span">@Model.Count(m => m.IsAccepted)</span>
+                            </div>
+                            <p class="count-text">Aktiv</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="count-box">
+                                <span class="count-span">@Model.Count(m=>m.IsAccepted == false && m.IsRejected == false )</span>
+                            </div>
+                            <p class="count-text">Yoxlamada</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="count-box">
+                                <span class="count-span">0</span>
+                            </div>
+                            <p class="count-text">Vaxti bitmiş</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="count-box">
+                                <span class="count-span">0</span>
+                            </div>
+                            <p class="count-text">İmtina edilmiş</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="my-announcements-section">
+                <div class="announcement-card">
+                    <div class="card-image">
+                        <img src="./assets/img/images/bmw-f10.webp" alt="">
+                        <span class="card-settings">
+                            <i class="fa-solid fa-ellipsis"></i>
+                            <span class="settings-dropdown">
+                                <a href="#">
+                                    <i class="fa-solid fa-trash"></i> Elanı sil
+                                </a>
+                            </span>
+                        </span>
+                    </div>
+                    <div class="card-body">
+                        <span class="card-price">23 000 AZN</span>
+                        <span class="card-name">BMW F10</span>
+                        <div class="card-icons">
+                            <span>
+                                <i class="fa-solid fa-eye"></i>
+                                0
+                            </span>
+                            <span>
+                                <i class="fa-solid fa-calendar-days"></i>
+                                3 Dekabr
+                            </span>
+                        </div>
+                        <div class="card-bottom">
+                            <button class="btnBoost">
+                                <i class="fa-solid fa-arrow-up"></i>
+                                Önə çək (2AZN-dən)
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <h3 style="margin-top: 20px;">Qeydiyyat Nişanları</h3>
+            <div class="my-announcements-section">
+                @foreach (var item in Model.Where(m => m.IsAccepted))
+                {
+                        <div class="license-plate-card">
+                            <div class="license-plate">
+                                <div class="mark-icon">
+                                    <img src="~/frontside/assets/img/icons/registrationMarks_icons.svg"
+                                         alt="" />
+                                </div>
+                                <span class="license-plate-number"> @item.RegionTitle-@item.FirstLetter@item.SecondLetter-@item.PlateNumber </span>
+                            </div>
+                            <div class="license-plate-body">
+                                <div class="license-body-header">
+                                    <span class="license-plate-price">1 500 AZN</span>
+                                    <span class="license-add-to-favorites">
+                                        <a href="#"><i class="fa-regular fa-bookmark"></i></a>
+                                    </span>
+                                </div>
+                                <span class="license-plate-owner">Vaqif</span>
+                                <div class="license-plate-bottom">
+                                    <span class="license-date license-icons">
+                                        <i class="fa-regular fa-calendar"></i> 23 noyabr
+                                    </span>
+                                    <span class="license-location license-icons">
+                                        <i class="fa-solid fa-location-dot"></i> Bakı
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    }        
+            </div>
+        </div>
+        <div id="nav-tab" class="right-side">
+            <h3>Balansım</h3>
+            <div class="balance-section">
+                <div class="top-side">
+                    <div class="balance-card">
+                        <h4>Şəxsi balans</h4>
+                        <p>Şəxsi hesaba mümkün ödəniş üsulları vasitəsilə qoyulan məbləğ</p>
+                        <span class="balance-amount">0 AZN</span>
+                    </div>
+                </div>
+                <div class="bottom-side">
+                    <div class="fill-balance">
+                        <h4>Balans artırma</h4>
+                        <div class="fill-form">
+                            <input type="text" class="select-container" id="amount-input" placeholder="Məbləğ">
+                            <button class="fill-button disabled" id="fill-button">Balansı artır</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="nav-tab" class="right-side">
+            <h3>@User.GetClaimValue(ClaimTypes.GivenName)</h3>
+            <form style="display: flex; flex-direction: column; row-gap: 10px; margin-top: 20px;">
+                <input type="text" class="select-container" placeholder="@User.GetClaimValue(ClaimTypes.Name)" disabled>
+                <input type="text" class="select-container" placeholder="@User.GetClaimValue(ClaimTypes.Surname)" disabled>
+                <input type="email" class="select-container" placeholder="@User.GetClaimValue(ClaimTypes.Email)" disabled>
+                <input type="password" class="select-container" value="************" disabled style="cursor: not-allowed;">
+            </form>
+        </div>
+
+    </div>
+</section>
+
+
+@section addjs {
+    <script>
+
+        /* MY ANNOUNCEMENT CARD SCRIPTS */
+
+        let cardSettingsButton = document.querySelector('.card-settings');
+        let dropdownSettings = document.querySelector('.settings-dropdown');
+
+        cardSettingsButton.addEventListener('click', () => {
+            dropdownSettings.classList.toggle('opened');
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var inputElement = document.querySelector('#amount-input');
+            var buttonElement = document.querySelector('#fill-button');
+
+            inputElement.addEventListener('input', function () {
+                if (inputElement.value.trim() !== '') {
+                    buttonElement.classList.remove('disabled');
+                } else {
+                    buttonElement.classList.add('disabled');
+                }
+            });
+        });
+
+
+        /* PROFILE NAV TABS */
+
+        let navigationLi = document.querySelectorAll('#profile-navigation')
+        let tabs = document.querySelectorAll('#nav-tab')
+
+        navigationLi.forEach((navigation, index) => {
+            navigation.addEventListener('click', () => {
+                navigationLi.forEach((nav) => {
+                    nav.classList.remove('active');
+                });
+
+                navigation.classList.add('active')
+
+                tabs.forEach((tab) => {
+                    tab.classList.remove('opened');
+                });
+
+                tabs[index].classList.add('opened');
+
+            })
+        })
+
+    </script>
+}

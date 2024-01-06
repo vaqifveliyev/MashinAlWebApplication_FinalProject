@@ -1,0 +1,26 @@
+﻿@model GearboxType
+@{
+    ViewData["Title"] = Model.Name + " | Ətraflı";
+}
+
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title fw-semibold mb-4">@Model.Name | Ətraflı </h5>
+        <div class="card">
+            <div class="card-body">
+                <form>
+                    <div class="mb-3">
+                        <label class="form-label">Ötürücü növü adı</label>
+                        <input value="@Model.Name" class="form-control" readonly>
+                    </div>
+                    <a asp-action="index" class="btn btn-primary">Geri</a>
+                    <a asp-action="edit" asp-route-id="@Model.Id" class="btn btn-warning">Dəyişiklik et</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

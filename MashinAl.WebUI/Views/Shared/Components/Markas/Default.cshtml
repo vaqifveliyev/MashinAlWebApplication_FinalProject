@@ -1,0 +1,13 @@
+﻿@using MashinAl.Business.Modules.MarkasModule.Queries.MarkaGetAllQuery
+@model IEnumerable<MarkaGetAllDto>
+
+<div class="container">
+    <div class="section-body">
+        <ul class="car-brands-list">
+            @foreach (var item in Model)
+            {
+                <li>@item.Name (@item.Cars.Count())</li>
+            }
+        </ul>
+    </div>
+</div>

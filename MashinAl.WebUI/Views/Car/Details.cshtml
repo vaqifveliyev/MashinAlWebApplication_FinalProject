@@ -1,0 +1,195 @@
+﻿@using MashinAl.Business.Modules.CarModule.Queries.CarGetByIdQuery
+@model CarGetByIdDto
+
+@{
+    ViewData["Title"] = Model.MarkaName + " | " + Model.ModelName + " | Elan: " + Model.Id;
+}
+
+
+    <section class="section breadcrumbs-section">
+        <div class="container">
+            <div class="breadcrumbs">
+                <a href="#">Əsas</a>
+                <a href="#">Elanlar</a>
+                <a href="#">@Model.MarkaName</a>
+                <a href="#">@Model.ModelName</a>
+            </div>
+        </div>
+    </section>
+    <section class="section car-single-section">
+        <div class="container">
+        <h1>@Model.MarkaName, @Model.ModelName, @Model.Engine L, @Model.YearId il, @Model.March km</h1>
+            <div class="container-top">
+                <div class="left-side">
+                    <div class="slider-container">
+                        <div class="slider-image">
+                            <img src="~/assets/img/images/bmw-f10.webp" alt="">
+                        </div>
+                        <div class="slider-buttons">
+                            <button class="btnSlider previous"><i class="fa-solid fa-chevron-left"></i></button>
+                            <button class="btnSlider next"><i class="fa-solid fa-chevron-right"></i></button>
+                        </div>
+                    </div>
+                    <div class="slider-images">
+                        @foreach (var image in Model.Images)
+                    {
+                        <div class="thumbnail-img">
+                            <img src="~/uploads/images/@image.Name" alt="">
+                        </div>
+                    }
+                    </div>
+                </div>
+                <div class="right-side">
+                    <div class="info-section">
+                        <div class="side-header">
+                            <h3>@Model.Price AZN</h3>
+                            <div class="single-icons">
+                                <span class="s-date-time"><i class="fa-solid fa-calendar-days"></i> 02.12.2023</span>
+                                <span class="s-view-count"><i class="fa-solid fa-eye"></i> 0</span>
+                                <span class="s-save-count"><i class="fa-solid fa-bookmark"></i> 0</span>
+                            </div>
+                        </div>
+                        <div class="side-body">
+                            <div class="profile-photo">
+                                <img src="~/frontside/assets/img/icons/user_new.png" alt="">
+                            </div>
+                            <span class="owner-name">Vaqif</span>
+                        </div>
+                        <a href="tel:@Model.Phone">
+                            <button class="submit-button" style="font-size: 14px; font-weight: 400; width: 100%;">
+                                <i class="fa-solid fa-phone"></i> @Model.Phone
+                            </button>
+                        </a>
+                    </div>
+                    <div class="info-section ">
+                        <div class="side-body body-info">
+                            <div class="info-text-container">
+                                <i class="fa-solid fa-calendar-check"></i>
+                                <div class="info-texts">
+                                    <p class="info-title">Buraxılış ili</p>
+                                    <p class="info-body">@Model.YearId</p>
+                                </div>
+                            </div>
+                            <div class="info-text-container">
+                                <i class="fa-solid fa-bolt"></i>
+                                <div class="info-texts">
+                                    <p class="info-title">Mühərrik növü</p>
+                                    <p class="info-body">@Model.Engine L / @Model.FuelName</p>
+                                </div>
+                            </div>
+                            <div class="info-text-container">
+                                <i class="fa-solid fa-gears"></i>
+                                <div class="info-texts">
+                                    <p class="info-title">Ötürücü</p>
+                                    <p class="info-body">@Model.GearboxTitle</p>
+                                </div>
+                            </div>
+                            <div class="info-text-container">
+                                <i class="fa-solid fa-location-dot"></i>
+                                <div class="info-texts">
+                                    <p class="info-title">Satış şəhəri</p>
+                                    <p class="info-body">@Model.SellCityName</p>
+                                </div>
+                            </div>
+                            <div class="info-text-container">
+                                <i class="fa-solid fa-car"></i>
+                                <div class="info-texts">
+                                    <p class="info-title">Ban növü</p>
+                                    <p class="info-body">@Model.BanName</p>
+                                </div>
+                            </div>
+                            <div class="info-text-container">
+                                <i class="fa-solid fa-fill-drip"></i>
+                                <div class="info-texts">
+                                    <p class="info-title">Rəng</p>
+                                    <p class="info-body">@Model.ColorName</p>
+                                </div>
+                            </div>
+                            <div class="info-text-container">
+                                <i class="fa-solid fa-5"></i>
+                                <div class="info-texts">
+                                    <p class="info-title">Sürətlər qutusu</p>
+                                    <p class="info-body">@Model.TransmissionName</p>
+                                </div>
+                            </div>
+                            <div class="info-text-container">
+                                <i class="fa-solid fa-gauge-high"></i>
+                                <div class="info-texts">
+                                    <p class="info-title">Yürüş</p>
+                                    <p class="info-body">@Model.March km</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="section additional-informations">
+                <h1>Əlavə məlumatlar</h1>
+                <p>
+                @Html.Raw(Model.Description.Replace(Environment.NewLine, "<br/>"))
+                </p>
+            </div>
+             <div class="section additional-informations">
+                    <h1>Digər parametrlər</h1>
+                <div class="tags-row">
+                    @foreach (var supply in Model.Supplies)
+                {
+                    <span class="tag-style">@supply.SupplyId</span>
+                }
+                </div>
+            </div>
+    </section>
+
+@section addcss {
+
+    <style>
+        .thumbnail-img.selected {
+            border: 2px solid blue;
+        }
+    </style>
+}
+
+@section addjs {
+    <script>
+        $(document).ready(function () {
+            // Initialize variables
+            var currentIndex = 0;
+            var images = $(".thumbnail-img");
+            var totalImages = images.length;
+
+            // Set the first image as the main image
+            showImage(currentIndex);
+
+            // Function to show the image at a given index
+            function showImage(index) {
+                $(".slider-image img").attr("src", images.eq(index).find("img").attr("src"));
+
+                // Remove border from all images
+                $(".thumbnail-img").removeClass("selected");
+
+                // Add border to the selected image
+                images.eq(index).addClass("selected");
+            }
+
+            // Function to handle next button click
+            $(".btnSlider.next").on("click", function () {
+                currentIndex = (currentIndex + 1) % totalImages;
+                showImage(currentIndex);
+            });
+
+            // Function to handle previous button click
+            $(".btnSlider.previous").on("click", function () {
+                currentIndex = (currentIndex - 1 + totalImages) % totalImages;
+                showImage(currentIndex);
+            });
+
+            // Function to handle slider image click
+            $(".thumbnail-img").on("click", function () {
+                currentIndex = $(this).index();
+                showImage(currentIndex);
+            });
+        });
+    </script>
+}
+
+

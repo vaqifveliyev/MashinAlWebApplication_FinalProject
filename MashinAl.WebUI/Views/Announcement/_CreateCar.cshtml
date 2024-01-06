@@ -1,0 +1,123 @@
+﻿@using MashinAl.Business.Modules.CarModule.Commands.CarAddCommand
+@using MashinAl.WebUI.Views.ViewComponents
+@model CarAddRequest
+
+<form method="post" enctype="multipart/form-data" id="carForm">   
+        <div class="form-top">
+            <div class="left-side">
+                <select asp-for="MarkaId" asp-items="@ViewBag.MarkaId" class="select-container">
+                    <option value="choose-marka" selected disabled>Markanın adı</option>
+                </select>
+                <select asp-for="ModelId" asp-items="@ViewBag.ModelId" class="select-container">
+                    <option value="choose-marka" selected disabled>Modelin adı</option>
+                </select>
+                <select asp-for="YearId" class="select-container">
+                    <option value="choose-marka" selected disabled>Buraxılış ili</option>
+                    <option value="2022">2022</option>
+                    <option value="2023">2023</option>
+                </select>
+                <select asp-for="BanTypeId" class="select-container" asp-items="@ViewBag.BanTypeId">
+                    <option value="choose-bantype" selected disabled>Ban növü</option>
+                </select>
+                <select asp-for="FuelTypeId" asp-items="@ViewBag.FuelTypeId" class="select-container">
+                    <option value="choose-fueltype" selected disabled>Yanacaq növü</option>
+                </select>
+                <select asp-for="GearboxId" asp-items="@ViewBag.GearBoxTypeId" class="select-container">
+                    <option value="choose-fueltype" selected disabled>Ötürücü növü</option>
+                </select>
+                <select asp-for="TransmissionId" asp-items="@ViewBag.TransmissionTypeId" class="select-container">
+                    <option value="choose-fueltype" selected disabled>Sürətlər qutusu</option>
+                </select>
+                <input asp-for="March" type="text" class="select-container" placeholder="Yürüş">
+            </div>
+            <div class="right-side">
+                <select asp-for="ColorId" asp-items="@ViewBag.ColorId" class="select-container">
+                    <option value="choose-marka" selected disabled>Rəng seçin</option>
+                </select>
+                <select asp-for="SeatsId" asp-items="@ViewBag.SeatsId" class="select-container">
+                    <option value="choose-fueltype" selected disabled>Yerlərin sayı</option>
+                </select>
+                <select asp-for="StatusId" asp-items="@ViewBag.CarStatusId" class="select-container">
+                    <option value="choose-fueltype" selected disabled>Vəziyyəti</option>
+                </select>
+                <input asp-for="Price" type="text" class="select-container" placeholder="Qiyməti (AZN)">
+                <input asp-for="Engine" type="text" class="select-container" placeholder="Mühərrik Həcmi (1.8)">
+
+                @* <div class="labels">
+                    <label asp-for="IsBarter" class="custom-checkbox-label">
+                        <span class="custom-checkbox" id="barterCheck"><i class="fa-solid fa-arrows-rotate"></i> Barter</span>
+                    </label>
+
+                    <label asp-for="IsCredit" class="custom-checkbox-label">
+                        <span class="custom-checkbox" id="creditCheck"><i class="fa-solid fa-percent"></i> Kreditdədir</span>
+                    </label>
+                </div>
+
+                <!-- Hidden checkboxes -->
+                <input asp-for="IsBarter" type="checkbox" name="barter">
+                <input asp-for="IsCredit" type="checkbox" name="credit">
+                <!-- Hidden checkboxes --> *@
+
+            <!-- Barter Checkbox -->
+            <div style="display:flex;column-gap:10px;margin-top:20px">
+                <label asp-for="IsBarter" class="custom-checkbox-label">
+                    <span class="custom-checkbox" id="barterCheck"><i class="fa-solid fa-arrows-rotate"></i> Barter</span>
+                </label>
+                <input asp-for="IsBarter" type="checkbox" name="IsBarter" value="true">
+
+                <!-- Credit Checkbox -->
+                <label asp-for="IsCredit" class="custom-checkbox-label">
+                    <span class="custom-checkbox" id="creditCheck"><i class="fa-solid fa-percent"></i> Kreditdədir</span>
+                </label>
+                <input asp-for="IsCredit" type="checkbox" name="IsCredit" value="true">
+            </div>
+
+
+
+            </div>
+        </div>
+        <div class="form-bottom">
+            <h2>Avtomobilin təchizatı</h2>
+        <div name="supplies">
+            @await Component.InvokeAsync("Supply")
+        </div>
+            <div class="bottom-up">
+                <div class="right-side">
+                    <textarea asp-for="Description" cols="30" rows="10" placeholder="Əlavə məlumatlar"></textarea>
+                </div>
+            </div>
+            <div class="info-alert">
+                <p>
+                    <i class="fa-solid fa-circle-info"></i>
+                    <span>Məlumat bölməsində link, e-mail, qiymət və xidmət təklifi yazmaq qadağandır.</span>
+                </p>
+            </div>
+            <h2>Şəkillər</h2>
+            <div style="width: 600px;" class="imager-container" id="viewer1" name="images"></div>
+        </div>
+        <div class="info-alert">
+            <p>
+                <i class="fa-solid fa-circle-info"></i>
+                <span>
+                    Minimum – 3 şəkil (ön, arxa və bütöv ön panelin görüntüsü mütləqdir). Maksimum 20 şəkil yerləşdirmək mümkündür.
+
+                    Şəkillər Azərbaycan Respublikasının ərazisində çəkilməlidir.
+
+                    Avtosalonda çəkilmiş şəkillər qeydiyyatdan keçmiş avtosalonun hesabından уerləşdirilməlidir.
+
+                    Şəxsi sahibi tərəfindən satılan nəqliyyat vasitəsinin şəkli avtosalon/rəsmi servis ərazisində və ya yaxınlığında çəkilməməlidir.
+                </span>
+            </p>
+        </div>
+
+        <div class="form-submit-area">
+            <h2>Əlaqə məlumatları</h2>
+            <input asp-for="Name" type="text" value="@User.GetClaimValue(ClaimTypes.Name)" class="select-container" readonly>
+            <input asp-for="Email" type="text" value="@User.GetClaimValue(ClaimTypes.Email)" class="select-container" readonly>
+            <input asp-for="Phone" type="text" value="0502148450" class="select-container" readonly>
+            <select asp-for="SellCityId" asp-items="@ViewBag.CityId" class="select-container">
+                <option value="choose-sellcity" selected disabled>Satış şəhəri</option>
+            </select>
+            <button class="submit-button">Elanı yerləşdir</button>
+        </div>
+</form>

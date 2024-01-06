@@ -1,0 +1,39 @@
+﻿@using MashinAl.Business.Modules.AccountModule.Commands.RegisterCommand
+@model RegisterRequest
+@{
+    ViewData["Title"] = "Qeydiyyat | MashinAl";
+}
+
+    <section class="section breadcrumbs-section">
+        <div class="container">
+            <div class="breadcrumbs">
+                <a asp-controller="Home" asp-action="Index">Əsas</a>
+                <a>Qeydiyyat</a>
+            </div>
+        </div>
+    </section>
+    <div class="container">
+        <div class="ma-login-tab">
+            <div class="ma-login-tab--form">
+                <h2>Yeni hesab yarat</h2>
+                <form method="post">
+                    <input type="email" asp-for="Email" class="select-container" placeholder="E-mail ünvanınız">
+                    <input type="text" asp-for="Name" class="select-container" placeholder="Adınız">
+                    <input type="text" asp-for="Surname" class="select-container" placeholder="Soyadınız">
+                    <input type="text" asp-for="PhoneNumber" class="select-container" placeholder="Mobil nömrəniz">
+                <input type="password"  asp-for="Password" class="select-container" placeholder="Şifrəniz">
+                    <button type="submit" class="submit-button" style="font-weight: 400; font-size: 15px; width: 100%;">Qeydiyyat</button>
+                </form>
+                <div class="register-box">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    <div>
+                        <h4>Hesabınız yoxdur?</h4>
+                        <p>Yeni hesab yaratmaq üçün <b><a asp-controller="Account" asp-action="Register">Buraya</a></b> klik edin və şəxsi kabinetinizi qurun.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="ma-login-tab--image">
+                <img src="~/frontside/assets/img/images/MicrosoftTeams-image-(52).webp" alt="">
+            </div>
+        </div>
+    </div>

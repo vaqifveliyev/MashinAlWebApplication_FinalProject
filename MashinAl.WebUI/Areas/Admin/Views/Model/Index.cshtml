@@ -1,0 +1,78 @@
+﻿@{
+    ViewBag.Title = "Admin | Modellər";
+}
+
+<div class="page-body">
+    <!-- Basic table card start -->
+    <div class="card">
+        <div class="card-header">
+            <h5>Modellər</h5>
+
+        </div>
+        <div class="card-block table-border-style">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Model adı</th>
+                            <th>Aid olduğu Marka</th>
+                            <th>
+                                <a class="btn btn-success" asp-action="create">
+                                    <i class="fa-solid fa-plus"></i>
+                                </a>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody id="body">
+                        <partial name="_Body" model="@Model"/>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+@section addjs {
+    <script src="~/libs/sweetalert/sweetalert.min.js"></script>
+    <script>
+        function removeEntity(id, name) {
+
+            swal({
+                title: "Diqqət!",
+                text: `${name} adlı modeli silmək istədiyinizdən əminsiniz?`,
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+                buttons: ['Xeyr', 'Bəli']
+            })
+                .then((willDelete) => {
+                    if (willDelete) {
+
+                        let obj = {id};
+
+                        $.ajax({
+                            url: '@Url.Action("Delete")',
+                            type: 'POST',
+                            data: obj,
+                            success: function (response) {
+                                if (response.error == true) {
+                                    toastr.error('Model silinmə əməliyyatında xəta yarandı!', 'Xəta!');
+                                    return;
+                                }
+
+                                toastr.success('Model uğurla silindi!', 'Uğurlu Nəticə!');
+                                $('tbody#body').html(response)
+
+                            },
+                            error: function (response) {
+                                console.log(response);
+                            }
+                        });
+                    }
+                });
+        }
+    </script>
+}

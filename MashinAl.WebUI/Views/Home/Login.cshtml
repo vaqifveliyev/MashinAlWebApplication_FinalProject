@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "Hesaba daxil ol | Mashin.AL";
+}
+
+
+    <div class="container" style="margin-top:20px;">
+        <div class="ma-login-tab">
+            <div class="ma-login-tab--form">
+                <h2>Hesaba daxil ol</h2>
+                <form action="login-form">
+                    <input type="email" class="select-container" placeholder="E-mail ünvanınız" required>
+                <input type="password" class="select-container" placeholder="Şifrəniz" required>
+                    <button class="submit-button" style="font-weight: 400; font-size: 15px; width: 100%;">Daxil ol</button>
+                </form>
+                <div class="register-box">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    <div>
+                        <h4>Hesabınız yoxdur?</h4>
+                        <p>Yeni hesab yaratmaq üçün <b><a asp-controller="home" asp-action="signup">Buraya</a></b> klik edin və şəxsi kabinetinizi qurun.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="ma-login-tab--image">
+                <img src="~/frontside/assets/img/images/MicrosoftTeams-image-(52).webp" alt="">
+            </div>
+        </div>
+    </div>
+

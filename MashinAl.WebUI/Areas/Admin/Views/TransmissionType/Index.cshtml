@@ -1,0 +1,79 @@
+﻿@model IEnumerable<TransmissionType>
+
+@{
+    ViewBag.Title = "Admin | Sürətlər Qutusu Növləri";
+}
+
+<div class="page-body">
+    <!-- Basic table card start -->
+    <div class="card">
+        <div class="card-header">
+            <h5>Sürətlər Qutusu Növləri</h5>
+
+        </div>
+        <div class="card-block table-border-style">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Sürətlər qutusu</th>
+                            <th>
+                                <a class="btn btn-success" asp-action="create">
+                                    <i class="fa-solid fa-plus"></i>
+                                </a>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody id="body">
+                        <partial name="_Body" model="@Model" />
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+@section addjs {
+    <script src="~/libs/sweetalert/sweetalert.min.js"></script>
+    <script>
+        function removeEntity(id, name) {
+
+            swal({
+                title: "Diqqət!",
+                text: `${name} adlı sürətlər qutusu növünü silmək istədiyinizdən əminsiniz?`,
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+                buttons: ['Xeyr', 'Bəli']
+            })
+                .then((willDelete) => {
+                    if (willDelete) {
+
+                        let obj = { id };
+
+                        $.ajax({
+                            url: '@Url.Action("Delete")',
+                            type: 'POST',
+                            data: obj,
+                            success: function (response) {
+                                if (response.error == true) {
+                                    toastr.error('Sürətlər qutusu növü silmə əməliyyatında xəta baş verdi!', 'Xəta!');
+                                    return;
+                                }
+
+                                toastr.success('Sürətlər qutusu növü uğurla silindi!', 'Uğurlu Nəticə!');
+                                $('tbody#body').html(response)
+
+                            },
+                            error: function (response) {
+                                console.log(response);
+                            }
+                        });
+                    }
+                });
+        }
+    </script>
+}

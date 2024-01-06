@@ -1,0 +1,25 @@
+﻿@model Supply
+
+@{
+    ViewData["Title"] = Model.Title + " | Dəyişiklik et";
+}
+
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title fw-semibold mb-4">@Model.Title | Ətraflı </h5>
+        <div class="card">
+            <div class="card-body">
+                <form method="post">
+                    <div class="mb-3">
+                        <label class="form-label">Təchizat adı</label>
+                        <input asp-for="Title" type="text" class="form-control">
+                    </div>
+                    <a asp-action="index" class="btn btn-primary">Geri</a>
+                    <button type="submit" class="btn btn-success">Yadda saxla</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

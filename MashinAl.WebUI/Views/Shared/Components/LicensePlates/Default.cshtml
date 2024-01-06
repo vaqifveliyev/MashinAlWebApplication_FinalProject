@@ -1,0 +1,42 @@
+﻿@using MashinAl.Business.Modules.PlateModule.Queries.PlateGetAllQuery
+@model IEnumerable<PlateGetAllDto>
+
+@if (Model != null)
+{
+    @foreach (var item in Model.Where(m => m.IsAccepted != false))
+    {
+        <div class="license-plate-card">
+            <div class="license-plate">
+                <div class="mark-icon">
+                    <img src="~/frontside/assets/img/icons/registrationMarks_icons.svg"
+                         alt="" />
+                </div>
+                <span class="license-plate-number"> @item.RegionTitle-@item.FirstLetter@item.SecondLetter-@item.PlateNumber</span>
+            </div>
+            <div class="license-plate-body">
+                <div class="license-body-header">
+                    <span class="license-plate-price">@item.Price.ToString("G29") AZN</span>
+                    <span class="license-add-to-favorites">
+                        <a href="#"><i class="fa-regular fa-bookmark"></i></a>
+                    </span>
+                </div>
+                <a asp-controller="Plate" asp-action="Details" asp-route-id="@item.Id">
+                    <span class="license-plate-owner">@item.Name</span>
+                </a>
+                <div class="license-plate-bottom">
+                    <span class="license-date license-icons">
+                        <i class="fa-regular fa-calendar"></i> @item.CreatedAt
+                    </span>
+                    <span class="license-location license-icons">
+                        <i class="fa-solid fa-location-dot"></i> @item.CityName
+                    </span>
+                </div>
+            </div>
+        </div>
+    }
+}
+
+else
+{
+    <h1>No Content</h1>
+}

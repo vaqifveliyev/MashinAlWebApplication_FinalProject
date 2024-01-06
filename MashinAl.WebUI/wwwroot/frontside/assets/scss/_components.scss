@@ -1,0 +1,539 @@
+.mobile-logo {
+  display: none !important;
+}
+
+.mobile-navigation-section {
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  width: 250px;
+  height: 100vh;
+  background-color: white;
+  z-index: 99;
+  padding: 20px 10px;
+  transform: translateX(300px);
+  transition: 0.3s all;
+  &.opened {
+    transform: translateX(0);
+  }
+  .navigation-header {
+    display: flex;
+    justify-content: right;
+    .btnNavClose {
+      outline: none;
+      padding: 8px 12px;
+      border: none;
+      color: white;
+      background-color: $redColor;
+      border-radius: 8px;
+    }
+  }
+  .navigation-body {
+    margin-top: 20px;
+    .mobile-nav {
+      ul {
+        display: flex;
+        flex-direction: column;
+        row-gap: 10px;
+        li {
+          padding: 8px 12px;
+          border: 1px solid $colorBackgroundGray;
+          color: $headerColor;
+          border-radius: 8px;
+          font-size: 12px;
+          a {
+            display: flex;
+            column-gap: 20px;
+            align-items: center;
+          }
+        }
+      }
+    }
+  }
+}
+
+.btn {
+  padding: 8px 20px;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  outline: none;
+  font-weight: 500;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btnHamburger {
+  padding: 8px 12px;
+  border: 1px solid transparent;
+  background-color: transparent;
+  color: $headerColor;
+  font-size: 16px;
+  cursor: pointer;
+ 
+}
+
+.myprofile {
+  display: flex;
+  align-items: center;
+  column-gap: 15px;
+}
+
+.btn-red {
+  background-color: $redColor;
+  color: white;
+}
+
+.btn-green {
+  padding: 12px 30px !important;
+  background-color: $greenColor;
+  font-weight: 500;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+  color: white;
+  &:hover {
+    background-color: $greenColorHover;
+  }
+}
+
+.btn-switch {
+  padding: 8px 12px;
+  font-size: 16px;
+  border: 1px solid white;
+  border-radius: 5px;
+  color: white;
+  background-color: transparent;
+}
+
+.btn-type {
+  background-color: transparent;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  outline: none;
+  font-size: 15px;
+  padding: 8px 8px;
+  width: 100px;
+  transition: 0.3s;
+  cursor: pointer;
+  &.dark-mode {
+    color: #cdd5df;
+  }
+  &:hover {
+    background-color: #e3e8ef;
+  }
+  &.active {
+    background-color: $blueSolidColor;
+    color: white;
+    font-weight: 500;
+  }
+}
+
+/* CUSTOM SELECT */
+
+.select-container {
+  width: 100%;
+  font-size: 15px;
+  padding: 12px 16px;
+  border: 1px solid $colorBackgroundGray;
+  border-radius: 10px;
+  outline: none;
+  transition: 0.3s;
+  &:hover {
+    border: 1px solid $blueSolidColor;
+  }
+  &:focus {
+    border: 1px solid $blueSolidColor;
+  }
+}
+
+.search-filter {
+  padding: 20px 20px;
+}
+
+/* SECTIONS */
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.section-body {
+  padding: 20px 0px;
+}
+
+/* CUSTOM CHECKBOX */
+
+input[type="checkbox"] {
+  display: none;
+}
+
+input[type="file"]{
+  display: none;
+}
+
+.supplies-checkbox {
+  display: block !important;
+}
+
+.custom-checkbox {
+  padding: 12px 16px;
+  background-color: white;
+  cursor: pointer;
+  border: 1px solid $colorBackgroundGray;
+  border-radius: 10px;
+  transition: 0.3s;
+  &:hover {
+    border: 1px solid $blueSolidColor;
+  }
+}
+
+.custom-checkbox.checked {
+  background-color: $blueSolidColor;
+  border: 1px solid transparent;
+  color: white;
+}
+
+.formBtn {
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+  font-size: 15px;
+  color: #697586;
+  background-color: transparent;
+  transition: 0.3s;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  &:hover {
+    color: $blueSolidColor;
+  }
+}
+
+/* TITLES */
+
+h1 {
+  font-size: 20px;
+}
+
+.active-link {
+  color: $redColor;
+}
+
+.span-see-all {
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+/* AD CARD */
+
+.icon-favorite {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: white;
+  font-size: 20px;
+  transition: 0.3s;
+  &:hover {
+    color: $redColor;
+  }
+}
+
+.icon-featured {
+  width: 25px;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $redColor;
+  color: white;
+  font-size: 14px;
+  border-radius: 5px;
+}
+
+.salon-tag {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  padding: 4px 8px;
+  background-color: $blueSolidColor;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  color: white;
+  font-weight: 500;
+  font-size: 11px;
+}
+
+.ad-icons {
+  display: flex;
+  align-items: center;
+  column-gap: 5px;
+}
+
+.ad-icon {
+  width: 25px;
+  height: 25px;
+  display: flex;
+  font-size: 14px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+}
+
+.barter-icon {
+  background-color: #32b878;
+  color: white;
+}
+
+.kredit-icon {
+  background-color: #155eef;
+  color: white;
+}
+
+.ad-card {
+  border: 1px solid transparent;
+  width: calc(100% / 4 - 10px);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.06);
+  cursor: pointer;
+  .ad-image {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    .icon-featured {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+    }
+    img {
+      width: 100%;
+      height: 100%;
+      transform: scale(1.1);
+      object-fit: cover;
+    }
+  }
+  .ad-body {
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+    background-color: white;
+    padding: 20px;
+    .ad-price-icons {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .ad-price {
+      font-weight: bold;
+      font-size: 18px;
+    }
+    .ad-marka-model {
+      color: #1b2434;
+      font-size: 16px;
+      font-weight: 500;
+    }
+    .ad-info {
+      color: #1b2434;
+      font-size: 16px;
+      font-weight: 400;
+    }
+    .ad-date {
+      color: #697586;
+      font-size: 14px;
+      font-weight: 400;
+    }
+  }
+}
+
+/* SECTION CAR BRANDS */
+
+.car-brands {
+  .container {
+    .section-body {
+      background-color: white;
+      border-radius: 10px;
+      padding: 25px;
+      .car-brands-list {
+        max-height: 400px;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        li {
+          line-height: 30px;
+          font-size: 14px;
+          font-weight: 500;
+          cursor: pointer;
+          &:hover {
+            color: $redColor;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* BREADCRUMBS */
+
+.breadcrumbs {
+  background-color: white;
+  padding: 25px;
+  border-radius: 10px;
+
+  a {
+    position: relative;
+    margin-left: 30px;
+    transition: 0.3s;
+    &:hover {
+      color: $blueSolidColor;
+    }
+
+    &:not(:first-child):before {
+      content: ">";
+      position: absolute;
+      left: -20px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    &:first-child {
+      margin-left: 0;
+    }
+  }
+}
+
+/* PAGE BANNER */
+
+.page-banner {
+  .container {
+    .page-banner-thumbnail {
+      position: relative;
+      border-radius: 10px;
+      background-image: url(../img/images/salon-bg.png);
+      height: 280px;
+      padding: 30px;
+      overflow: hidden;
+      h1 {
+        bottom: 32px;
+        color: #fff;
+        font-size: 32px;
+        font-weight: 700;
+        line-height: 48px;
+        position: absolute;
+        z-index: 2;
+      }
+      &:before {
+        background: linear-gradient(90deg, #081a3e -10.98%, transparent);
+        content: "";
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 60%;
+      }
+    }
+  }
+}
+
+.body-row {
+  display: flex;
+  column-gap: 10px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  .dealership-card {
+    width: calc(100%/3 - 10px);
+    transition: 0.3s;
+    border: 1px solid transparent;
+    cursor: pointer;
+    &:hover {
+      border: 1px solid $blueSolidColor;
+    }
+    .thumbnail {
+      width: 80px;
+      height: 80px;
+      border: 1px solid #cdd5df;
+      border-radius: 8px;
+      overflow: hidden;
+      img {
+        height: 100%;
+        width: 100%;
+      }
+    }
+    display: flex;
+    column-gap: 10px;
+    align-items: center;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    background-color: white;
+    padding: 20px;
+    .info-side {
+      display: flex;
+      flex-direction: column;
+      row-gap: 10px;
+    }
+  }
+}
+
+.d-ship-name {
+  color: #121926;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.d-ship-contact {
+  font-size: 15px;
+}
+
+.announcement-quantity {
+  color: #155eef;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+
+.submit-button {
+  padding: 12px 12px;
+  background-color: #12b76a;
+  color: white;
+  font-size: 16px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: 0.3s;
+  cursor: pointer;
+  &:hover {
+    background-color: $greenColorHover;
+  }
+}
+
+.form-submit-area {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+
+
+.btnSlider {
+  border-radius: 50%;
+  border: 1px solid transparent;
+  background-color: $headerColor;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+  opacity: 0.8;
+  &:hover {
+    opacity: 1;
+  }
+}
