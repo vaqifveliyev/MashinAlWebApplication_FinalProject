@@ -1,0 +1,38 @@
+﻿@using MashinAl.Business.Modules.AccountModule.Queries.GetDealerProfileQuery
+@model GetDealerProfileDto
+
+@{
+    ViewData["Title"] = "Məlumatları Dəyiş | " + Model.DealerName;
+}
+
+<form method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="exampleInputEmail1">Avtosalon adı</label>
+        <input type="text" asp-for="@Model.DealerName" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="@Model.DealerName">
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Avtosalon haqqında</label>
+        <textarea asp-for="@Model.Description" class="form-control" value="@Model.Description"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Lokasiya</label>
+        <input type="text" asp-for="@Model.Address" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="@Model.Address">
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Şəkil</label>
+        <input style="display:block !important;" type="file" name="image"/>
+    </div>
+    <div class="form-group" style="margin-top: 20px;">
+        <button type="submit" class="btn btn-primary">Yadda Saxla</button>
+        <a asp-action="Index" class="btn btn-success">Geri</a>
+    </div>
+
+</form>
+
+        @section addcss {
+            <style>
+                .form-group {
+                    margin-bottom: 10px;
+                }
+            </style>
+        }

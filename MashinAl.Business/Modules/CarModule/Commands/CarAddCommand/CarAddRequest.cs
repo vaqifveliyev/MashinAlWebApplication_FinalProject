@@ -25,6 +25,8 @@ namespace MashinAl.Business.Modules.CarModule.Commands.CarAddCommand
         public string Name { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
+        public bool IsDealership { get; set; } = false;
+        public bool IsBoosted { get; set; } = false;
         public int SellCityId { get; set; }
         public DateTime? CreatedAt { get; set; }
         public DateTime? PublishedAt { get; set; }

@@ -1,11 +1,14 @@
 ﻿using MashinAl.Business.Modules.PlateModule.Queries.PlateGetByIdQuery;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MashinAl.WebUI.Controllers
 {
+    [AllowAnonymous]
     public class PlateController : Controller
     {
+        
         private readonly IMediator mediator;
 
         public PlateController(IMediator mediator)

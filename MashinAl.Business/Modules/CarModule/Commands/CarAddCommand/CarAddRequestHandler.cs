@@ -46,7 +46,9 @@ namespace MashinAl.Business.Modules.CarModule.Commands.CarAddCommand
                 Description = request.Description,
                 SellCityId = request.SellCityId,
                 CreatedAt = DateTime.UtcNow,
-                CreatedBy = userId
+                CreatedBy = userId,
+                IsBoosted = false,
+                IsDealership = false,
             };
 
 

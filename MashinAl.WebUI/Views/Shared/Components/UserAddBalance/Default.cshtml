@@ -1,0 +1,9 @@
+﻿@using MashinAl.Business.Modules.AccountModule.Commands.UserAddBalanceCommand
+@model UserAddBalanceRequest
+
+<div class="fill-form">
+    <form method="post" action="@Url.Action("AddBalance", "Account")">
+        <input type="text" class="select-container" id="amount-input" asp-for="Amount" placeholder="Məbləğ">
+        <button class="fill-button disabled" id="fill-button" type="submit">Balansı artır</button>
+    </form>
+</div>

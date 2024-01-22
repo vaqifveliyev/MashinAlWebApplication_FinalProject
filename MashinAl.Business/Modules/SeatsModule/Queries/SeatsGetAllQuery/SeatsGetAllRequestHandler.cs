@@ -15,7 +15,7 @@ namespace MashinAl.Business.Modules.SeatsModule.Queries.SeatsGetAllQuery
         }
         public async Task<IEnumerable<Seats>> Handle(SeatsGetAllRequest request, CancellationToken cancellationToken)
         {
-            var data = seatRepository.GetAll();
+            var data = seatRepository.GetAll().OrderBy(m => m.SeatTitle);
             return await data.ToListAsync(cancellationToken);
         }
     }

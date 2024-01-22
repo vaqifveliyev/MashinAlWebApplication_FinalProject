@@ -15,7 +15,7 @@ namespace MashinAl.Business.Modules.CityModule.Queries.CityGetAllQuery
         }
         public async Task<IEnumerable<City>> Handle(CityGetAllRequest request, CancellationToken cancellationToken)
         {
-            var data = cityRepository.GetAll();
+            var data = cityRepository.GetAll().OrderBy(m => m.Name);
             return await data.ToListAsync(cancellationToken);
         }
     }

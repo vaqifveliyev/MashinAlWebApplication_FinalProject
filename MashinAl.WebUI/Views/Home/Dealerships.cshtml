@@ -1,5 +1,12 @@
-﻿@{
+﻿@using MashinAl.Business.Modules.DealerModule.Queries.DealetGetAllQuery
+@model IEnumerable<DealerGetAllDto>
+
+@{
     ViewBag.Title = "Avtosalonlar | Mashin.AL";
+}
+
+@{
+    int count = Model.Count();
 }
 
 
@@ -13,40 +20,25 @@
     <section class="section dealership-section">
         <div class="container">
             <div class="section-header">
-                <h1>Avtosalonlar (3)</h1>
+                <h1>Avtosalonlar (@count)</h1>
             </div>
             <div class="section-body">
-                <div class="body-row">
+                <div class="body-row" style="justify-content: flex-start !important">
+                    @foreach (var item in Model)
+                {
                     <div class="dealership-card">
-                        <div class="thumbnail">
-                            <img src="~/frontside/assets/img/dealership-logos/asia-motors.webp" alt="">
-                        </div>
+                        <a asp-controller="Dealership" asp-action="Dealer" asp-route-id="@item.Id">
+                            <div class="thumbnail">
+                                <img src="~/uploads/images/@item.ImagePath" alt="">
+                            </div>
+                        </a>
                         <div class="info-side">
-                            <span class="d-ship-name">ASIA Motors - MG</span>
-                            <span class="d-ship-contact"> +994 50 214 84 50</span>
-                            <span class="announcement-quantity">18 elan</span>
+                            <span class="d-ship-name">@item.Name</span>
+                            <span class="d-ship-contact"> @item.Phone</span>
+                            <span class="announcement-quantity">@item.Count elan</span>
                         </div>
                     </div>
-                    <div class="dealership-card">
-                        <div class="thumbnail">
-                            <img src="~/frontside/assets/img/dealership-logos/asia-motors.webp" alt="">
-                        </div>
-                        <div class="info-side">
-                            <span class="d-ship-name">ASIA Motors - MG</span>
-                            <span class="d-ship-contact"> +994 50 214 84 50</span>
-                            <span class="announcement-quantity">18 elan</span>
-                        </div>
-                    </div>
-                    <div class="dealership-card">
-                        <div class="thumbnail">
-                            <img src="~/frontside/assets/img/dealership-logos/asia-motors.webp" alt="">
-                        </div>
-                        <div class="info-side">
-                            <span class="d-ship-name">ASIA Motors - MG</span>
-                            <span class="d-ship-contact"> +994 50 214 84 50</span>
-                            <span class="announcement-quantity">18 elan</span>
-                        </div>
-                    </div>
+                }
                 </div>
             </div>
         </div>

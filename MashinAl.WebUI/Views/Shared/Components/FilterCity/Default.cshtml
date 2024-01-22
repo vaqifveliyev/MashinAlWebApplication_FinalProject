@@ -1,0 +1,10 @@
+﻿@model IEnumerable<City>
+
+
+<select name="city" class="select-container">
+    <option value="Şəhər" disabled selected>Şəhər</option>
+    @foreach (var item in Model)
+    {
+        <option value="@item.Id" data-id="@item.Id" data-entity-type="city">@item.Name</option>
+    }
+</select>

@@ -1,8 +1,55 @@
 ﻿@using MashinAl.Business.Modules.PlateModule.Queries.PlateGetByIdQuery
 @model PlateGetByIdDto
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = Model.RegionTitle+"-"+Model.FirstLetter+Model.SecondLetter+"-"+Model.PlateNumber +" | MashinAl";
 }
 
-<h1>@Model.RegionTitle-@Model.FirstLetter@Model.SecondLetter-@Model.PlateNumber</h1>
+<section class="section car-single-section">
+    <div class="container">
+        <div class="container-top">
+            <div class="left-side">
+                <div class="slider-container" style="position: relative;">
+                    <div class="slider-image" style="border: 1px solid #cdd5df;
+              border-radius: 12px;
+              height: 600px;
+              overflow: hidden;
+              width: 100%;
+              background-color: white;">
+                        <img src="~/frontside/assets/img/images/car_1.png" alt="">
+                    </div>
+                    <img src="~/frontside/assets/img/icons/frame_plate.svg" style="position: absolute; top:-90px; left: 35px; width: 700px;" alt="">
+                    <span style="position: absolute; top:388px;left: 320px;text-align: center;font-size: 33px; font-weight: bold;">@Model.RegionTitle-@Model.FirstLetter@Model.SecondLetter-@Model.PlateNumber</span>
+                </div>
+            </div>
+            <div class="right-side">
+                <div class="info-section">
+                    <div class="side-header">
+                        <h3>@Model.Price.ToString("G29") AZN</h3>
+                        <div class="single-icons">
+                            <span class="s-date-time"><i class="fa-solid fa-calendar-days"></i> @(Model.PublishedAt?.ToString("dd MMMM", new System.Globalization.CultureInfo("az-Latn-AZ")) ?? "")</span>
+                            <span class="s-view-count"><i class="fa-solid fa-eye"></i> 0</span>
+                        </div>
+                    </div>
+                    <div class="side-body">
+                        <div class="profile-photo">
+                            <img src="~/frontside/assets/img/icons/user_new.png" alt="">
+                        </div>
+                        <span class="owner-name">@Model.Name</span>
+                    </div>
+                    <a href="tel:+994502148450">
+                        <button class="submit-button" style="font-size: 14px; font-weight: 400; width: 100%;">
+                            <i class="fa-solid fa-phone"></i> +994 50 214 84 50
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="section additional-informations">
+            <h1>Əlavə məlumatlar</h1>
+            <p>
+               @Model.Description
+            </p>
+        </div>
+
+</section>
 

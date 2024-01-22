@@ -28,6 +28,7 @@
         public decimal Engine { get; set; }
         public bool IsBarter { get; set; }
         public bool IsCredit { get; set; }
+        public bool IsBoosted { get; set; }
         public string Description { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }

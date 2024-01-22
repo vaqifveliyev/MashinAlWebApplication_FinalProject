@@ -1,0 +1,10 @@
+﻿@model IEnumerable<TransmissionType>
+
+
+<select name="Transmission" class="select-container">
+    <option value="Sürətlər qutusu" disabled selected>Sürətlər qutusu</option>
+    @foreach (var item in Model)
+    {
+        <option value="@item.Id" data-id="@item.Id" data-entity-type="transmission">@item.Name</option>
+    }
+</select>

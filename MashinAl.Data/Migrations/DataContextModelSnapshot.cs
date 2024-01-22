@@ -83,7 +83,13 @@ namespace MashinAl.Data.Migrations
                     b.Property<bool>("IsBarter")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("IsBoosted")
+                        .HasColumnType("bit");
+
                     b.Property<bool>("IsCredit")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDealership")
                         .HasColumnType("bit");
 
                     b.Property<bool>("IsRejected")
@@ -125,6 +131,11 @@ namespace MashinAl.Data.Migrations
 
                     b.Property<int>("TransmissionId")
                         .HasColumnType("int");
+
+                    b.Property<int>("ViewCount")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
 
                     b.Property<int>("YearId")
                         .HasMaxLength(4)
@@ -237,6 +248,25 @@ namespace MashinAl.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Colors", (string)null);
+                });
+
+            modelBuilder.Entity("MashinAl.Infastructure.Entities.Favorites", b =>
+                {
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CarId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("Quantity")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("UserId", "CarId");
+
+                    b.HasIndex("CarId");
+
+                    b.ToTable("Favorites", (string)null);
                 });
 
             modelBuilder.Entity("MashinAl.Infastructure.Entities.FuelType", b =>
@@ -365,12 +395,27 @@ namespace MashinAl.Data.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("DealershipAddress")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DealershipDescription")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DealershipName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DealershipNumber")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
+
+                    b.Property<string>("ImagePath")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
@@ -410,6 +455,9 @@ namespace MashinAl.Data.Migrations
                     b.Property<string>("UserName")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("WorkingHours")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -717,6 +765,21 @@ namespace MashinAl.Data.Migrations
                     b.HasOne("MashinAl.Infastructure.Entities.Supply", null)
                         .WithMany()
                         .HasForeignKey("SupplyId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("MashinAl.Infastructure.Entities.Favorites", b =>
+                {
+                    b.HasOne("MashinAl.Infastructure.Entities.Car", null)
+                        .WithMany()
+                        .HasForeignKey("CarId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("MashinAl.Infastructure.Entities.Membership.MashinAlUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });

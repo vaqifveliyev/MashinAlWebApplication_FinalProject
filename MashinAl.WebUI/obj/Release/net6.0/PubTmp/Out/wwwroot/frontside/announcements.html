@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <script
+      src="https://kit.fontawesome.com/725995b05f.js"
+      crossorigin="anonymous"
+    ></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="./assets/img/logo/favicon-32x32.png"
+      sizes="32x32"
+    />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <title>
+      Onlayn Maşın Bazarı | Maşın Elanları Və Qiymətləri | Mashin.AL
+    </title>
+  </head>
+  <body>
+    <header>
+      <div class="header-top">
+        <div class="container">
+          <div class="left-side">
+            <a href="#">
+              <div class="logo">
+                <img src="./assets/img/logo/logo_white.png" alt="" />
+              </div>
+            </a>
+            <div class="call-center">
+              <i class="fa-solid fa-headset"></i>
+              <span class="call-center-number">*8787</span>
+            </div>
+          </div>
+          <div class="right-side">
+            <div class="icons-row">
+              <a href="#"><i class="fa-solid fa-code-compare"></i></a>
+              <a href="#"><i class="fa-regular fa-bookmark"></i></a>
+              <a href="#"><i class="fa-regular fa-message"></i></a>
+              <a href="#"><i class="fa-regular fa-bell"></i></a>
+            </div>
+            <div class="buttons-row">
+              <button class="btn btn-red">Daxil ol</button>
+              <button class="btn btn-red myprofile">
+                <i class="fa-solid fa-warehouse" style="font-size: 12px"></i>
+                Profilim
+              </button>
+              <button class="btn-switch">
+                <i class="fa-solid fa-cloud-moon"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="header-bottom header-dark-mode">
+        <div class="container">
+          <nav>
+            <ul>
+              <li><a href="./announcements.html">Bütün elanlar</a></li>
+              <li><a href="#">Avtosalonlar</a></li>
+              <li><a href="#">Mağazalar</a></li>
+              <li><a href="#">Qeydiyyat nişanları</a></li>
+              <li><a href="#">E-xidmətlər</a></li>
+            </ul>
+            <span class="btn btn-green"
+              >Yeni elan <i class="fa-solid fa-plus"></i
+            ></span>
+          </nav>
+        </div>
+      </div>
+    </header>
+    <main>
+      <section class="section breadcrumbs-section">
+       <div class="container">
+        <div class="breadcrumbs">
+          <a href="#">Əsas</a>
+          <a href="#">Bütün Elanlar</a> 
+        </div>
+       </div>
+      </section>
+      <div class="container">
+        <section class="section search-filter">
+          <div class="section-header">
+            <div class="type-buttons">
+              <button class="btn-type active">Hamısı</button>
+              <button class="btn-type">Yeni</button>
+              <button class="btn-type">Sürülmüş</button>
+            </div>
+          </div>
+          <div class="section-body"></div>
+          <div class="section-bottom">
+            <form action="search-form">
+              <div class="first-row">
+                <select name="Marka" id="marka" class="select-container">
+                  <option value="Marka seçin..." disabled selected>
+                    Marka seçin...
+                  </option>
+                  <option value="BMW">BMW</option>
+                  <option value="BMW">Mercedes</option>
+                  <option value="BMW">Volvo</option>
+                  <option value="BMW">Vaz</option>
+                  <option value="BMW">Audi</option>
+                  <option value="BMW">Bentley</option>
+                </select>
+                <select name="Model" id="model" class="select-container">
+                  <option value="Model seçin..." disabled selected>
+                    Model seçin...
+                  </option>
+                </select>
+                <select
+                  name="min-year"
+                  id="min-year"
+                  class="select-container"
+                >
+                  <option value="İl, min." selected disabled>İl, min.</option>
+                  <option value="1988">1988</option>
+                  <option value="1989">1989</option>
+                  <option value="1990">1990</option>
+                  <option value="1991">1991</option>
+                  <option value="1992">1992</option>
+                  <option value="1993">1993</option>
+                  <option value="1994">1994</option>
+                  <option value="1995">1995</option>
+                  <option value="1996">1996</option>
+                  <option value="1997">1997</option>
+                  <option value="1998">1998</option>
+                  <option value="1999">1999</option>
+                  <option value="2000">2000</option>
+                  <option value="2001">2001</option>
+                  <option value="2002">2002</option>
+                  <option value="2003">2003</option>
+                  <option value="2004">2004</option>
+                  <option value="2005">2005</option>
+                  <option value="2006">2006</option>
+                  <option value="2007">2007</option>
+                  <option value="2008">2008</option>
+                  <option value="2009">2009</option>
+                  <option value="2010">2010</option>
+                  <option value="2011">2011</option>
+                  <option value="2012">2012</option>
+                  <option value="2013">2013</option>
+                  <option value="2014">2014</option>
+                  <option value="2015">2015</option>
+                  <option value="2016">2016</option>
+                  <option value="2017">2017</option>
+                  <option value="2018">2018</option>
+                  <option value="2019">2019</option>
+                  <option value="2020">2020</option>
+                  <option value="2021">2021</option>
+                  <option value="2022">2022</option>
+                  <option value="2023">2023</option>
+                </select>
+                <select
+                  name="max-year"
+                  id="max-year"
+                  class="select-container"
+                >
+                  <option value="İl, maks." selected disabled>
+                    İl, maks.
+                  </option>
+                  <option value="2022">2023</option>
+                  <option value="2022">2022</option>
+                  <option value="2021">2021</option>
+                  <option value="2020">2020</option>
+                  <option value="2019">2019</option>
+                  <option value="2018">2018</option>
+                  <option value="2017">2017</option>
+                  <option value="2016">2016</option>
+                  <option value="2015">2015</option>
+                  <option value="2014">2014</option>
+                  <option value="2013">2013</option>
+                  <option value="2012">2012</option>
+                  <option value="2011">2011</option>
+                  <option value="2010">2010</option>
+                  <option value="2009">2009</option>
+                  <option value="2008">2008</option>
+                  <option value="2007">2007</option>
+                  <option value="2006">2006</option>
+                  <option value="2005">2005</option>
+                  <option value="2004">2004</option>
+                  <option value="2003">2003</option>
+                  <option value="2002">2002</option>
+                  <option value="2001">2001</option>
+                  <option value="2000">2000</option>
+                  <option value="1999">1999</option>
+                  <option value="1998">1998</option>
+                  <option value="1997">1997</option>
+                  <option value="1996">1996</option>
+                  <option value="1995">1995</option>
+                  <option value="1994">1994</option>
+                  <option value="1993">1993</option>
+                  <option value="1992">1992</option>
+                  <option value="1991">1991</option>
+                  <option value="1990">1990</option>
+                  <option value="1989">1989</option>
+                  <option value="1988">1988</option>
+                </select>
+              </div>
+              <div class="second-row">
+                <input
+                  type="text"
+                  placeholder="Qiymət, min. (AZN)"
+                  class="select-container"
+                />
+                <input
+                  type="text"
+                  placeholder="Qiymət, maks. (AZN)"
+                  class="select-container"
+                />
+                <label class="custom-checkbox-label">
+                  <span class="custom-checkbox" id="kreditCheckbox"
+                    >Kredit</span
+                  >
+                </label>
+
+                <label class="custom-checkbox-label">
+                  <span class="custom-checkbox" id="icareCheckbox"
+                    >İcarə</span
+                  >
+                </label>
+
+                <label class="custom-checkbox-label">
+                  <span class="custom-checkbox" id="barterCheckbox"
+                    >Barter</span
+                  >
+                </label>
+
+                <!-- Hidden default checkboxes -->
+                <input type="checkbox" name="kredit" />
+                <input type="checkbox" name="icare" />
+                <input type="checkbox" name="barter" />
+              </div>
+              <div class="hidden-row">
+                <select name="city" id="city" class="select-container">
+                  <option value="Şəhər" selected disabled>Şəhər</option>
+                  <option value="Baku">Bakı</option>
+                  <option value="Ganja">Gəncə</option>
+                  <option value="Sumgait">Sumqayıt</option>
+                  <option value="Mingachevir">Mingəçevir</option>
+                  <option value="Nakhchivan">Naxçıvan</option>
+                  <option value="Lankaran">Lənkəran</option>
+                  <option value="Sheki">Şəki</option>
+                  <option value="Yevlakh">Yevlax</option>
+                  <option value="Barda">Bərdə</option>
+                  <option value="Agjabadi">Ağcabədi</option>
+                  <option value="Agdam">Ağdam</option>
+                  <option value="Khachmaz">Xaçmaz</option>
+                  <option value="Quba">Quba</option>
+                  <option value="Qusar">Qusar</option>
+                  <option value="Shamkir">Şəmkir</option>
+                </select>
+                <select
+                  name="transmission"
+                  id="transmission"
+                  class="select-container"
+                >
+                  <option value="transmission" disabled selected>
+                    Sürətlər qutusu
+                  </option>
+                </select>
+                <select
+                  name="fueltype"
+                  id="fueltype"
+                  class="select-container"
+                >
+                  <option value="fueltype" disabled selected>
+                    Yanacaq növü
+                  </option>
+                </select>
+                <select name="color" id="color" class="select-container">
+                  <option value="color" disabled selected>Rəng</option>
+                </select>
+              </div>
+              <div class="form-buttons">
+                <button
+                  class="formBtn"
+                  type="reset"
+                  onclick="resetCustomCheckboxes()"
+                >
+                  Sıfırla <i class="fa-solid fa-xmark"></i>
+                </button>
+                <button class="btn-more-filter formBtn">
+                  Daha çox filtr <i class="fa-solid fa-sliders"></i>
+                </button>
+                <button class="btn btn-green" type="submit">
+                  Axtar <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+              </div>
+            </form>
+          </div>
+        </section>
+        <section class="section featured-ads">
+          <div class="section-header announcements-header">
+            <h1>Elanlar</h1>
+            <select name="sort-by" id="sort-by" class="select-container">
+              <option value="sort-by" selected disabled>Sıralama</option>
+              <option value="sort-by-date">Tarixə görə</option>
+              <option value="sort-lowprice-first">Əvvəlcə ucuz</option>
+              <option value="sort-highprice-first">Əvvəlcə bahalı</option>
+              <option value="sort-year">Buraxılış ili</option>
+            </select>
+          </div>
+          <div class="section-body">
+            <div class="section-card-row">
+              <div class="ad-card">
+                  <div class="ad-image">
+                    <img src="./assets/img/images/range_rover.webp" alt="" />
+                    <span class="salon-tag">
+                      Salon
+                    </span>
+                    <span class="icon-featured" title="Önə çəkilmiş elan">
+                      <i class="fa-solid fa-arrow-up"></i>
+                    </span>
+                    <span class="icon-favorite">
+                      <i class="fa-regular fa-bookmark"></i>
+                    </span>
+                  </div>
+                  <div class="ad-body">
+                    <div class="ad-price-icons">
+                      <span class="ad-price">28 000 AZN</span>
+                      <div class="ad-icons">
+                        <div class="ad-icon kredit-icon" title="Kredit">
+                          <i class="fa-solid fa-percent"></i>
+                        </div>
+                        <div class="ad-icon barter-icon" title="Barter">
+                          <i class="fa-solid fa-rotate"></i>
+                        </div>
+                      </div>
+                    </div>
+                    <span class="ad-marka-model">BMW X1</span>
+                    <span class="ad-info">2016 il • 1.5L • 105 000 km </span>
+                    <span class="ad-date">27 noyabr</span>
+                  </div>
+                </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+    <section class="section car-brands">
+      <div class="container">
+        <div class="section-body">
+          <ul class="car-brands-list">
+          <li>Acura (0)</li>
+          <li>Alfa Romeo (0)</li>
+          <li>Aston Martin (0)</li>
+          <li>Audi (0)</li>
+          <li>Bentley (0)</li>
+          <li>BMW (0)</li>
+          <li>Buick (0)</li>
+          <li>Cadillac (0)</li>
+          <li>Chevrolet (0)</li>
+          <li>Chrysler (0)</li>
+          <li>Citroën (0)</li>
+          <li>Dodge (0)</li>
+          <li>Ferrari (0)</li>
+          <li>Fiat (0)</li>
+          <li>Ford (0)</li>
+          <li>Genesis (0)</li>
+          <li>GMC (0)</li>
+          <li>Honda (0)</li>
+          <li>Hyundai (0)</li>
+          <li>Infiniti (0)</li>
+          <li>Jaguar (0)</li>
+          <li>Jeep (0)</li>
+          <li>Kia (0)</li>
+          <li>Lamborghini (0)</li>
+          <li>Land Rover (0)</li>
+          <li>Lexus (0)</li>
+          <li>Lincoln (0)</li>
+          <li>Lotus (0)</li>
+          <li>Maserati (0)</li>
+          <li>Mazda (0)</li>
+          <li>McLaren (0)</li>
+          <li>Mercedes-Benz (0)</li>
+          <li>Mini (0)</li>
+          <li>Mitsubishi (0)</li>
+          <li>Nissan (0)</li>
+          <li>Opel (0)</li>
+          <li>Peugeot (0)</li>
+          <li>Porsche (0)</li>
+          <li>RAM (0)</li>
+          <li>Renault (0)</li>
+          <li>Rolls-Royce (0)</li>
+          <li>Saab (0)</li>
+          <li>Subaru (0)</li>
+          <li>Suzuki (0)</li>
+          <li>Tesla (0)</li>
+          <li>Toyota (0)</li>
+          <li>Volkswagen (0)</li>
+          <li>Volvo (0)</li>
+          <li>Alpina (0)</li>
+          <li>AMC (0)</li>
+          <li>AvtoVAZ (0)</li>
+          <li>Bugatti (0)</li>
+          <li>BYD (0)</li>
+          <li>Chery (0)</li>
+          <li>Daewoo (0)</li>
+          <li>Datsun (0)</li>
+          <li>Geely (0)</li>
+          <li>Great Wall (0)</li>
+          <li>Haval (0)</li>
+          <li>Hennessey (0)</li>
+          <li>Holden (0)</li>
+          <li>Hummer (0)</li>
+          <li>Isuzu (0)</li>
+          <li>Iveco (0)</li>
+          <li>Kenworth (0)</li>
+          <li>Koenigsegg (0)</li>
+          <li>Lada (0)</li>
+          <li>Lancia (0)</li>
+          <li>MAN (0)</li>
+          <li>Maybach (0)</li>
+          <li>Mercury (0)</li>
+          <li>MG (0)</li>
+          <li>Oldsmobile (0)</li>
+          <li>Perodua (0)</li>
+          <li>Pontiac (0)</li>
+          <li>Proton (0)</li>
+          <li>Ruf (0)</li>
+          <li>Scion (0)</li>
+          <li>Seat (0)</li>
+          <li>Skoda (0)</li>
+          <li>Smart (0)</li>
+          <li>SsangYong (0)</li>
+          <li>UAZ (0)</li>
+          <li>Wuling (0)</li>
+          <li>Zotye (0)</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <footer>
+      <div class="container">
+        <div class="left-side">
+          <div class="top">
+            <div class="logo">
+              <img src="./assets/img/logo/logo_white.png" alt="" />
+            </div>
+            <div class="call-center">
+              <i class="fa-solid fa-headset"></i>
+              <span class="call-center-number">*8787</span>
+            </div>
+          </div>
+          <div class="bottom">
+            <span class="footer-icon"
+              ><i class="fa-brands fa-facebook-f"></i
+            ></span>
+            <span class="footer-icon"
+              ><i class="fa-brands fa-instagram"></i
+            ></span>
+            <span class="footer-icon"
+              ><i class="fa-brands fa-instagram"></i
+            ></span>
+            <span class="footer-icon"
+              ><i class="fa-brands fa-tiktok"></i
+            ></span>
+            <span class="footer-icon"
+              ><i class="fa-brands fa-youtube"></i
+            ></span>
+          </div>
+        </div>
+        <div class="right-side">
+          <ul class="bottom-items">
+            <li><a href="#">Elanlar</a></li>
+            <li><a href="#">Salonlar</a></li>
+            <li><a href="#">Mağazalar</a></li>
+          </ul>
+          <ul class="bottom-items">
+            <li><a href="#">E-xidmətlər</a></li>
+            <li><a href="#">Qaydalar</a></li>
+            <li><a href="#">Əlaqə</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+    <script src="./assets/js/main.js"></script>
+    <script>
+      /* SEARCH 3 BUTTONS START */
+      document.addEventListener("DOMContentLoaded", function () {
+        var buttons = document.querySelectorAll(".btn-type");
+
+        buttons.forEach(function (button) {
+          button.addEventListener("click", function () {
+            buttons.forEach(function (btn) {
+              btn.classList.remove("active");
+            });
+            button.classList.add("active");
+          });
+        });
+      });
+      /* SEARCH 3 BUTTONS END */
+
+      /* CUSTOM CHECKBOXES */
+
+      function toggleCheckbox(checkboxId) {
+        var hiddenCheckbox = document.querySelector(
+          'input[name="' + checkboxId + '"]'
+        );
+        hiddenCheckbox.checked = !hiddenCheckbox.checked;
+      }
+
+      document
+        .getElementById("kreditCheckbox")
+        .addEventListener("click", function () {
+          this.classList.toggle("checked");
+          toggleCheckbox("kredit");
+        });
+
+      document
+        .getElementById("icareCheckbox")
+        .addEventListener("click", function () {
+          this.classList.toggle("checked");
+          toggleCheckbox("icare");
+        });
+
+      document
+        .getElementById("barterCheckbox")
+        .addEventListener("click", function () {
+          this.classList.toggle("checked");
+          toggleCheckbox("barter");
+        });
+
+      function resetCustomCheckboxes() {
+        document
+          .querySelectorAll(".custom-checkbox")
+          .forEach(function (checkbox) {
+            checkbox.classList.remove("checked");
+          });
+      }
+
+      function submitForm() {
+        document.getElementById("myForm").submit();
+      }
+
+      /* MORE FILTER BUTTON */
+
+      let moreFilterButton = document.querySelector(".btn-more-filter");
+      let hiddenRow = document.querySelector(".hidden-row");
+
+      moreFilterButton.addEventListener("click", function (event) {
+        event.preventDefault();
+        hiddenRow.classList.toggle("open");
+
+        moreFilterButton.innerHTML = hiddenRow.classList.contains("open")
+          ? 'Qısalt <i class="fa-solid fa-angle-up"></i>'
+          : 'Daha çox filtr <i class="fa-solid fa-sliders"></i>';
+      });
+    </script>
+  </body>
+</html>

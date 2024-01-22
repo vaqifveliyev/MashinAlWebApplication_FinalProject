@@ -1,0 +1,11 @@
+﻿@using MashinAl.Business.Modules.ModelModule.Queries.ModelGetByMarkaIdQuery
+@model IEnumerable<ModelGetByMarkaIdDto>
+
+
+<select name="Model" id="model" class="select-container" disabled>
+    <option value="Model seçin..." disabled selected>Model seçin...</option>
+    @foreach (var item in Model)
+    {
+        <option value="@item.Id" data-id="@item.Id" data-entity-type="model">@item.Name</option>
+    }
+</select>

@@ -1,0 +1,64 @@
+﻿@using MashinAl.Business.Modules.AccountModule.Queries.DealerGetByIdQuery
+@using MashinAl.WebUI.Views.ViewComponents
+@model DealerGetByIdDto
+
+@{
+    ViewData["Title"] =  Model.DealershipName;
+}
+
+<main>
+    <section class="section dealership-section">
+        <div class="container">
+            <div class="section-header">
+            </div>
+            <div class="section-body">
+                <div class="dealer-banner" style="width: 100%; background-color: white; border-radius: 20px; overflow: hidden; padding: 20px; display: flex; align-items: center;justify-content: space-between; column-gap: 20px;">
+                    <div class="left-side" style="display: flex; align-items: center; width: 70%; column-gap: 20px;">
+                        <div class="image" style="border-radius: 15px; overflow: hidden; width: 300px; height: 150px;box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.212);">
+                            <img style="width: 100%; height: 100%; object-fit: contain;" src="~/uploads//images/@Model.ImagePath" alt="">
+                        </div>
+                        <div class="info-side" style="display: flex; flex-direction: column; row-gap: 10px;">
+                            <h3>@Model.DealershipName</h3>
+                            <p style="color: #364152;
+                  font-size: 16px;
+                  font-weight: 400;
+                  height: 72px;">@Model.DealershipDescription</p>
+                            <a style="color: #2970ff;
+                  font-size: 16px;
+                  font-weight: bold;"><i class="fa-solid fa-location-dot"></i> @Model.DealershipAddress</a>
+                        </div>
+                    </div>
+                    <div class="right-side" style="display: flex;flex-direction: column;row-gap: 20px;">
+                        <div class="info-container">
+                            <span style="    align-items: center; display: flex; column-gap: 20px;
+                  background-color: #eef2f6;
+                  border-radius: 12px;
+                  display: flex;
+                  padding: 18px;
+                  width: 100%;"><i class="fa-solid fa-clock" style="color: #4b5565;"></i> Hər gün	@Model.WorkingHours</span>
+                        </div>
+                        <div class="info-container">
+                            <span style="    align-items: center; display: flex; column-gap: 20px;
+                  background-color: #eef2f6;
+                  border-radius: 12px;
+                  display: flex;
+                  padding: 18px;
+                  width: 100%;"><i class="fa-solid fa-phone" style="color: #4b5565;" "></i> @Model.DealershipNumber</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section">
+        <div class="container">
+            <h1>Avtosalonun Elanları</h1>
+            <div class="section-body">
+                <div class="section-card-row">
+                    @await Component.InvokeAsync("CarGetByDealer", new {Id = Model.UserId})
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+

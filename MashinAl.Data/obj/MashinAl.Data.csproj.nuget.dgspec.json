@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\User\\Desktop\\Projects\\MashinAlWebApp_FinalProject-main\\MashinAl.Data\\MashinAl.Data.csproj": {}
+    "C:\\Users\\User\\Desktop\\Projects\\MashinAlWebApp_FinalProject-main  - modified\\MashinAl.Data\\MashinAl.Data.csproj": {}
   },
   "projects": {
-    "C:\\Users\\User\\Desktop\\Projects\\MashinAlWebApp_FinalProject-main\\MashinAl.Data\\MashinAl.Data.csproj": {
+    "C:\\Users\\User\\Desktop\\Projects\\MashinAlWebApp_FinalProject-main  - modified\\MashinAl.Data\\MashinAl.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\Desktop\\Projects\\MashinAlWebApp_FinalProject-main\\MashinAl.Data\\MashinAl.Data.csproj",
+        "projectUniqueName": "C:\\Users\\User\\Desktop\\Projects\\MashinAlWebApp_FinalProject-main  - modified\\MashinAl.Data\\MashinAl.Data.csproj",
         "projectName": "MashinAl.Data",
-        "projectPath": "C:\\Users\\User\\Desktop\\Projects\\MashinAlWebApp_FinalProject-main\\MashinAl.Data\\MashinAl.Data.csproj",
+        "projectPath": "C:\\Users\\User\\Desktop\\Projects\\MashinAlWebApp_FinalProject-main  - modified\\MashinAl.Data\\MashinAl.Data.csproj",
         "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\Desktop\\Projects\\MashinAlWebApp_FinalProject-main\\MashinAl.Data\\obj\\",
+        "outputPath": "C:\\Users\\User\\Desktop\\Projects\\MashinAlWebApp_FinalProject-main  - modified\\MashinAl.Data\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -32,8 +32,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\User\\Desktop\\Projects\\MashinAlWebApp_FinalProject-main\\MashinAl.Infastructure\\MashinAl.Infastructure.csproj": {
-                "projectPath": "C:\\Users\\User\\Desktop\\Projects\\MashinAlWebApp_FinalProject-main\\MashinAl.Infastructure\\MashinAl.Infastructure.csproj"
+              "C:\\Users\\User\\Desktop\\Projects\\MashinAlWebApp_FinalProject-main  - modified\\MashinAl.Infastructure\\MashinAl.Infastructure.csproj": {
+                "projectPath": "C:\\Users\\User\\Desktop\\Projects\\MashinAlWebApp_FinalProject-main  - modified\\MashinAl.Infastructure\\MashinAl.Infastructure.csproj"
               }
             }
           }
@@ -48,6 +48,14 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "FluentValidation": {
+              "target": "Package",
+              "version": "[11.9.0, )"
+            },
+            "FluentValidation.AspNetCore": {
+              "target": "Package",
+              "version": "[11.3.0, )"
+            },
             "Microsoft.AspNetCore.Identity": {
               "target": "Package",
               "version": "[2.2.0, )"
@@ -89,14 +97,14 @@
         }
       }
     },
-    "C:\\Users\\User\\Desktop\\Projects\\MashinAlWebApp_FinalProject-main\\MashinAl.Infastructure\\MashinAl.Infastructure.csproj": {
+    "C:\\Users\\User\\Desktop\\Projects\\MashinAlWebApp_FinalProject-main  - modified\\MashinAl.Infastructure\\MashinAl.Infastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\Desktop\\Projects\\MashinAlWebApp_FinalProject-main\\MashinAl.Infastructure\\MashinAl.Infastructure.csproj",
+        "projectUniqueName": "C:\\Users\\User\\Desktop\\Projects\\MashinAlWebApp_FinalProject-main  - modified\\MashinAl.Infastructure\\MashinAl.Infastructure.csproj",
         "projectName": "MashinAl.Infastructure",
-        "projectPath": "C:\\Users\\User\\Desktop\\Projects\\MashinAlWebApp_FinalProject-main\\MashinAl.Infastructure\\MashinAl.Infastructure.csproj",
+        "projectPath": "C:\\Users\\User\\Desktop\\Projects\\MashinAlWebApp_FinalProject-main  - modified\\MashinAl.Infastructure\\MashinAl.Infastructure.csproj",
         "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\Desktop\\Projects\\MashinAlWebApp_FinalProject-main\\MashinAl.Infastructure\\obj\\",
+        "outputPath": "C:\\Users\\User\\Desktop\\Projects\\MashinAlWebApp_FinalProject-main  - modified\\MashinAl.Infastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -129,6 +137,14 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "FluentValidation": {
+              "target": "Package",
+              "version": "[11.9.0, )"
+            },
+            "FluentValidation.AspNetCore": {
+              "target": "Package",
+              "version": "[11.3.0, )"
+            },
             "Microsoft.AspNetCore.Http.Abstractions": {
               "target": "Package",
               "version": "[2.2.0, )"

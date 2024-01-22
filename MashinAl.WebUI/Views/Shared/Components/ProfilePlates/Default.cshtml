@@ -1,0 +1,41 @@
+﻿@using MashinAl.Business.Modules.PlateModule.Queries.PlateGetAllByUserQuery
+@model IEnumerable<PlateGetAllByUserDto>
+
+@if (Model.Any(m => m.IsRejected == false && m.IsAccepted == true))
+{
+    @foreach (var item in Model.Where(m => m.IsAccepted))
+    {
+        <div class="license-plate-card">
+            <div class="license-plate">
+                <div class="mark-icon">
+                    <img src="~/frontside/assets/img/icons/registrationMarks_icons.svg"
+                         alt="" />
+                </div>
+                <span class="license-plate-number"> @item.RegionTitle-@item.FirstLetter@item.SecondLetter-@item.PlateNumber </span>
+            </div>
+            <div class="license-plate-body">
+                <div class="license-body-header">
+                    <span class="license-plate-price">1 500 AZN</span>
+                    <span class="license-add-to-favorites">
+                        <a href="#"><i class="fa-regular fa-bookmark"></i></a>
+                    </span>
+                </div>
+                <span class="license-plate-owner">Vaqif</span>
+                <div class="license-plate-bottom">
+                    <span class="license-date license-icons">
+                        <i class="fa-regular fa-calendar"></i> 23 noyabr
+                    </span>
+                    <span class="license-location license-icons">
+                        <i class="fa-solid fa-location-dot"></i> Bakı
+                    </span>
+                </div>
+            </div>
+        </div>
+    }
+}
+else
+{
+    <h3 style="background-color: #f8d7da; color: #721c24; border-color: #f5c6cb; padding: 15px; border: 1px solid; border-radius: 4px; font-size: 14px; width: 100%;">
+        Hal-hazırda aktiv elanınız yoxdur!
+    </h3>
+}

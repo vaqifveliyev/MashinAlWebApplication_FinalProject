@@ -1,0 +1,227 @@
+﻿@using MashinAl.Business.Modules.AccountModule.Queries.GetDealerProfileQuery
+@model GetDealerProfileDto
+
+@{
+    ViewData["Title"] = Model.DealerName + " | " + "İdarəetmə Paneli" + " | " + "MashinAl";
+}
+
+
+@await Component.InvokeAsync("DealerProfile")
+
+<div class="row">
+    <div class="col-12 mb-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Cavab gözləyən avtomobil elanları</h5>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Təsvir</th>
+                            <th scope="col">Qısa Məlumat</th>
+                            <th scope="col">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @await Component.InvokeAsync("DealerCarWaiting")
+                        <tr>
+                            <td colspan="3" class="text-center">
+                                <a asp-controller="Cars" asp-action="Index" class="btn btn-success">Hamısına Bax</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="section-card-row">
+            @await Component.InvokeAsync("DealerGetCars")
+</div>
+
+
+@section addcss {
+    <style>
+        .thumbnail-container {
+            width: 80px;
+            height: 80px;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+            .thumbnail-container img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+        .profile-card {
+            width: 100%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            border: 1px solid transparent;
+            padding: 20px;
+            background-color: #fff;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .profile-photo {
+            width: 100px;
+            height: 100px;
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 0 auto 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+            .profile-photo img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+        .profile-card h2 {
+            color: #333;
+        }
+
+        .profile-card p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .profile-card .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        .profile-card textarea,
+        .profile-card input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            resize: none;
+        }
+
+
+        .ad-card {
+            border: 1px solid transparent;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.06);
+            cursor: pointer;
+        }
+
+            .ad-card img {
+                object-fit: cover;
+            }
+
+        .ad-image .icon-featured,
+        .icon-favorite {
+            position: absolute;
+        }
+
+        .ad-body {
+            background-color: white;
+            padding: 20px;
+        }
+
+        .ad-price {
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .ad-marka-model {
+            color: #1b2434;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .ad-info {
+            color: #1b2434;
+            font-size: 16px;
+            font-weight: 400;
+        }
+
+        .ad-date {
+            color: #697586;
+            font-size: 14px;
+            font-weight: 400;
+        }
+
+        .icon-favorite {
+            top: 10px;
+            right: 10px;
+            color: white;
+            font-size: 20px;
+            transition: 0.3s;
+        }
+
+            .icon-favorite:hover {
+                color: #f81734;
+            }
+
+        .icon-featured {
+            width: 25px;
+            height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f81734;
+            color: white;
+            font-size: 14px;
+            border-radius: 5px;
+        }
+
+        .salon-tag {
+            position: absolute;
+            left: 10px;
+            top: 10px;
+            padding: 4px 8px;
+            background-color: rgba(21, 94, 239, 0.8);
+            border: 1px solid transparent;
+            border-radius: 5px;
+            color: white;
+            font-weight: 500;
+            font-size: 11px;
+        }
+
+        .ad-icons {
+            display: flex;
+            align-items: center;
+            column-gap: 5px;
+        }
+
+        .ad-icon {
+            width: 25px;
+            height: 25px;
+            display: flex;
+            font-size: 14px;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+        }
+
+        .barter-icon {
+            background-color: #32b878;
+            color: white;
+        }
+
+        .kredit-icon {
+            background-color: #155eef;
+            color: white;
+        }
+
+        .section-card-row {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            column-gap: 10px;
+            row-gap: 15px;
+        }
+    </style>
+}

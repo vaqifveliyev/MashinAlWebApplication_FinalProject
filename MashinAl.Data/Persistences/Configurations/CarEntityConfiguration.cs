@@ -23,6 +23,8 @@ namespace MashinAl.Data.Persistences.Configurations
             builder.Property(m => m.Engine).HasColumnType("decimal").IsRequired();
             builder.Property(m => m.IsBarter).HasColumnType("bit");
             builder.Property(m => m.IsCredit).HasColumnType("bit");
+            builder.Property(m => m.IsDealership).HasColumnType("bit");
+            builder.Property(m => m.IsBoosted).HasColumnType("bit");
             builder.Property(m => m.Description).HasColumnType("nvarchar(max)").IsRequired();
             builder.Property(m => m.Name).HasColumnType("nvarchar(max)").IsRequired();
             builder.Property(m => m.Email).HasColumnType("nvarchar(max)").IsRequired();
@@ -33,6 +35,7 @@ namespace MashinAl.Data.Persistences.Configurations
             builder.Property(m => m.IsAccepted).HasColumnType("bit");
             builder.Property(m => m.IsRejected).HasColumnType("bit");
             builder.Property(m => m.CreatedBy).HasColumnType("int").IsRequired();
+            builder.Property(m => m.ViewCount).HasColumnType("int").IsRequired().HasDefaultValue(0);
 
             builder.HasKey(m => m.Id);
             builder.ToTable("Cars");

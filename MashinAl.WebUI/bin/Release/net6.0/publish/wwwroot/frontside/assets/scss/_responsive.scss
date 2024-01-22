@@ -1,0 +1,136 @@
+/* RESPONSIVE SCREENS */
+
+@media screen and (min-width: 1200px) {
+  
+}
+
+  
+@media screen and (min-width: 992px) and (max-width: 1199.98px) {
+
+}
+
+@media screen and (min-width: 768px) and (max-width: 991.98px) {
+
+}
+
+@media screen and (min-width: 576px) and (max-width: 767.98px) {
+
+}
+
+@media screen and (max-width: 575.98px) {
+    .container {
+        width: 80%;
+    }
+
+    .dealership-card {
+        width: 100% !important;
+    }
+
+    .page-banner-thumbnail {
+        h1 {
+            font-size: 18px !important;
+        }
+    }
+
+    .license-search-container {
+        width: 100% !important;
+    }
+
+    .breadcrumbs {
+        display: none !important;
+    }
+
+    .license-plate-card {
+        width: 100% !important;
+    }
+    
+    .ad-card {
+        width: calc(100% / 2 - 10px) !important;
+        .ad-price {
+            font-size: 15px !important
+        }
+        .ad-marka-model {
+            font-size: 13px !important;
+        }
+        .ad-info {
+            font-size: 12px !important;
+        }
+
+    }
+
+    h1 {
+        font-size: 12px !important;
+    }
+    .span-see-all {
+        font-size: 12px !important;
+    }
+
+    .type-buttons {
+        width: 100% !important;
+    }
+
+    .first-row {
+        display: inline-block !important;
+        select {
+            margin-bottom: 5px !important;
+        }
+    }
+
+    .form-buttons {
+       button {
+        font-size: 13px !important;
+       }
+    }
+
+    .hidden-row.open {
+        display: inline-block !important;
+        select {
+            margin-bottom: 5px !important;
+        }
+    }
+
+    .second-row {
+        display: inline-block !important;
+        input {
+            margin-bottom: 5px !important;
+        }
+        label {
+            display: none !important;
+        }
+    }
+
+
+    footer {
+        display: none !important;
+    }
+    
+    .car-brands {
+        display: none !important;
+    }
+
+    .header-top {
+        background-color: white !important;
+        .call-center {
+            display: none !important;
+        }
+        .mobile-logo {
+            display: block !important;
+        }
+        .web-logo {
+            display: none !important;
+        }
+        .container{
+            .right-side {
+                display: none !important;
+            }
+        }
+    }
+    .header-bottom {
+        display: none !important;
+    }
+}
+  
+  
+
+
+  

@@ -2,7 +2,6 @@
 using MashinAl.Infastructure.Entities.Membership;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 
@@ -34,7 +33,6 @@ namespace MashinAl.Business.Modules.AccountModule.Commands.BindClaimsCommand
             request.Identity.AddClaim(new Claim(ClaimTypes.Surname, user.Surname));
             request.Identity.AddClaim(new Claim(ClaimTypes.Email, user.Email));
             request.Identity.AddClaim(new Claim(ClaimTypes.MobilePhone, user.PhoneNumber));
-            
 
 
             var roles = await userManager.GetRolesAsync(user);

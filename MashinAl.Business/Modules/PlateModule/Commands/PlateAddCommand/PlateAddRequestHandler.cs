@@ -28,7 +28,6 @@ namespace MashinAl.Business.Modules.PlateModule.Commands.PlateAddCommand
                 PlateNumber = request.PlateNumber,
                 Price = request.Price,
                 Description = request.Description,
-                CreatedAt = DateTime.UtcNow,
                 Name = request.Name,
                 Email = request.Email,
                 Phone = request.Phone,

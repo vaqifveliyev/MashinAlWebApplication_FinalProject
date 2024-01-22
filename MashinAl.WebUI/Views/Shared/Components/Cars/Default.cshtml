@@ -10,13 +10,27 @@
                <a asp-controller="Car" asp-action="Details" asp-route-id="@item.Id">
                 <div class="ad-image">
                     <img src="~/uploads/images/@item.ImagePath" alt="" />
-                    <span class="salon-tag">
-                        Salon
-                    </span>
-                    <span class="icon-featured" title="Önə çəkilmiş elan">
-                        <i class="fa-solid fa-arrow-up"></i>
-                    </span>
-                    <span class="icon-favorite">
+                    @if(item.IsDealership != true)
+                    {
+                        
+                    }
+                    else
+                    {
+                        <span class="salon-tag">
+                            Salon
+                        </span>
+                    }
+                    @if(item.IsBoosted != true)
+                    {
+                        
+                    }
+                    else
+                    {
+                        <span class="icon-featured" title="Önə çəkilmiş elan">
+                            <i class="fa-solid fa-arrow-up"></i>
+                        </span>
+                    }
+                    <span class="icon-favorite add-to-cart" data-id="@item.Id">
                         <i class="fa-regular fa-bookmark"></i>
                     </span>
                 </div>
@@ -40,7 +54,7 @@
                     </div>
                     <span class="ad-marka-model">@item.MarkaName @item.ModelName</span>
                     <span class="ad-info">@item.YearId il • @item.Engine L • @item.March km </span>
-                    <span class="ad-date">27 noyabr</span>
+                    <span class="ad-date">@(item.PublishedAt?.ToString("dd MMMM", new System.Globalization.CultureInfo("az-Latn-AZ")) ?? "")</span>
                 </div>
                </a>
             </div>

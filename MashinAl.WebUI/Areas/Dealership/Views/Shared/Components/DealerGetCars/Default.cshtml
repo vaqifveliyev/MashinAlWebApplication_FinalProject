@@ -1,0 +1,42 @@
+﻿@using MashinAl.Business.Modules.CarModule.Queries.CarGetAllByUserQuery
+@model IEnumerable<CarGetAllByUserDto>
+
+
+
+@foreach (var item in Model.Where(m => m.IsAccepted != false).Take(6))
+{
+    <div class="col-md-2 ad-card">
+          <div class="ad-image position-relative">
+            <img src="~/uploads/images/@item.ImagePath" alt="" class="img-fluid">
+            <span class="salon-tag">Salon</span>
+          </div>
+          <div class="ad-body">
+            <div class="ad-price-icons d-flex justify-content-between">
+              <span class="ad-price">@item.Price.ToString("G29") AZN</span>
+              <div class="ad-icons">
+                    @if(item.IsCredit == true)
+                    {
+                        <div class="ad-icon kredit-icon" title="Kredit">
+                            <i class="fa-solid fa-percent"></i>
+                        </div>
+                    }
+                    @if (item.IsBarter == true)
+                    {
+                        <div class="ad-icon barter-icon" title="Barter">
+                            <i class="fa-solid fa-rotate"></i>
+                        </div>
+                    }
+              </div>
+            </div>
+           <div style="display:flex; flex-direction: column;">
+                <span class="ad-marka-model">@item.MarkaName @item.ModelName</span>
+                <span class="ad-info">@item.YearId il • @item.Engine L • @item.March km </span>
+                <span class="ad-date">@(item.PublishedAt?.ToString("dd MMMM", new System.Globalization.CultureInfo("az-Latn-AZ")) ?? "")</span>
+           </div>
+          </div>
+        </div>
+
+
+
+
+}

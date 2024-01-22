@@ -1,0 +1,39 @@
+﻿@using MashinAl.Business.Modules.CarModule.Queries.CarGetAllByUserQuery
+@using MashinAl.Infastructure.Commons.Abstracts
+@model IPagedResponse<CarGetAllByUserPagedDto>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <th scope="row">@item.Id</th>
+        <td>@item.MarkaName</td>
+        <td>@item.ModelName</td>
+        <td>@item.YearId</td>
+        <td>@item.Price.ToString("G29") AZN</td>
+        <td>
+            @if (item.IsRejected)
+            {
+                <a class="btn btn-danger">Elan imtina edilib</a>
+            }
+            else if (item.IsAccepted)
+            {
+                <a class="btn btn-success">Elan təsdiq olunub</a>
+
+            }
+            else
+            {
+                <a class="btn btn-warning">Cavab gözləyir...</a>
+
+            }
+        </td>
+        <td>
+            @if(item.IsAccepted == true)
+            {
+                <a class="btn btn-success" style="color:white"><i class="fa-solid fa-circle-up"></i></a>
+            }
+            <a class="btn btn-warning" style="color:white;" asp-action="details" asp-route-id="@item.Id"><i class="fa-solid fa-circle-info"></i></a>
+            <a class="btn btn-danger" style="color:white;" onclick="removeEntity(@item.Id)"><i class="fa-solid fa-trash"></i></a>
+        </td>
+    </tr>
+}
+

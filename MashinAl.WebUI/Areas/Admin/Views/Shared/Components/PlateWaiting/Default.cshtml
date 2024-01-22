@@ -1,0 +1,38 @@
+﻿@using MashinAl.Business.Modules.PlateModule.Queries.PlateGetAllQuery
+@model IEnumerable<PlateGetAllDto>
+
+    @{
+        int count = Model.Where(m => m.IsAccepted == false && m.IsRejected == false).Count();   
+    }
+
+
+
+@if(count > 0)
+{
+    @foreach (var item in Model.Where(m => m.IsAccepted == false && m.IsRejected == false).Take(3))
+    {
+        <tr>
+            <th scope="row">@item.Id</th>
+            <td>
+                <div style="display:flex; align-items:center; column-gap: 10px">
+                    <img src="~/frontside/assets/img/icons/registrationMarks_icons.svg" />
+                    <b>@item.RegionTitle-@item.FirstLetter@item.SecondLetter-@item.PlateNumber</b>
+                </div>
+            </td>
+            <td>
+                <a asp-controller="Plates" asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary"><i class="fa-solid fa-circle-info"></i></a>
+                <span class="btn btn-warning">Cavab gözləyir...</span>
+            </td>
+        </tr>
+    }
+}
+else
+{   <tr>
+        <td colspan="3">
+            <div class="alert alert-danger" role="alert">
+                Hal-hazırda cavab gözləyən elan yoxdur!
+            </div>
+    </td>
+    </tr>
+}
+

@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Authorization;
+using System.Globalization;
 using System.Reflection;
 
 namespace MashinAl.WebUI
@@ -22,6 +23,8 @@ namespace MashinAl.WebUI
         public static void Main(string[] args)
         {
             ReadAllPolicies();
+
+            CultureInfo cultureInfo = new CultureInfo("az-Latn-AZ");
 
 
             var builder = WebApplication.CreateBuilder(args);
@@ -64,6 +67,9 @@ namespace MashinAl.WebUI
                 }
             });
 
+
+
+
             builder.Services.Configure<EmailOptions>(cfg => builder.Configuration.GetSection(cfg.GetType().Name).Bind(cfg));
 
             builder.Services.Configure<IdentityOptions>(cfg =>
@@ -90,7 +96,10 @@ namespace MashinAl.WebUI
             builder.Services.AddScoped<IClaimsTransformation, AppClaimProvider>();
             builder.Services.AddScoped<IIdentityService, IdentityService>();
 
+
+
             var app = builder.Build();
+            app.UseStatusCodePagesWithReExecute("/404");
             app.UseStaticFiles();
             app.UseRouting();
 
@@ -103,7 +112,7 @@ namespace MashinAl.WebUI
                 cfg.MapControllerRoute(
                       name: "areas",
                       pattern: "{area:exists}/{controller=Dashboard}/{action=Index}/{id?}"
-                    );
+                    );  
 
                 cfg.MapControllerRoute(
                     name: "home",
@@ -112,11 +121,23 @@ namespace MashinAl.WebUI
 
                 cfg.MapControllerRoute("default", "{controller=home}/{action=index}/{id?}");
 
+                cfg.MapControllerRoute(
+                    name: "notfound",
+                    pattern: "/404",
+                    defaults: new { controller = "Error", action = "NotFoundError" });
+
+                cfg.MapControllerRoute(
+                    name: "dealershipArea",
+                    pattern: "Dealership/{controller=Home}/{action=Index}/{id?}",
+                    defaults: new { area = "Dealership" }
+                );
+ 
             });
 
 
             app.Run();
         }
+
 
         private static void ReadAllPolicies()
         {

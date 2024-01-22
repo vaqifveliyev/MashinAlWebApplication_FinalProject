@@ -40,12 +40,40 @@
                     </div>
                 </div>
                 <div class="right-side">
+                @if (Model.IsDealership == true)
+                {
                     <div class="info-section">
                         <div class="side-header">
-                            <h3>@Model.Price AZN</h3>
+                            <h3>@Model.Price.ToString("G29") AZN</h3>
                             <div class="single-icons">
-                                <span class="s-date-time"><i class="fa-solid fa-calendar-days"></i> 02.12.2023</span>
-                                <span class="s-view-count"><i class="fa-solid fa-eye"></i> 0</span>
+                                <span class="s-date-time"><i class="fa-solid fa-calendar-days"></i> @(Model.PublishedAt?.ToString("dd MMMM yyyy", new System.Globalization.CultureInfo("az-Latn-AZ")) ?? "")</span>
+                                <span class="s-view-count"><i class="fa-solid fa-eye"></i> @Model.ViewCount</span>
+                                <span class="s-save-count"><i class="fa-solid fa-bookmark"></i> 0</span>
+                            </div>
+                        </div>
+                        <div class="side-body">
+                            <div class="profile-photo">
+                                    <img src="~/uploads/images/@Model.UserImagePath" alt="">
+                            </div>
+                            <a asp-controller="Dealership" asp-action="Dealer" asp-route-id="@Model.DealershipId">
+                                <span class="owner-name">@Model.DealershipName</span>
+                            </a>
+                        </div>
+                        <a href="tel:@Model.Phone">
+                            <button class="submit-button" style="font-size: 14px; font-weight: 400; width: 100%;">
+                                <i class="fa-solid fa-phone"></i> @Model.DealershipNumber
+                            </button>
+                        </a>
+                    </div>
+                }
+                else
+                {
+                    <div class="info-section">
+                        <div class="side-header">
+                            <h3>@Model.Price.ToString("G29") AZN</h3>
+                            <div class="single-icons">
+                                <span class="s-date-time"><i class="fa-solid fa-calendar-days"></i> @(Model.PublishedAt?.ToString("dd MMMM yyyy", new System.Globalization.CultureInfo("az-Latn-AZ")) ?? "")</span>
+                                <span class="s-view-count"><i class="fa-solid fa-eye"></i> @Model.ViewCount</span>
                                 <span class="s-save-count"><i class="fa-solid fa-bookmark"></i> 0</span>
                             </div>
                         </div>
@@ -53,7 +81,7 @@
                             <div class="profile-photo">
                                 <img src="~/frontside/assets/img/icons/user_new.png" alt="">
                             </div>
-                            <span class="owner-name">Vaqif</span>
+                            <span class="owner-name">@Model.Name</span>
                         </div>
                         <a href="tel:@Model.Phone">
                             <button class="submit-button" style="font-size: 14px; font-weight: 400; width: 100%;">
@@ -61,7 +89,8 @@
                             </button>
                         </a>
                     </div>
-                    <div class="info-section ">
+                }
+                <div class="info-section ">
                         <div class="side-body body-info">
                             <div class="info-text-container">
                                 <i class="fa-solid fa-calendar-check"></i>
@@ -132,9 +161,9 @@
              <div class="section additional-informations">
                     <h1>Digər parametrlər</h1>
                 <div class="tags-row">
-                    @foreach (var supply in Model.Supplies)
+                 @foreach (var supply in Model.Supplies)
                 {
-                    <span class="tag-style">@supply.SupplyId</span>
+                        <span class="tag-style">@supply.Title</span>
                 }
                 </div>
             </div>
@@ -157,33 +186,27 @@
             var images = $(".thumbnail-img");
             var totalImages = images.length;
 
-            // Set the first image as the main image
             showImage(currentIndex);
 
-            // Function to show the image at a given index
+
             function showImage(index) {
                 $(".slider-image img").attr("src", images.eq(index).find("img").attr("src"));
 
-                // Remove border from all images
                 $(".thumbnail-img").removeClass("selected");
 
-                // Add border to the selected image
                 images.eq(index).addClass("selected");
             }
 
-            // Function to handle next button click
             $(".btnSlider.next").on("click", function () {
                 currentIndex = (currentIndex + 1) % totalImages;
                 showImage(currentIndex);
             });
 
-            // Function to handle previous button click
             $(".btnSlider.previous").on("click", function () {
                 currentIndex = (currentIndex - 1 + totalImages) % totalImages;
                 showImage(currentIndex);
             });
 
-            // Function to handle slider image click
             $(".thumbnail-img").on("click", function () {
                 currentIndex = $(this).index();
                 showImage(currentIndex);

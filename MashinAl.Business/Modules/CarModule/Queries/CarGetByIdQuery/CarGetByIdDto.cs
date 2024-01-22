@@ -1,4 +1,5 @@
 ﻿using MashinAl.Infastructure.Entities;
+using MashinAl.Infastructure.Entities.Membership;
 
 namespace MashinAl.Business.Modules.CarModule.Queries.CarGetByIdQuery
 {
@@ -41,7 +42,16 @@ namespace MashinAl.Business.Modules.CarModule.Queries.CarGetByIdQuery
         public DateTime? CreatedAt { get; set; }
         public DateTime? PublishedAt { get; set; }
         public int CreatedBy { get; set; }
+        public MashinAlUser User { get; set; }
+        public string? UserImagePath { get; set; }
+        public string DealershipName { get; set; }
+        public string DealershipNumber { get; set; }
+        public int DealershipId { get; set; }
         public CarImage[] Images{ get; set; }
-        public CarSupply[] Supplies { get; set; }
+        public Supply[] Supplies { get; set; }
+        public string SupplyName { get; set; }
+        public bool IsDealership { get; set; }
+        public bool IsBoosted { get; set; }
+        public int ViewCount { get; set; }
     }
 }

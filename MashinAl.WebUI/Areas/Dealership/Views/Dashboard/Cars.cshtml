@@ -1,0 +1,232 @@
+﻿@using MashinAl.Business.Modules.CarModule.Queries.CarGetAllByUserQuery
+@using MashinAl.Infastructure.Commons.Abstracts
+@using MashinAl.Infastructure.Extensions
+@model IPagedResponse<CarGetAllByUserPagedDto>
+
+@{
+    ViewData["Title"] = "Avtosalonun Avtomobil Elanları | MashinAl";
+}
+
+<div class="page-body">
+    <!-- Basic table card start -->
+    <div class="card">
+        <div class="card-header" style="display:flex; justify-content:space-between; align-items:center">
+            <h5>Avtomobillər | Elanlar</h5>
+            <a class="btn btn-success" asp-controller="Car" asp-action="Create"><i class="fa-solid fa-plus"></i> Yeni Elan</a>
+        </div>
+        <div class="card-block table-border-style">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Marka</th>
+                            <th>Model</th>
+                            <th>İl</th>
+                            <th>Qiymət</th>
+                            <th>Status</th>
+                            <th>Əməliyyatlar</th>
+                        </tr>
+                    </thead>
+                    <tbody id="body">
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <th scope="row">@item.Id</th>
+                                <td>@item.MarkaName</td>
+                                <td>@item.ModelName</td>
+                                <td>@item.YearId</td>
+                                <td>@item.Price.ToString("G29") AZN</td>
+                                <td>
+                                    @if (item.IsRejected)
+                                    {
+                                        <a class="btn btn-danger">Elan imtina edilib</a>
+                                    }
+                                    else if (item.IsAccepted)
+                                    {
+                                        <a class="btn btn-success">Elan təsdiq olunub</a>
+
+                                    }
+                                    else
+                                    {
+                                        <a class="btn btn-warning">Cavab gözləyir...</a>
+
+                                    }
+                                </td>
+                                <td>
+                                    @if (item.IsAccepted == true && item.IsBoosted == false)
+                                    {
+                                        <a class="btn btn-success" style="color:white" onclick="boostEntity(@item.Id)"><i class="fa-solid fa-circle-up"></i>
+                                        </a>
+                                    }
+                                    @if (item.IsBoosted == true)
+                                    {
+                                        <span class="btn btn-danger">Elan irəli çəkilib</span>
+                                    }
+                                    <a class="btn btn-warning" style="color:white;" asp-action="details" asp-route-id="@item.Id"><i class="fa-solid fa-circle-info"></i></a>
+                                    <a class="btn btn-danger" style="color:white;" onclick="removeEntity(@item.Id)"><i class="fa-solid fa-trash"></i></a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <div class="breadcrubm-page-show border-default universal-padding mt-30 fix">
+                    <div class="breadcrumb-list-item">
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination justify-content-center">
+                                @Url.ToPager(Model, ViewContext.ActionDescriptor)
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@section addcss {
+    <style>
+        .pagination {
+            display: flex;
+            flex-direction: column;
+            column-gap: 10px;
+        }
+
+        
+
+            .pagination ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+                display: flex;
+                justify-content: center;
+            }
+
+            .pagination li {
+                display: inline-block;
+            }
+
+            .pagination a,
+            .pagination button {
+                text-decoration: none;
+                padding: 5px 10px;
+                border: 1px solid #dee2e6;
+                margin: 2px;
+                cursor: pointer;
+                border-radius: 3px;
+            }
+
+            .pagination .page-link {
+                color: #007bff;
+            }
+
+            .pagination .page-item.active .page-link {
+                background-color: #007bff;
+                color: #fff;
+                border-color: #007bff;
+            }
+
+            .pagination .page-item:not(.active) a,
+            .pagination .page-item:not(.active) button {
+                border-color: #ddd;
+            }
+
+            .pagination .btn-outline-primary {
+                color: #007bff;
+                border-color: #007bff;
+            }
+
+                .pagination .btn-outline-primary:hover {
+                    background-color: #007bff;
+                    color: #fff;
+                }
+
+                .pagination .btn-outline-primary:disabled {
+                    opacity: 0.5;
+                    cursor: not-allowed;
+                }
+    </style>
+}
+
+@section addjs {
+    <script src="~/libs/sweetalert/sweetalert.min.js"></script>
+    <script>
+
+        function boostEntity(id) {
+            swal({
+                title: "Diqqət!",
+                text: ` ${id} nömrəli elanı önə çəkmək istədiyinizdən əminsiniz?`,
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+                buttons: ['Xeyr', 'Bəli']
+            })
+                .then((willBoost) => {
+                    if (willBoost) {
+                        let obj = { id };
+
+                        $.ajax({
+                            url: '@Url.Action("BoostCar", "Car")',
+                            type: 'POST',
+                            data: obj,
+                            success: function (response) {
+                                if (response.error == true) {
+                                    toastr.error('Elanı irəli çəkmək əməliyyatında xəta yarandı!', 'Xəta!');
+                                    return;
+                                }
+
+                                toastr.success('Elan uğurla Önə çəkildi!', 'Uğurlu Nəticə!');
+                                setTimeout(function () {
+                                    location.reload();
+                                }, 1000);
+                            },
+                            error: function (response) {
+                                console.log(response);
+                            }
+                        });
+                    }
+                });
+        }
+
+
+        function removeEntity(id) {
+
+            swal({
+                title: "Diqqət!",
+                text: `${id} nömrəli avtomobil elanını silmək istədiyinizdən əminsiniz?`,
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+                buttons: ['Xeyr', 'Bəli']
+            })
+                .then((willDelete) => {
+                    if (willDelete) {
+
+                        let obj = { id };
+
+                        $.ajax({
+                            url: '@Url.Action("Delete", "Car")',
+                            type: 'POST',
+                            data: obj,
+                            success: function (response) {
+                                if (response.error == true) {
+                                    toastr.error('Elan silinmə əməliyyatında xəta yarandı!', 'Xəta!');
+                                    return;
+                                }
+
+                                toastr.success('Elan uğurla silindi!', 'Uğurlu Nəticə!');
+                                setTimeout(function () {
+                                    window.location.reload();
+                                }, 2e3)
+
+                            },
+                            error: function (response) {
+                                console.log(response);
+                            }
+                        });
+                    }
+                });
+        }
+    </script>
+}

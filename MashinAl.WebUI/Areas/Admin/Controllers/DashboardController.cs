@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using MashinAl.Business.Modules.DashboardModule.Queries.GetCountQuery;
+using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MashinAl.WebUI.Areas.Admin.Controllers
@@ -6,10 +8,18 @@ namespace MashinAl.WebUI.Areas.Admin.Controllers
     [Area("Admin")]
     public class DashboardController : Controller
     {
-        [Authorize("admin.dashboard.index")]
-        public IActionResult Index()
+        private readonly IMediator mediator;
+
+        public DashboardController(IMediator mediator)
         {
-            return View();
+            this.mediator = mediator;
+        }
+
+        [Authorize("admin.dashboard.index")]
+        public async Task<IActionResult> Index(GetCountRequest request)
+        {
+            var data = await mediator.Send(request);
+            return View(data);
         }
     }
 }

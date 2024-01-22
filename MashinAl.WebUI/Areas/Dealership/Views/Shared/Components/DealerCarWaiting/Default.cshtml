@@ -1,0 +1,37 @@
+﻿@using MashinAl.Business.Modules.CarModule.Queries.CarGetAllByUserQuery
+@model IEnumerable<CarGetAllByUserDto>
+
+@{
+    int count = Model.Where(m => m.IsAccepted == false && m.IsRejected == false).Count();
+}
+
+
+
+@if(count > 0)
+{
+    @foreach (var item in Model.Where(m => m.IsAccepted == false && m.IsRejected == false).Take(3))
+    {
+        <tr>
+            <th scope="row">
+                <div class="thumbnail-container">
+                    <img src="~/uploads/images/@item.ImagePath">
+                </div>
+            </th>
+            <td><b>@item.MarkaName</b> @item.ModelName | İl: @item.YearId | <b>@item.Price.ToString("G29") ₼</b></td>
+            <td>
+                <span class="btn btn-warning">Cavab gözləyir...</span>
+            </td>
+        </tr>
+    }
+}
+else
+{
+    <tr>
+        <td colspan="3">
+            <div class="alert alert-danger" role="alert">
+                Hal-hazırda cavab gözləyən elan yoxdur!
+            </div>
+        </td>
+    </tr>
+}
+

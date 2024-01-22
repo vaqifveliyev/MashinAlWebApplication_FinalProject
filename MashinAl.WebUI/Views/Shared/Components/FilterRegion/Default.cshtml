@@ -1,0 +1,9 @@
+﻿@model IEnumerable<Region>
+
+<select name="RegionId" id="region-select" class="select-container">
+    <option value="" selected disabled></option>
+    @foreach (var item in Model)
+    {
+        <option value="@item.Id">@item.Title</option>
+    }
+</select>

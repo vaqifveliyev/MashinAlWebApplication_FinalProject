@@ -46,3 +46,15 @@ C:\Users\User\Desktop\Projects\MashinAlWebApp_FinalProject-main\MashinAl.Infastr
 C:\Users\User\Desktop\Projects\MashinAlWebApp_FinalProject-main\MashinAl.Infastructure\obj\Debug\net6.0\refint\MashinAl.Infastructure.dll
 C:\Users\User\Desktop\Projects\MashinAlWebApp_FinalProject-main\MashinAl.Infastructure\obj\Debug\net6.0\MashinAl.Infastructure.pdb
 C:\Users\User\Desktop\Projects\MashinAlWebApp_FinalProject-main\MashinAl.Infastructure\obj\Debug\net6.0\ref\MashinAl.Infastructure.dll
+C:\Users\User\Desktop\Projects\MashinAlWebApp_FinalProject-main  - modified\MashinAl.Infastructure\bin\Debug\net6.0\MashinAl.Infastructure.deps.json
+C:\Users\User\Desktop\Projects\MashinAlWebApp_FinalProject-main  - modified\MashinAl.Infastructure\bin\Debug\net6.0\MashinAl.Infastructure.dll
+C:\Users\User\Desktop\Projects\MashinAlWebApp_FinalProject-main  - modified\MashinAl.Infastructure\bin\Debug\net6.0\MashinAl.Infastructure.pdb
+C:\Users\User\Desktop\Projects\MashinAlWebApp_FinalProject-main  - modified\MashinAl.Infastructure\obj\Debug\net6.0\MashinAl.Infastructure.csproj.AssemblyReference.cache
+C:\Users\User\Desktop\Projects\MashinAlWebApp_FinalProject-main  - modified\MashinAl.Infastructure\obj\Debug\net6.0\MashinAl.Infastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\Desktop\Projects\MashinAlWebApp_FinalProject-main  - modified\MashinAl.Infastructure\obj\Debug\net6.0\MashinAl.Infastructure.AssemblyInfoInputs.cache
+C:\Users\User\Desktop\Projects\MashinAlWebApp_FinalProject-main  - modified\MashinAl.Infastructure\obj\Debug\net6.0\MashinAl.Infastructure.AssemblyInfo.cs
+C:\Users\User\Desktop\Projects\MashinAlWebApp_FinalProject-main  - modified\MashinAl.Infastructure\obj\Debug\net6.0\MashinAl.Infastructure.csproj.CoreCompileInputs.cache
+C:\Users\User\Desktop\Projects\MashinAlWebApp_FinalProject-main  - modified\MashinAl.Infastructure\obj\Debug\net6.0\MashinAl.Infastructure.dll
+C:\Users\User\Desktop\Projects\MashinAlWebApp_FinalProject-main  - modified\MashinAl.Infastructure\obj\Debug\net6.0\refint\MashinAl.Infastructure.dll
+C:\Users\User\Desktop\Projects\MashinAlWebApp_FinalProject-main  - modified\MashinAl.Infastructure\obj\Debug\net6.0\MashinAl.Infastructure.pdb
+C:\Users\User\Desktop\Projects\MashinAlWebApp_FinalProject-main  - modified\MashinAl.Infastructure\obj\Debug\net6.0\ref\MashinAl.Infastructure.dll

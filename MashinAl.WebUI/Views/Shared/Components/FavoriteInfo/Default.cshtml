@@ -1,0 +1,17 @@
+﻿@using MashinAl.Business.Modules.CarModule.Queries.FavoritesListQuery
+@model IEnumerable<FavoritesListItem>
+
+
+@{
+    int count = Model.Count();
+}
+
+<div id="favoritesContainer">
+    <a asp-controller="Car" asp-action="Favorites" style="position: relative;">
+        <i class="fa-regular fa-bookmark"></i>
+        @if (count > 0)
+        {
+            <span id="favoriteCount" style="position: absolute; width: 20px; height: 20px; display: flex;align-items: center;justify-content: center; font-size: 12px; background-color: red; border-radius: 50%; top:-5px; right:-20px">@count</span>
+        }
+    </a>
+</div>

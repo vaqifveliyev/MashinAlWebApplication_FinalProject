@@ -58,3 +58,18 @@ C:\Users\User\Desktop\Projects\MashinAlWebApp_FinalProject-main\MashinAl.Data\ob
 C:\Users\User\Desktop\Projects\MashinAlWebApp_FinalProject-main\MashinAl.Data\obj\Debug\net6.0\refint\MashinAl.Data.dll
 C:\Users\User\Desktop\Projects\MashinAlWebApp_FinalProject-main\MashinAl.Data\obj\Debug\net6.0\MashinAl.Data.pdb
 C:\Users\User\Desktop\Projects\MashinAlWebApp_FinalProject-main\MashinAl.Data\obj\Debug\net6.0\ref\MashinAl.Data.dll
+C:\Users\User\Desktop\Projects\MashinAlWebApp_FinalProject-main  - modified\MashinAl.Data\bin\Debug\net6.0\MashinAl.Data.deps.json
+C:\Users\User\Desktop\Projects\MashinAlWebApp_FinalProject-main  - modified\MashinAl.Data\bin\Debug\net6.0\MashinAl.Data.dll
+C:\Users\User\Desktop\Projects\MashinAlWebApp_FinalProject-main  - modified\MashinAl.Data\bin\Debug\net6.0\MashinAl.Data.pdb
+C:\Users\User\Desktop\Projects\MashinAlWebApp_FinalProject-main  - modified\MashinAl.Data\bin\Debug\net6.0\MashinAl.Infastructure.dll
+C:\Users\User\Desktop\Projects\MashinAlWebApp_FinalProject-main  - modified\MashinAl.Data\bin\Debug\net6.0\MashinAl.Infastructure.pdb
+C:\Users\User\Desktop\Projects\MashinAlWebApp_FinalProject-main  - modified\MashinAl.Data\obj\Debug\net6.0\MashinAl.Data.csproj.AssemblyReference.cache
+C:\Users\User\Desktop\Projects\MashinAlWebApp_FinalProject-main  - modified\MashinAl.Data\obj\Debug\net6.0\MashinAl.Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\Desktop\Projects\MashinAlWebApp_FinalProject-main  - modified\MashinAl.Data\obj\Debug\net6.0\MashinAl.Data.AssemblyInfoInputs.cache
+C:\Users\User\Desktop\Projects\MashinAlWebApp_FinalProject-main  - modified\MashinAl.Data\obj\Debug\net6.0\MashinAl.Data.AssemblyInfo.cs
+C:\Users\User\Desktop\Projects\MashinAlWebApp_FinalProject-main  - modified\MashinAl.Data\obj\Debug\net6.0\MashinAl.Data.csproj.CoreCompileInputs.cache
+C:\Users\User\Desktop\Projects\MashinAlWebApp_FinalProject-main  - modified\MashinAl.Data\obj\Debug\net6.0\MashinAl.Data.csproj.CopyComplete
+C:\Users\User\Desktop\Projects\MashinAlWebApp_FinalProject-main  - modified\MashinAl.Data\obj\Debug\net6.0\MashinAl.Data.dll
+C:\Users\User\Desktop\Projects\MashinAlWebApp_FinalProject-main  - modified\MashinAl.Data\obj\Debug\net6.0\refint\MashinAl.Data.dll
+C:\Users\User\Desktop\Projects\MashinAlWebApp_FinalProject-main  - modified\MashinAl.Data\obj\Debug\net6.0\MashinAl.Data.pdb
+C:\Users\User\Desktop\Projects\MashinAlWebApp_FinalProject-main  - modified\MashinAl.Data\obj\Debug\net6.0\ref\MashinAl.Data.dll

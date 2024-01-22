@@ -60,6 +60,25 @@
     <script src="~/libs/toastr.js/toastr.min.js"></script>
     <script>
 
+        /* MARCH AND NEW SELECTION */
+
+        document.addEventListener("DOMContentLoaded", function () {
+            var statusSelect = document.getElementById("statusSelect");
+            var marchInput = document.getElementById("marchInput");
+
+            if (statusSelect && marchInput) {
+                statusSelect.addEventListener("change", function () {
+                    var selectedStatus = statusSelect.value;
+
+                    if (selectedStatus === "1") {
+                        marchInput.value = "0";
+                        marchInput.setAttribute("disabled", "disabled");
+                    } else {
+                        marchInput.removeAttribute("disabled");
+                    }
+                });
+            }
+        });
 
         $(document).ready(function () {
             $('#viewer1').imgadd({
@@ -196,6 +215,54 @@
                 announcementForms[index].classList.add('selected');
             });
         });
+
+
+        /* MARKA AND MODEL */
+
+        function checkMarkaSelection() {
+            var markaSelect = document.getElementById('marka');
+            var modelSelect = document.getElementById('model');
+
+            if (markaSelect.value !== 'Marka seçin...') {
+                modelSelect.disabled = false;
+            } else {
+                modelSelect.disabled = true;
+                modelSelect.value = 'Model seçin...';
+            }
+        }
+
+        $(document).ready(function () {
+            $('#marka').change(function () {
+                var selectedMarkaId = $(this).val();
+                var modelSelect = $('#model');
+
+                if (selectedMarkaId) {
+                    modelSelect.prop('disabled', false);
+
+                    $.ajax({
+                        url: '@Url.Action("GetModelsByMarka", "Home")',
+                        type: 'GET',
+                        data: { markaId: selectedMarkaId },
+                        success: function (data) {
+                            modelSelect.empty().append('<option value="">Model seçin...</option>');
+
+                            if (data) {
+                                $.each(data, function (index, value) {
+                                    modelSelect.append('<option value="' + value.id + '">' + value.name + '</option>');
+                                });
+                            }
+                        },
+                        error: function (error) {
+                            console.error('Error fetching models:', error);
+                        }
+                    });
+                } else {
+                    modelSelect.prop('disabled', true).html('<option value="">Model seçin...</option>');
+                }
+            });
+        });
+       
+
 
 
 

@@ -91,12 +91,15 @@ namespace MashinAl.Business.Modules.CarModule.Queries.CarGetAllQuery
                              Name = c.Name,
                              Email = c.Email,
                              Phone = c.Phone,
+                             PublishedAt = c.PublishedAt,
                              CreatedBy = c.CreatedBy,
                              IsAccepted = c.IsAccepted,
                              IsRejected = c.IsRejected,
+                             IsBoosted = c.IsBoosted,
+                             IsDealership = c.IsDealership,
                          }).ToListAsync(cancellationToken);
 
-            return query;
+            return query.OrderByDescending(m => m.PublishedAt);
 
         }
     }

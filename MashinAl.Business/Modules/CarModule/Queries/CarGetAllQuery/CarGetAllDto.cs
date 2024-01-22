@@ -40,5 +40,7 @@
         public DateTime? PublishedAt { get; set; }
         public int CreatedBy { get; set; }
         public string ImagePath { get; set; }
+        public bool IsDealership { get; set; }
+        public bool IsBoosted { get; set; }
     }
 }

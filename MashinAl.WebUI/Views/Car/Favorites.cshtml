@@ -1,0 +1,73 @@
+﻿@using MashinAl.WebUI.Views.ViewComponents
+
+@{
+    ViewData["Title"] = "Seçilmiş Elanlar | Mashin.Al";
+}
+
+<div class="container">
+    <section class="section last-ads">
+        <div class="section-header">
+            <h1>Seçilmiş Elanlar</h1>
+        </div>
+        <div class="section-body">
+            <div class="section-card-row">
+                @await Component.InvokeAsync("FavoritesShow")
+            </div>
+        </div>
+    </section>
+</div>
+
+@section addcss {
+    <style>
+        .icon-remove-favorite {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: white;
+            font-size: 20px;
+            transition: 0.3s;
+        }
+
+            .icon-remove-favorite:hover {
+                color: #f81734;
+            }
+    </style>
+}
+
+@section addjs {
+    <script>
+        $('span.icon-remove-favorite').unbind().click(function (e) {
+            e.preventDefault();
+
+            const carId = $(e.currentTarget).data('id');
+
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("RemoveFromFavorite", "Car")",
+                data: { CarId: carId },
+                dataType: "json",
+                success: function (response) {
+                    toastr.success('Elan seçilmişlərdən çıxarıldı!', 'Uğurlu nəticə!');
+                    setTimeout(function () {
+                        location.reload();
+                    }, 1000);
+
+                    $.ajax({
+                        type: "GET",
+                        url: "@Url.Action("InvokeAsync", "FavoriteInfo")",
+                        success: function (html) {
+                            $('#favoritesContainer').html(html);
+                        },
+                        error: function (error) {
+                            console.error('Failed to reload FavoriteInfoViewComponent:', error);
+                        }
+                    });
+                },
+                error: function (error) {
+                    console.error('Failed to remove from favorites:', error);
+                }
+            });
+        });
+
+    </script>
+}

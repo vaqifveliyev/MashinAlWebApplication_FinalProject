@@ -29,7 +29,7 @@
                     <label class="form-label">Əlaqə</label>
                     <input value="@Model.Phone" class="form-control" readonly>
                     <label class="form-label">Əlavə məlumat</label>
-                    <textarea value="@Model.Description" class="form-control" readonly></textarea>
+                    <textarea class="form-control" readonly>@Html.Raw(Model.Description)</textarea
                     <label class="form-label">Satış şəhəri</label>                   
                     <input value="@Model.SellCityName" class="form-control" readonly>
                     <label class="form-label">Şəkillər</label>

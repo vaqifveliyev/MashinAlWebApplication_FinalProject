@@ -1,0 +1,10 @@
+﻿@model IEnumerable<FuelType>
+
+
+<select name="fueltype" class="select-container">
+    <option value="Yanacaq növü" disabled selected>Yanacaq növü</option>
+    @foreach (var item in Model)
+    {
+        <option value="@item.Id" data-id="@item.Id" data-entity-type="fueltype">@item.Name</option>
+    }
+</select>

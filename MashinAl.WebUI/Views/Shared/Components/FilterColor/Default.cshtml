@@ -1,0 +1,10 @@
+﻿@model IEnumerable<Color>
+
+
+<select name="Color" class="select-container">
+    <option value="Rəng" disabled selected>Rəng</option>
+    @foreach (var item in Model)
+    {
+        <option value="@item.Id" data-id="@item.Id" data-entity-type="color">@item.Name</option>
+    }
+</select>

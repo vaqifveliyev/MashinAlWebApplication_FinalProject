@@ -11,7 +11,7 @@ namespace MashinAl.Business.Modules.PlateModule.Commands.PlateAddCommand
         public string SecondLetter { get; set; }
         public string PlateNumber { get; set; }
         public decimal Price { get; set; }
-        public string? Description { get; set; }
+        public string Description { get; set; }
         public DateTime? CreatedAt { get; set; }
         public DateTime? PublishedAt { get; set; }
         public string Name { get; set; }

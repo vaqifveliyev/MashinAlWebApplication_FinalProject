@@ -1,3 +1,196 @@
-﻿@{
+﻿@using MashinAl.Business.Modules.DashboardModule.Queries.GetCountQuery
+@model GetCountDto
+
+@{
     ViewBag.Title = "MashinAl | Admin";
+}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-3 mb-4">
+            <div class="card custom-card">
+                <div class="card-body">
+                    <i class="fas fa-car fa-2x" style="color:#5D87FF"></i>
+                    <p id="carCount" class="card-text mashinAlBtn">0</p>
+                    <h5 class="card-title">Avtomobil Elanları</h5>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 mb-4">
+            <div class="card custom-card">
+                <div class="card-body">
+                    <i class="fa-solid fa-arrow-up-1-9 fa-2x" style="color:#5D87FF"></i>
+                    <p id="plateCount" class="card-text mashinAlBtn">@Model.PlateCount</p>
+                    <h5 class="card-title">Qeydiyyat Nişanı Elanları</h5>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 mb-4">
+            <div class="card custom-card">
+                <div class="card-body">
+                    <i class="fa-solid fa-location-dot fa-2x" style="color:#5D87FF"></i>
+                    <p id="dealerCount" class="card-text mashinAlBtn">@Model.DealerCount</p>
+                    <h5 class="card-title">Avtosalonlar</h5>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 mb-4">
+            <div class="card custom-card">
+                <div class="card-body">
+                    <i class="fa-solid fa-users fa-2x" style="color:#5D87FF"></i>
+                    <p id="userCount" class="card-text mashinAlBtn">@Model.UserCount</p>
+                    <h5 class="card-title">İstifadəçilər</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="row">
+    <div class="col-md-6 mb-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Cavab gözləyən avtomobil elanları</h5>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Təsvir</th>
+                            <th scope="col">Qısa Məlumat</th>
+                            <th scope="col">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @await Component.InvokeAsync("CarWaiting")
+                        <tr>
+                            <td colspan="3" class="text-center">
+                                <a asp-controller="Cars" asp-action="Index" class="btn btn-success">Hamısına Bax</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 mb-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Cavab gözləyən qeydiyyat nişanı elanları</h5>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Qısa Məlumat</th>
+                            <th scope="col">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @await Component.InvokeAsync("PlateWaiting")
+                        <tr>
+                            <td colspan="3" class="text-center">
+                                <a asp-controller="Cars" asp-action="Index" class="btn btn-success">Hamısına Bax</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section addjs {
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            var carTargetCount = @Model.CarCount; 
+            var plateTargetCount = @Model.PlateCount;
+            var userTargetCount = @Model.UserCount;
+            var userDealerCount = @Model.DealerCount;
+
+            var animationDuration = 1000; 
+
+            animateCount("carCount", carTargetCount, animationDuration);
+            animateCount("plateCount", plateTargetCount, animationDuration);
+            animateCount("userCount", userTargetCount, animationDuration);
+            animateCount("dealerCount", userDealerCount, animationDuration);
+
+
+        });
+
+        function animateCount(elementId, targetCount, duration) {
+            var element = document.getElementById(elementId);
+            var startCount = 0;
+            var startTime;
+
+            function updateCount(timestamp) {
+                if (!startTime) startTime = timestamp;
+
+                var progress = timestamp - startTime;
+                var percentage = progress / duration;
+
+                if (percentage > 1) percentage = 1;
+
+                var currentCount = Math.floor(startCount + percentage * (targetCount - startCount));
+                element.textContent = currentCount;
+
+                if (percentage < 1) {
+                    requestAnimationFrame(updateCount);
+                }
+            }
+
+            requestAnimationFrame(updateCount);
+        }
+    </script>
+}
+
+
+@section addcss {
+    <style>
+
+        .custom-card {
+            background: linear-gradient(to bottom right, #ffffff, #ffffff);
+            color: white;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+            .custom-card .card-body {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                height: 100%;
+            }
+
+            .custom-card .card-title {
+                margin-top: auto; 
+                font-size: 14px;
+                color: #dbd9d9;
+                font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            }
+
+            .custom-card .mashinAlBtn {
+                font-size: 2em; 
+                color: gray;
+            }
+
+        .thumbnail-container {
+            width: 80px;
+            height: 80px;
+            overflow: hidden;
+            border-radius: 10px; 
+        }
+
+        .thumbnail-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        </style>
 }

@@ -1,7 +1,7 @@
 ﻿@using MashinAl.WebUI.Views.ViewComponents
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="az">
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -99,14 +99,22 @@
                 </div>
                 <div class="right-side">
                     <div class="icons-row">
-                        <a href="#"><i class="fa-regular fa-bookmark"></i></a>
-                        <a href="#"><i class="fa-regular fa-bell"></i></a>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            @await Component.InvokeAsync("FavoriteInfo")
+                        }
                     </div>
                     <div class="buttons-row">
                         @if (User.HasClaim("admin.dashboard.index"))
                         {
-                            <a asp-area="Admin" asp-controller="Dashboard" asp-action="Index" class="btn btn-red" title="Admin panel">
+                            <a asp-area="Admin" asp-controller="Dashboard" target="_blank" asp-action="Index" class="btn btn-red" title="Admin panel">
                                 <i class="fa-solid fa-user-tie"></i>
+                            </a>
+                        }
+                        @if (User.HasClaim("dealership.dashboard.index"))
+                        {
+                            <a asp-area="Dealership" asp-controller="Dashboard" asp-action="Index" class="btn btn-red" title="Avtosalon panel">
+                                <i class="fa-solid fa-database"></i>
                             </a>
                         }
                         @if (User.Identity.IsAuthenticated)
@@ -136,13 +144,20 @@
                         <li><a class="navlink" asp-controller="home" asp-action="all">Bütün elanlar</a></li>
                         <li><a class="navlink" asp-controller="home" asp-action="dealerships">Avtosalonlar</a></li>
                         <li><a class="navlink" asp-controller="home" asp-action="shops">Mağazalar</a></li>
-                        <li><a class="navlink" asp-controller="home" asp-action="licenseplates">Qeydiyyat nişanları</a></li>
+                        <li><a class="navlink" asp-controller="home" asp-action="plates">Qeydiyyat nişanları</a></li>
                     </ul>
-                    <a asp-controller="Announcement" asp-action="Index">
-                        <span class="btn btn-green">
-                            Yeni elan <i class="fa-solid fa-plus"></i>
-                        </span>
-                    </a>
+                    @if (User.HasClaim("dealership.dashboard.index"))
+                    {
+                        
+                    }
+                    else
+                    {
+                        <a asp-controller="Announcement" asp-action="Index">
+                            <span class="btn btn-green">
+                                Yeni elan <i class="fa-solid fa-plus"></i>
+                            </span>
+                        </a>
+                    }
                 </nav>
             </div>
         </div>
@@ -193,6 +208,7 @@
                     <ul class="bottom-items">
                         <li><a href="#">Qaydalar</a></li>
                         <li><a href="#">Əlaqə</a></li>
+                    <li><a asp-controller="Account" asp-action="DealershipRegister">Avtosalon Qeydiyyatı</a></li>
                     </ul>
                 </div>
             </div>

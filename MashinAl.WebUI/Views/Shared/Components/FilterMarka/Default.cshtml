@@ -1,0 +1,11 @@
+﻿@using MashinAl.Business.Modules.MarkasModule.Queries.MarkaGetAllQuery
+@model IEnumerable<MarkaGetAllDto>
+
+
+    <select name="Marka" id="marka" class="select-container" onchange="checkMarkaSelection()">
+    <option value="Marka seçin..." disabled selected>Marka seçin...</option>
+        @foreach (var item in Model)
+    {
+        <option value="@item.Id" data-id="@item.Id" data-entity-type="marka">@item.Name</option>
+    }
+    </select>

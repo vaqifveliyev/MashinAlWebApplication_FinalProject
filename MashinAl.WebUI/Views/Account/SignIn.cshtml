@@ -18,11 +18,29 @@
         <div class="ma-login-tab">
             <div class="ma-login-tab--form">
                 <h2>Hesaba daxil ol</h2>
-                <form method="post">
-                    <input type="text" class="select-container" placeholder="E-mail ünvanınız" asp-for="UserName">
-                    <input type="password" class="select-container" placeholder="Şifrəniz" asp-for="Password">
-                    <button class="submit-button" style="font-weight: 400; font-size: 15px; width: 100%;">Daxil ol</button>
-                </form>
+            <form method="post">
+                <input type="text" class="select-container" placeholder="E-mail ünvanınız" asp-for="UserName">
+                @if (ViewData.ModelState.TryGetValue("UserName", out var entry) && entry.Errors.Count > 0)
+                {
+                    <span class="validation-message">@Html.ValidationMessageFor(model => model.UserName)</span>
+                }
+
+                <input type="password" class="select-container" placeholder="Şifrəniz" asp-for="Password">
+                @if (ViewData.ModelState.TryGetValue("Password", out var passwordEntry) && passwordEntry.Errors.Count > 0)
+                {
+                    <span class="validation-message">@Html.ValidationMessageFor(model => model.Password)</span>
+                }
+
+                @if (ViewData.ModelState.TryGetValue(string.Empty, out var generalErrors) && generalErrors.Errors.Any())
+                {
+                    <div class="validation-message">@Html.ValidationMessage(string.Empty)</div>
+                }
+
+                <button class="submit-button" style="font-weight: 400; font-size: 15px; width: 100%;">Daxil ol</button>
+            </form>
+
+
+
                 <div class="register-box">
                     <i class="fa-solid fa-wand-magic-sparkles"></i>
                     <div>
@@ -36,3 +54,19 @@
             </div>
         </div>
     </div>
+
+@section addcss {
+    <style>
+        .validation-message {
+            background-color: #f8d7da;
+            color: #721c24;
+            border-color: #f5c6cb;
+            padding: 15px;
+            border: 1px solid;
+            font-weight: 500;
+            border-radius: 4px;
+            font-size: 14px;
+            width: 100%;
+        }
+    </style>
+}

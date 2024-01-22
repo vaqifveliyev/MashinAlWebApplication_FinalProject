@@ -1,0 +1,58 @@
+﻿@using MashinAl.Business.Modules.CarModule.Queries.CarGetAllByUserQuery
+@model IEnumerable<CarGetAllByUserDto>
+
+@if(Model.Any(m=>m.IsRejected == false && m.IsAccepted == true))
+{
+    @foreach (var item in Model.Where(m=> m.IsAccepted == true))
+    {
+        <div class="announcement-card">
+            <div class="card-image">
+                <img src="~/uploads/images/@item.ImagePath" alt="">
+                <span class="card-settings">
+                    <i class="fa-solid fa-ellipsis" aria-hidden="true"></i>
+                    <span class="settings-dropdown">
+                        <a onclick="removeEntity(@item.Id)">
+                            <i class="fa-solid fa-trash" aria-hidden="true"></i> Elanı sil
+                        </a>
+                    </span>
+                </span>
+            </div>
+            <div class="card-body">
+                <span class="card-price">@item.Price.ToString("G29") AZN</span>
+                <span class="card-name">@item.MarkaName @item.ModelName</span>
+                <div class="card-icons">
+                    <span>
+                        <i class="fa-solid fa-eye" aria-hidden="true"></i>
+                        0
+                    </span>
+                    <span>
+                        <i class="fa-solid fa-calendar-days" aria-hidden="true"></i>
+                        @(item.PublishedAt?.ToString("dd MMMM", new System.Globalization.CultureInfo("az-Latn-AZ")) ?? "")
+                    </span>
+                </div>
+                <div class="card-bottom">
+                    @if(item.IsBoosted == false)
+                    {
+                        <button class="btnBoost" onclick="boostEntity(@item.Id)">
+                            <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
+                            Önə çək (2AZN-dən)
+                        </button>
+                    }
+                    else
+                    {
+                        <button class="btnBoost" >
+                            Elan artıq irəli çəkilmişdir!
+                        </button>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+}
+else
+{
+    <h3 style="background-color: #f8d7da; color: #721c24; border-color: #f5c6cb; padding: 15px; border: 1px solid; border-radius: 4px; font-size: 14px; width: 100%;">
+        Hal-hazırda aktiv elanınız yoxdur!
+    </h3>
+}
+

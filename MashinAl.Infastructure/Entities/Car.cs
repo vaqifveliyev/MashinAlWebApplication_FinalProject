@@ -18,6 +18,8 @@
         public decimal Engine { get; set; }
         public bool IsBarter { get; set; }
         public bool IsCredit { get; set; }
+        public bool IsDealership { get; set; }
+        public bool IsBoosted { get; set; }
         public string Description { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
@@ -28,5 +30,6 @@
         public int CreatedBy { get; set; }
         public bool IsAccepted { get; set; } = false;
         public bool IsRejected { get; set; } = false;
+        public int ViewCount { get; set; }
     }
 }

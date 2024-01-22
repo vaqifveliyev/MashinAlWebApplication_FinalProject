@@ -23,6 +23,7 @@
                     <option value="L">L</option>
                     <option value="M">M</option>
                     <option value="N">N</option>
+                    <option value="O">O</option>
                     <option value="P">P</option>
                     <option value="R">R</option>
                     <option value="S">S</option>
@@ -32,6 +33,7 @@
                     <option value="X">X</option>
                     <option value="Y">Y</option>
                     <option value="Z">Z</option>
+
                     </select>
                 <select asp-for="@Model.SecondLetter" class="select-container">
                     <option value="seria" selected>Seriya...</option>
@@ -48,6 +50,7 @@
                     <option value="L">L</option>
                     <option value="M">M</option>
                     <option value="N">N</option>
+                    <option value="O">O</option>
                     <option value="P">P</option>
                     <option value="R">R</option>
                     <option value="S">S</option>
@@ -57,6 +60,7 @@
                     <option value="X">X</option>
                     <option value="Y">Y</option>
                     <option value="Z">Z</option>
+
                 </select>
                     <input type="text" asp-for="@Model.PlateNumber" class="select-container">
                 </div>
@@ -70,9 +74,9 @@
         </div>
         <div class="form-submit-area">
             <h2>Əlaqə məlumatları</h2>
-            <input type="text" asp-for="@Model.Name" value="Vaqif"class="select-container">
-        <input type="email" asp-for="@Model.Email"  value="vaqifveliyev1999@outlook.com" class="select-container">
-            <input type="text" asp-for="@Model.Phone" value="0502148450" class="select-container">
+        <input type="text" asp-for="@Model.Name" value="@User.GetClaimValue(ClaimTypes.Name)" class="select-container">
+        <input type="email" asp-for="@Model.Email" value="@User.GetClaimValue(ClaimTypes.Email)" class="select-container">
+        <input type="text" asp-for="@Model.Phone" value="@User.GetClaimValue(ClaimTypes.MobilePhone)" class="select-container">
         <select asp-for="@Model.CityId" asp-items="@ViewBag.CityId" class="select-container">
                 <option>Satış Şəhəri...</option>
             </select>

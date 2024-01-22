@@ -98,11 +98,13 @@ namespace MashinAl.Business.Modules.CarModule.Queries.CarGetAllByUserQuery
                                   CreatedBy = c.CreatedBy,
                                   IsAccepted = c.IsAccepted,
                                   IsRejected = c.IsRejected,
-                                  UserId = c.CreatedBy
-                                  
+                                  IsBoosted = c.IsBoosted,
+                                  UserId = c.CreatedBy,
+                                  PublishedAt = c.PublishedAt,
+
                               }).ToListAsync(cancellationToken);
 
-            return query;
+            return query.OrderByDescending(m => m.PublishedAt);
         }
     }
 }

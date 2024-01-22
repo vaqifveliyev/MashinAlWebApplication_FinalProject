@@ -1,0 +1,78 @@
+﻿
+@{
+    ViewData["Title"] = "Avtomobil Elanları | Avtosalon | Mashin.Al";
+}
+
+<div class="page-body">
+    <!-- Basic table card start -->
+    <div class="card">
+        <div class="card-header">
+            <h5>Avtomobil Elanları</h5>
+
+        </div>
+        <div class="card-block table-border-style">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Marka</th>
+                            <th>Model</th>
+                            <th>İl</th>
+                            <th>Qiymət</th>
+                            <th>Status</th>
+                            <th>Əməliyyatlar</th>
+                        </tr>
+                    </thead>
+                    <tbody id="body">
+                        <partial name="_Body" model="@Model" />
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+@section addjs {
+    <script src="~/libs/sweetalert/sweetalert.min.js"></script>
+    <script>
+        function removeEntity(id) {
+
+            swal({
+                title: "Diqqət!",
+                text: `${id} nömrəli avtomobil elanını silmək istədiyinizdən əminsiniz?`,
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+                buttons: ['Xeyr', 'Bəli']
+            })
+                .then((willDelete) => {
+                    if (willDelete) {
+
+                        let obj = { id };
+
+                        $.ajax({
+                            url: '@Url.Action("Delete")',
+                            type: 'POST',
+                            data: obj,
+                            success: function (response) {
+                                if (response.error == true) {
+                                    toastr.error('Elan silinmə əməliyyatında xəta yarandı!', 'Xəta!');
+                                    return;
+                                }
+
+                                toastr.success('Elan uğurla silindi!', 'Uğurlu Nəticə!');
+                                $('tbody#body').html(response)
+
+                            },
+                            error: function (response) {
+                                console.log(response);
+                            }
+                        });
+                    }
+                });
+        }
+    </script>
+}

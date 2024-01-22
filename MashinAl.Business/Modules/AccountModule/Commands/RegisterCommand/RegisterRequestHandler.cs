@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using System.Text;
 using System.Web;
-using System.Xml.Linq;
 
 namespace MashinAl.Business.Modules.AccountModule.Commands.RegisterCommand
 {
@@ -15,16 +14,19 @@ namespace MashinAl.Business.Modules.AccountModule.Commands.RegisterCommand
         private readonly RoleManager<MashinAlRole> roleManager;
         private readonly IEmailService emailService;
         private readonly IActionContextAccessor ctx;
+        private readonly IFileService fileService;
 
         public RegisterRequestHandler(UserManager<MashinAlUser> userManager,
             RoleManager<MashinAlRole> roleManager,
             IEmailService emailService,
-            IActionContextAccessor ctx)
+            IActionContextAccessor ctx,
+            IFileService fileService)
         {
             this.userManager = userManager;
             this.roleManager = roleManager;
             this.emailService = emailService;
             this.ctx = ctx;
+            this.fileService = fileService;
         }
         public async Task Handle(RegisterRequest request, CancellationToken cancellationToken)
         {
@@ -43,6 +45,8 @@ namespace MashinAl.Business.Modules.AccountModule.Commands.RegisterCommand
                 PhoneNumber = request.PhoneNumber,
                 EmailConfirmed = false
             };
+
+            user.ImagePath = "/frontside/assets/img/icons/user_new.png";
 
             int? tryCount = null;
 

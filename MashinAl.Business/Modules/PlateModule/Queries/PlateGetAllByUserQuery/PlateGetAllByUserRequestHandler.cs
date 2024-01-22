@@ -51,7 +51,7 @@ namespace MashinAl.Business.Modules.PlateModule.Queries.PlateGetAllByUserQuery
 
                 }).ToListAsync(cancellationToken);
 
-            return query;
+            return query.OrderByDescending(m => m.PublishedAt);
         }
     }
 }

@@ -1,0 +1,31 @@
+﻿@using MashinAl.Business.Modules.AccountModule.Commands.RegisterDealerCommand
+@model RegisterDealerRequest
+
+@{
+    ViewData["Title"] = "Avtosalon Qeydiyyatı | Mashin.Al";
+}
+
+<div class="container" style="margin-top:20px">
+    <div class="ma-login-tab" style="justify-content: center;">
+        <div class="ma-login-tab--form" style="border: transparent !important;">
+            <h2>Yeni Avtosalon qeydiyyatı</h2>
+            <form method="post" enctype="multipart/form-data">
+                <input type="email" asp-for="Email" class="select-container" placeholder="E-mail ünvanınız">
+                <input type="text" asp-for="Name"  class="select-container" placeholder="Adınız">
+                <input type="text" asp-for="Surname"  class="select-container" placeholder="Soyadınız">
+                <input type="password" asp-for="Password"  class="select-container" placeholder="Şifrəniz">
+                <input type="text" asp-for="PhoneNumber"  class="select-container" placeholder="Mobil nömrəniz">
+                <input type="text" asp-for="DealershipName"  class="select-container" placeholder="Avtosalon adı">
+                <input type="text" asp-for="DealershipAddress" class="select-container" placeholder="Avtosalon ünvanı">
+                <input type="text" asp-for="DealershipNumber"  class="select-container" placeholder="Avtosalon əlaqə nömrəsi">
+                <input type="text" asp-for="WorkingHours"  class="select-container" placeholder="İş saatları">
+                <label>Avtosalon Logosu:</label>
+                <input style="display:block !important;" type="file" name="image"/>
+                <textarea asp-for="DealershipDescription" class="select-container" placeholder="Avtosalon haqqında"></textarea>
+                <button type="submit" class="submit-button" style="font-weight: 400; font-size: 15px; width: 100%;">Qeydiyyat</button>
+            </form>
+
+        </div>
+    </div>
+</div>
+

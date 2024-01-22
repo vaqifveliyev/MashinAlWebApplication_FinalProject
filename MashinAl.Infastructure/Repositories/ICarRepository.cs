@@ -10,8 +10,15 @@ namespace MashinAl.Infastructure.Repositories
 
         Task<CarImage> AddCarImage(int carId, CarImage image, CancellationToken cancellationToken);
 
-        IQueryable<CarSupply> GetSupplies(Expression<Func<CarSupply, bool>> expression = null);
+        IQueryable<Supply> GetSupplies(int carId);
         Task<CarSupply> AddCarSupply(int carId, CarSupply carSupply, CancellationToken cancellationToken);
+
+        Task<Favorites> AddToFavoritesAsync(Favorites favorites, CancellationToken cancellationToken);
+        Task RemoveFromFavorites(Favorites favorites, CancellationToken cancellationToken);
+        IQueryable<Favorites> GetFavorites(int userId);
+        IQueryable<Car> GetCarsByDealer(int userId);
+
+
 
     }
 }

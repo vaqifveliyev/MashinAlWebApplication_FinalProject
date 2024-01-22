@@ -1,5 +1,8 @@
 ﻿@using MashinAl.Business.Modules.PlateModule.Queries.PlateGetAllByUserQuery
-@model IEnumerable<PlateGetAllByUserDto>
+@using MashinAl.WebUI.Views.ViewComponents
+@using MashinAl.Business.Modules.AccountModule.Queries.GetAccountBalanceQuery
+@model GetUserBalanceDto
+
 
 @{
     ViewData["Title"] = "Mənim Profilim | MashinAl";
@@ -33,117 +36,13 @@
         </div>
         <div id="nav-tab" class="right-side opened">
             <h3>Elanlarım</h3>
-            <div class="profile-progress-bar">
-                <ul>
-                    <li>
-                        <a href="#">
-                            <div class="count-box">
-                                <span class="count-span">0</span>
-                            </div>
-                            <p class="count-text">Hamısı</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <div class="count-box">
-                                <span class="count-span">@Model.Count(m => m.IsAccepted)</span>
-                            </div>
-                            <p class="count-text">Aktiv</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <div class="count-box">
-                                <span class="count-span">@Model.Count(m=>m.IsAccepted == false && m.IsRejected == false )</span>
-                            </div>
-                            <p class="count-text">Yoxlamada</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <div class="count-box">
-                                <span class="count-span">0</span>
-                            </div>
-                            <p class="count-text">Vaxti bitmiş</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <div class="count-box">
-                                <span class="count-span">0</span>
-                            </div>
-                            <p class="count-text">İmtina edilmiş</p>
-                        </a>
-                    </li>
-                </ul>
-            </div>
+            
             <div class="my-announcements-section">
-                <div class="announcement-card">
-                    <div class="card-image">
-                        <img src="./assets/img/images/bmw-f10.webp" alt="">
-                        <span class="card-settings">
-                            <i class="fa-solid fa-ellipsis"></i>
-                            <span class="settings-dropdown">
-                                <a href="#">
-                                    <i class="fa-solid fa-trash"></i> Elanı sil
-                                </a>
-                            </span>
-                        </span>
-                    </div>
-                    <div class="card-body">
-                        <span class="card-price">23 000 AZN</span>
-                        <span class="card-name">BMW F10</span>
-                        <div class="card-icons">
-                            <span>
-                                <i class="fa-solid fa-eye"></i>
-                                0
-                            </span>
-                            <span>
-                                <i class="fa-solid fa-calendar-days"></i>
-                                3 Dekabr
-                            </span>
-                        </div>
-                        <div class="card-bottom">
-                            <button class="btnBoost">
-                                <i class="fa-solid fa-arrow-up"></i>
-                                Önə çək (2AZN-dən)
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
+                @await Component.InvokeAsync("ProfileCars")
             </div>
             <h3 style="margin-top: 20px;">Qeydiyyat Nişanları</h3>
             <div class="my-announcements-section">
-                @foreach (var item in Model.Where(m => m.IsAccepted))
-                {
-                        <div class="license-plate-card">
-                            <div class="license-plate">
-                                <div class="mark-icon">
-                                    <img src="~/frontside/assets/img/icons/registrationMarks_icons.svg"
-                                         alt="" />
-                                </div>
-                                <span class="license-plate-number"> @item.RegionTitle-@item.FirstLetter@item.SecondLetter-@item.PlateNumber </span>
-                            </div>
-                            <div class="license-plate-body">
-                                <div class="license-body-header">
-                                    <span class="license-plate-price">1 500 AZN</span>
-                                    <span class="license-add-to-favorites">
-                                        <a href="#"><i class="fa-regular fa-bookmark"></i></a>
-                                    </span>
-                                </div>
-                                <span class="license-plate-owner">Vaqif</span>
-                                <div class="license-plate-bottom">
-                                    <span class="license-date license-icons">
-                                        <i class="fa-regular fa-calendar"></i> 23 noyabr
-                                    </span>
-                                    <span class="license-location license-icons">
-                                        <i class="fa-solid fa-location-dot"></i> Bakı
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    }        
+                @await Component.InvokeAsync("ProfilePlates")
             </div>
         </div>
         <div id="nav-tab" class="right-side">
@@ -153,15 +52,14 @@
                     <div class="balance-card">
                         <h4>Şəxsi balans</h4>
                         <p>Şəxsi hesaba mümkün ödəniş üsulları vasitəsilə qoyulan məbləğ</p>
-                        <span class="balance-amount">0 AZN</span>
+                        <span class="balance-amount">@Model.Balance AZN</span>
                     </div>
                 </div>
                 <div class="bottom-side">
                     <div class="fill-balance">
                         <h4>Balans artırma</h4>
                         <div class="fill-form">
-                            <input type="text" class="select-container" id="amount-input" placeholder="Məbləğ">
-                            <button class="fill-button disabled" id="fill-button">Balansı artır</button>
+                            <a asp-controller="account" asp-action="addbalance" class="fill-button">Balansı artır</a>
                         </div>
                     </div>
                 </div>
@@ -181,16 +79,92 @@
 </section>
 
 
+
 @section addjs {
+    <script src="~/libs/sweetalert/sweetalert.min.js"></script>
     <script>
+        function boostEntity(id) {
+            swal({
+                title: "Diqqət!",
+                text: ` ${id} nömrəli elanı önə çəkmək istədiyinizdən əminsiniz?`,
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+                buttons: ['Xeyr', 'Bəli']
+            })
+                .then((willBoost) => {
+                    if (willBoost) {
+                        let obj = { id };
+
+                        $.ajax({
+                            url: '@Url.Action("BoostCar")', 
+                            type: 'POST',
+                            data: obj,
+                            success: function (response) {
+                                if (response.error == true) {
+                                    toastr.error('Elanı irəli çəkmək əməliyyatında xəta yarandı!', 'Xəta!');
+                                    return;
+                                }
+
+                                toastr.success('Elan uğurla Önə çəkildi!', 'Uğurlu Nəticə!');
+                                setTimeout(function () {
+                                    location.reload();
+                                }, 1000);
+                            },
+                            error: function (response) {
+                                console.log(response);
+                            }
+                        });
+                    }
+                });
+        }
+
+        function removeEntity(id) {
+
+            swal({
+                title: "Diqqət!",
+                text: `${id} nömrəli elanı silmək istədiyinizdən əminsiniz?`,
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+                buttons: ['Xeyr', 'Bəli']
+            })
+                .then((willDelete) => {
+                    if (willDelete) {
+
+                        let obj = { id };
+
+                        $.ajax({
+                            url: '@Url.Action("RemoveCar")',
+                            type: 'POST',
+                            data: obj,
+                            success: function (response) {
+                                if (response.error == true) {
+                                    toastr.error('Elan silinmə əməliyyatında xəta yarandı!', 'Xəta!');
+                                    return;
+                                }
+
+                                toastr.success('Elan uğurla silindi!', 'Uğurlu Nəticə!');
+                                $('tbody#body').html(response)
+
+                            },
+                            error: function (response) {
+                                console.log(response);
+                            }
+                        });
+                    }
+                });
+        }
 
         /* MY ANNOUNCEMENT CARD SCRIPTS */
 
-        let cardSettingsButton = document.querySelector('.card-settings');
-        let dropdownSettings = document.querySelector('.settings-dropdown');
+        let cardSettingsButtons = document.querySelectorAll('.card-settings');
+        let dropdownSettings = document.querySelectorAll('.settings-dropdown');
 
-        cardSettingsButton.addEventListener('click', () => {
-            dropdownSettings.classList.toggle('opened');
+        cardSettingsButtons.forEach(function (cardSettingsButton, index) {
+            cardSettingsButton.addEventListener('click', function () {
+                dropdownSettings[index].classList.toggle('opened');
+            });
         });
 
         document.addEventListener('DOMContentLoaded', function () {

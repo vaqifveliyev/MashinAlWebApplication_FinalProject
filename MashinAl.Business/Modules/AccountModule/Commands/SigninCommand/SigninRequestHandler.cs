@@ -5,11 +5,12 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 using System.Security.Claims;
 
 namespace MashinAl.Business.Modules.AccountModule.Commands.SigninCommand
 {
-    internal class SigninRequestHandler : IRequestHandler<SigninRequest> 
+    internal class SigninRequestHandler : IRequestHandler<SigninRequest>
     {
         private readonly UserManager<MashinAlUser> userManager;
         private readonly SignInManager<MashinAlUser> signInManager;
@@ -27,20 +28,27 @@ namespace MashinAl.Business.Modules.AccountModule.Commands.SigninCommand
             var user = await FindUserAsync(request.UserName);
 
             if (user == null)
-                throw new Exception($"{request.UserName} user not found!");
+                throw new UserNotFoundException(request.UserName);
 
             var checkResult = await signInManager.CheckPasswordSignInAsync(user, request.Password, true);
 
             if (!checkResult.Succeeded)
-                throw new Exception($"Username, Email, Phone Number, or Password is incorrect!");
+                throw new InvalidCredentialsException();
 
             if (!user.EmailConfirmed)
-                throw new Exception($"{request.UserName} is not verified!");
+                throw new EmailNotVerifiedException(request.UserName);
+
+            var validationResult = new SigninRequestValidator().Validate(request);
+
+            if (!validationResult.IsValid)
+            {
+                var errorMessages = string.Join(Environment.NewLine, validationResult.Errors.Select(error => error.ErrorMessage));
+                throw new ValidationException(errorMessages);
+            }
 
             var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString())
-                
             };
 
             var principal = new ClaimsPrincipal(new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme));
@@ -54,6 +62,13 @@ namespace MashinAl.Business.Modules.AccountModule.Commands.SigninCommand
 
         private async Task<MashinAlUser> FindUserAsync(string userName)
         {
+            if (string.IsNullOrWhiteSpace(userName))
+            {
+                // Handle null or empty userName as needed, e.g., return null or throw an exception.
+                // For now, I'll return null.
+                return null;
+            }
+
             // Check userName if email
             var user = await userManager.FindByEmailAsync(userName);
 
